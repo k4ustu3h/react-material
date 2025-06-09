@@ -1,11 +1,12 @@
-# React Material
-## React Material is a library of React components that implement the Material Design specification.
- It provides a set of pre-built components that can be used to create modern, responsive web applications with a consistent look and feel.
- The library is designed to be easy to use and customize, allowing developers to quickly build user interfaces that adhere to Material Design principles.
- React Material is built on top of React, a popular JavaScript library for building user interfaces.
- It leverages the power of React to create reusable components that can be easily integrated into any React application.
- React Material is open source and actively maintained, with a growing community of contributors and users.
- It is a great choice for developers looking to create modern, responsive web applications with a consistent look and feel.
- The library is designed to be easy to use and customize, allowing developers to quickly build user interfaces that adhere to Material Design principles.
+# Welcome to React Material
 
-## For more information, visit the [React Material documentation](https://rm.miukyo.my.id).
+React Material is a React component library built on the principles of Google's Material 3 design language. It provides a comprehensive set of UI components that are both visually appealing and highly functional, enabling developers to create consistent and accessible user interfaces with ease.
+
+> **Note**: React Material is an unofficial project and is not affiliated with or endorsed by Google. It is independently developed to bring the Material 3 design language to React applications.
+
+## Why React Material?
+
+- **Material 3 Design**: All components are designed to align with Google's latest Material 3 guidelines, ensuring a cohesive and modern look and feel.
+- **Customizable**: Easily customize components to match your application's branding and design requirements.
+- **Accessible**: Accessibility is a core focus, ensuring that your applications are usable by everyone.
+- **Developer-Friendly**: With detailed documentation and intuitive APIs, React Material makes it easy to integrate and use components in your projects.
