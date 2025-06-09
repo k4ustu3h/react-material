@@ -1,0 +1,42 @@
+@layer components {
+  .m3-ripple-container {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    overflow: hidden;
+
+    &:hover {
+      background-color: tomato;
+    }
+
+    & ~ .tint {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background-color: currentColor;
+      opacity: 0;
+      transition: opacity var(--m3-util-easing-fast);
+    }
+  }
+}
+
+@media (hover: hover) {
+  :is(
+    :hover > .tint,
+    input:not(:disabled) + label:hover > .tint,
+    input:not(:disabled) + .layer-container:hover > .tint,
+    button:not(:disabled):hover > .tint
+  ) {
+    opacity: 0.08;
+  }
+}
+
+:is(
+  input:focus-visible + label > .tint,
+  :focus-visible > .tint,
+  .ripple-container.broken + .tint:active > .tint
+) {
+  opacity: 0.12;
+}

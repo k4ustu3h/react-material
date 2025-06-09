@@ -1,0 +1,77 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+
+<DocsHeader
+  title="Installation"
+  description="A guide to installing and setting up the necessary components for your project."
+/>
+
+
+# Installation Steps
+## Step 1: Install Dependencies
+To get started, you need to install the required dependencies. Open your terminal and run the following command:
+
+```bash
+npm install react-material
+```
+
+## Step 2: Add Theme Provider
+Next, you need to wrap your application with the `ThemeProvider` from the `react-material` package. This is essential for applying the default theme and styles to your components. You can do this in your main application file (e.g., `App.js` or `index.js`):
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'react-material';
+import App from './App';
+import './index.css';
+ReactDOM.render(
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root')
+);
+```
+
+## Step 3: Use Components in Your Application
+Now you can use the imported components in your application. For example:
+
+```javascript
+import { ComponentName } from 'react-material';
+
+function ExampleComp() {
+  return (
+    <div>
+      <ComponentName />
+    </div>
+  );
+}
+```
+You can replace `ComponentName` with any component you want to use from the `react-material` library, such as `Button`, `Card`, or `TextField`.
+
+## Step 4: Customize Your Theme (Optional)
+If you want to customize the theme, you can create a custom theme object and pass it to the `ThemeProvider`. Here's an example:
+
+```javascript
+import { createTheme, ThemeProvider } from 'react-material';
+const theme = createTheme({
+  colors: {
+    primary: '#6200ea',
+    secondary: '#03dac6',
+  },
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+  },
+});
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root')
+);
+```
+
+
+# Additional Resources
+Following these steps will help you successfully install and set up the necessary components for your project. If you encounter any issues, refer to the documentation or seek help from the community:
+- [Discord](https://example.com/forum)
+- [GitHub](https://github.com/miukyo/react-material)

@@ -1,0 +1,97 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { FAB, Icon } from "react-material";
+
+<DocsHeader
+  title="FAB"
+  description="A Floating Action Button (FAB) is a circular button that represents the primary action on a page."
+/>
+
+# Overview
+
+The `FAB` (Floating Action Button) is a prominent circular button that floats above the content of your application. It is typically used for the most important action on a page, such as creating a new item or starting a new task. The FAB is designed to be easily accessible and visually distinct, drawing the user's attention to the primary action.
+
+# Colors
+The `FAB` component supports multiple colors to match different use cases and design preferences. Below are the available colors:
+- **Primary**: A FAB that stands out as the main action button.
+- **Secondary**: A FAB for secondary actions, providing a less prominent alternative.
+- **Tertiary**: A FAB for less critical actions, often used for additional options or features.
+
+<DocsPreview>
+<DocsComp>
+<FAB color="primary">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="secondary">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="tertiary">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="primary-container">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="secondary-container">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="tertiary-container">
+  <Icon>circle</Icon>
+</FAB>
+</DocsComp>
+
+```tsx
+import { FAB, Icon } from "react-material";
+
+<FAB color="primary">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="secondary">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="tertiary">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="primary-container">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="secondary-container">
+  <Icon>circle</Icon>
+</FAB>
+<FAB color="tertiary-container">
+  <Icon>circle</Icon>
+</FAB>
+```
+</DocsPreview>
+
+# Sizes
+The `FAB` component also supports different sizes to fit various contexts, such as compact buttons for toolbars or larger buttons for prominent actions. The available sizes include:
+- **Small**: A compact FAB for less prominent actions.
+- **Medium**: The default size, suitable for most use cases.
+- **Large**: A larger FAB for actions that require more emphasis.
+<DocsPreview>
+<DocsComp>
+<FAB size="small">
+  <Icon>circle</Icon>
+</FAB>
+<FAB size="medium">
+  <Icon>circle</Icon>
+</FAB>
+<FAB size="large">
+  <Icon>circle</Icon>
+</FAB>
+</DocsComp>
+
+```tsx
+import { FAB, Icon } from "react-material";
+
+<FAB size="small">
+  <Icon>circle</Icon>
+</FAB>
+<FAB size="medium">
+  <Icon>circle</Icon>
+</FAB>
+<FAB size="large">
+  <Icon>circle</Icon>
+</FAB>
+```
+</DocsPreview>

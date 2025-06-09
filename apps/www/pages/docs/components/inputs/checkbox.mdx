@@ -1,0 +1,37 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Checkbox } from "react-material";
+
+<DocsHeader
+  title="Checkbox"
+  description="A versatile component for toggling options or settings."
+/>
+
+# Overview
+
+The `Checkbox` component is a fundamental UI element that allows users to select one or more options from a set. It is commonly used in forms, settings, and anywhere user input is required. The component can be styled and customized to fit various design needs.
+
+# State
+
+The `Checkbox` component can be in one of the following states:
+
+- **Default**: The checkbox is unchecked and ready for user interaction. 
+- **Indeterminate**: The checkbox is neither checked nor unchecked, often used to indicate a mixed state in a group of checkboxes.
+- **Disabled**: The checkbox is not interactive, often used to indicate that the option is not available for selection.
+
+<DocsPreview>
+  <DocsComp>
+    <Checkbox />
+    <Checkbox indeterminate />
+    <Checkbox disabled />
+  </DocsComp>
+
+```tsx
+import { Checkbox } from "react-material";
+
+<Checkbox />
+<Checkbox indeterminate />
+<Checkbox disabled />
+```
+
+</DocsPreview>

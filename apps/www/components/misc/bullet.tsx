@@ -1,0 +1,17 @@
+import React, { JSX } from "react";
+
+const Bullet = (props: JSX.IntrinsicElements["svg"]) => {
+  return (
+    <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <g>
+        <path
+          d="M4.958.28c.58-.634 1.627-.107 1.462.736l-.365 1.868a.85.85 0 00.26.79L7.72 4.958c.634.58.107 1.627-.736 1.462l-1.868-.365a.85.85 0 00-.79.26L3.042 7.72c-.58.634-1.627.107-1.462-.736l.365-1.868a.85.85 0 00-.26-.79L.28 3.042c-.634-.58-.107-1.627.736-1.462l1.868.365a.85.85 0 00.79-.26L4.958.28z"
+          fill="currentColor"
+          fillRule="evenodd"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export default Bullet;

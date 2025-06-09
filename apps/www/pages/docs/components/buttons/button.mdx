@@ -1,0 +1,126 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Button, Icon } from "react-material";
+
+<DocsHeader
+  title="Button"
+  description="A versatile component for triggering actions or navigating users."
+/>
+
+# Overview
+
+The `Button` component is a core element of user interaction in any application. It can be used to trigger actions, submit forms, or navigate users to different parts of your app. The component is highly customizable, offering various styles, sizes, and colors to suit your design needs.
+
+# Colors
+
+The `Button` component supports multiple colors to match different use cases and design preferences. Below are the available colors:
+
+- **Default**: A standard button for general use.
+- **Tonal**: A softer, more subdued button style.
+- **Outlined**: A button with a border and no background, ideal for secondary actions.
+- **Elevated**: A button with a shadow, giving it a raised appearance.
+- **Text**: A minimal button with no background or border, often used for inline actions.
+
+<DocsPreview>
+<DocsComp>
+<Button color="filled">Hello</Button>
+<Button color="tonal">Hello</Button>
+<Button color="outlined">Hello</Button>
+<Button color="elevated">Hello</Button>
+<Button color="text">Hello</Button>
+</DocsComp>
+
+
+```tsx
+import { Button } from "react-material";
+
+<Button color="filled">Hello</Button>
+<Button color="elevated">Hello</Button>
+<Button color="outlined">Hello</Button>
+<Button color="tonal">Hello</Button>
+<Button color="text">Hello</Button>
+```
+
+</DocsPreview>
+
+# Sizes
+
+The `Button` component also supports different sizes to fit various contexts, such as compact buttons for toolbars or larger buttons for prominent actions. The available sizes include:
+
+- **Small**: For compact spaces or less prominent actions.
+- **Medium**: The default size, suitable for most use cases.
+- **Large**: For actions that require more emphasis.
+
+<DocsPreview>
+<DocsComp>
+<Button size="extrasmall">XSmall</Button>
+<Button size="small">Small</Button>
+<Button size="medium">Medium</Button>
+<Button size="large">Large</Button>
+<Button size="extralarge">XLarge</Button>
+
+<Button shape="square" size="extrasmall">XSmall</Button>
+<Button shape="square" size="small">Small</Button>
+<Button shape="square" size="medium">Medium</Button>
+<Button shape="square" size="large">Large</Button>
+<Button shape="square" size="extralarge">XLarge</Button>
+
+</DocsComp>
+
+
+```tsx
+import { Button } from "react-material";
+
+<Button size="extrasmall">XSmall</Button>
+<Button size="small">Small</Button>
+<Button size="medium">Medium</Button>
+<Button size="large">Large</Button>
+<Button size="extralarge">XLarge</Button>
+```
+
+</DocsPreview>
+
+# Shapes
+
+The `Button` component can also be styled with different shapes to enhance its appearance and fit your design language. The available shapes include:
+
+- **Rounded**: A button with rounded corners for a softer look.
+- **Square**: A button with sharp corners for a more modern, minimalistic appearance.
+
+<DocsPreview>
+<DocsComp>
+<Button shape="round">Rounded</Button>
+<Button shape="square">Square</Button>
+</DocsComp>
+
+```tsx
+import { Button } from "react-material";
+
+<Button shape="round">Rounded</Button>
+<Button shape="square">Square</Button>
+```
+
+</DocsPreview>
+
+# States
+The `Button` component supports various states to indicate its current interaction status. These states include:
+- **Default**: The normal state of the button.
+- **Disabled**: The state when the button is not interactive, often grayed out to indicate it cannot be clicked.
+- **Toggle**: A special state that can be used to indicate a input toggle, such as a checkbox or switch. This state can be controlled via the `htmlFor` prop to link it with an input element.
+
+<DocsPreview>
+<DocsComp>
+<Button>Default</Button>
+<Button disabled>Disabled</Button>
+<input className="hidden" type="checkbox" id="toggle" />
+<Button htmlFor="toggle">Toggle</Button>
+</DocsComp>
+
+```tsx
+import { Button } from "react-material";
+
+<Button>Default</Button>
+<Button disabled>Disabled</Button>
+<Button htmlFor="id">Toggle</Button>
+```
+</DocsPreview>

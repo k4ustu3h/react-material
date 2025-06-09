@@ -1,0 +1,10 @@
+{
+  "categoryOrder": ["get-started", "themes", "components"],
+  "categoryIcons": {
+    "get-started": "apps",
+    "components": "shapes"
+  },
+  "documentOrder": {
+    "get-started": ["introduction", "installation", "themes", "components"]
+  }
+}

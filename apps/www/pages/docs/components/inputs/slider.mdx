@@ -1,0 +1,46 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Slider } from "react-material";
+
+<DocsHeader
+  title="Slider"
+  description="A component for selecting a value from a range, allowing users to adjust settings or preferences."
+/>
+
+# Overview
+
+The `Slider` component is a versatile UI element that allows users to select a value from a predefined range. It is commonly used for adjusting settings such as volume, brightness, or any other numerical value that requires user input. The slider provides a visual representation of the range and allows for precise adjustments.
+
+# Modes
+
+The `Slider` component supports various modes to enhance user experience:
+
+- **Continuous**: The slider allows users to select any value within the range, providing a smooth and continuous adjustment experience.
+- **Discrete**: The slider allows users to select only specific values within the range, often used for settings that require predefined steps (e.g., volume levels).
+
+<DocsPreview>
+  <DocsComp>
+  <div className="mx-5 mt-10 grid grid-cols-2 w-full gap-5">
+    <Slider
+      min={0}
+      max={100}
+      defaultValue={50}
+    />
+    <Slider
+      min={0}
+      max={100}
+      mode="discrete"
+      step={20}
+      defaultValue={50}
+    />
+  </div>
+  </DocsComp>
+
+```tsx
+import { Slider } from "react-material";
+
+<Slider min={0} max={100} defaultValue={50} />;
+<Slider min={0} max={100} steps={20} mode="discrete" defaultValue={50} />;
+```
+
+</DocsPreview>

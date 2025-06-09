@@ -1,0 +1,104 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { ButtonGroupItem, ButtonGroup } from "react-material";
+
+<DocsHeader
+  title="Button Group"
+  description="A component that groups multiple buttons together for better organization and user interaction."
+/>
+
+# Overview
+
+The `ButtonGroup` component is designed to group multiple buttons together, allowing for better organization and user interaction. This is particularly useful when you have related actions that users can take, such as editing, deleting, or saving items.
+
+# Mode
+
+The `ButtonGroup` component supports two modes: `single` and `multiple`.
+
+- **Single Mode**: Only one button can be selected at a time. This is useful for actions where only one selection is valid, such as choosing a primary action.
+- **Multiple Mode**: Multiple buttons can be selected simultaneously. This is useful for actions where users can choose several options at once, such as selecting multiple items to perform batch actions.
+
+<DocsPreview>
+  <DocsComp>
+    <ButtonGroup mode="single">
+      <ButtonGroupItem>Single 1</ButtonGroupItem>
+      <ButtonGroupItem>Single 2</ButtonGroupItem>
+      <ButtonGroupItem>Single 3</ButtonGroupItem>
+    </ButtonGroup>
+    <ButtonGroup>
+      <ButtonGroupItem>Multiple 1</ButtonGroupItem>
+      <ButtonGroupItem>Multiple 2</ButtonGroupItem>
+      <ButtonGroupItem>Multiple 3</ButtonGroupItem>
+    </ButtonGroup>
+  </DocsComp>
+
+```tsx
+import { ButtonGroupItem, ButtonGroup } from "react-material";
+
+<ButtonGroup mode="single">
+    <ButtonGroupItem>Single 1</ButtonGroupItem>
+    <ButtonGroupItem>Single 2</ButtonGroupItem>
+    <ButtonGroupItem>Single 3</ButtonGroupItem>
+</ButtonGroup>
+<ButtonGroup mode="multiple">
+    <ButtonGroupItem>Multiple 1</ButtonGroupItem>
+    <ButtonGroupItem>Multiple 2</ButtonGroupItem>
+    <ButtonGroupItem>Multiple 3</ButtonGroupItem>
+</ButtonGroup>
+```
+</DocsPreview>
+
+# Colors
+The `ButtonGroup` component supports multiple colors to match different use cases and design preferences. Below are the available colors:
+- **Default**: A standard button group for general use.
+- **Tonal**: A softer, more subdued button group style.
+- **Outlined**: A button group with a border and no background, ideal for secondary actions.
+- **Elevated**: A button group with a shadow, giving it a raised appearance.
+<DocsPreview>
+  <DocsComp>
+    <ButtonGroup color="filled">
+      <ButtonGroupItem>Default</ButtonGroupItem>
+      <ButtonGroupItem>Default</ButtonGroupItem>
+      <ButtonGroupItem>Default</ButtonGroupItem>
+    </ButtonGroup>
+    <ButtonGroup color="tonal">
+      <ButtonGroupItem>Tonal</ButtonGroupItem>
+      <ButtonGroupItem>Tonal</ButtonGroupItem>
+      <ButtonGroupItem>Tonal</ButtonGroupItem>
+    </ButtonGroup>
+    <ButtonGroup color="outlined">
+      <ButtonGroupItem>Outlined</ButtonGroupItem>
+      <ButtonGroupItem>Outlined</ButtonGroupItem>
+      <ButtonGroupItem>Outlined</ButtonGroupItem>
+    </ButtonGroup>
+    <ButtonGroup color="elevated">
+      <ButtonGroupItem>Elevated</ButtonGroupItem>
+      <ButtonGroupItem>Elevated</ButtonGroupItem>
+      <ButtonGroupItem>Elevated</ButtonGroupItem>
+    </ButtonGroup>
+  </DocsComp>
+
+```tsx
+import { ButtonGroupItem, ButtonGroup } from "react-material";
+<ButtonGroup color="filled">
+  <ButtonGroupItem>Default</ButtonGroupItem>
+  <ButtonGroupItem>Default</ButtonGroupItem>
+  <ButtonGroupItem>Default</ButtonGroupItem>
+</ButtonGroup>
+<ButtonGroup color="tonal">
+  <ButtonGroupItem>Tonal</ButtonGroupItem>
+  <ButtonGroupItem>Tonal</ButtonGroupItem>
+  <ButtonGroupItem>Tonal</ButtonGroupItem>
+</ButtonGroup>
+<ButtonGroup color="outlined">
+  <ButtonGroupItem>Outlined</ButtonGroupItem>
+  <ButtonGroupItem>Outlined</ButtonGroupItem>
+  <ButtonGroupItem>Outlined</ButtonGroupItem>
+</ButtonGroup>
+<ButtonGroup color="elevated">
+  <ButtonGroupItem>Elevated</ButtonGroupItem>
+  <ButtonGroupItem>Elevated</ButtonGroupItem>
+  <ButtonGroupItem>Elevated</ButtonGroupItem>
+</ButtonGroup>
+```
+</DocsPreview>

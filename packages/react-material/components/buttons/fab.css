@@ -1,0 +1,87 @@
+@layer components {
+  .m3-fab-container {
+    display: inline-flex;
+    border: none;
+    position: relative;
+    overflow: hidden;
+
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &.elevation-normal {
+      box-shadow: var(--m3-util-elevation-3);
+    }
+    &.elevation-lowered {
+      box-shadow: var(--m3-util-elevation-1);
+    }
+
+    &.small {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--m3-util-rounding-large);
+    }
+    &.medium {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--m3-util-rounding-large-increased);
+    }
+    &.large {
+      width: 96px;
+      height: 96px;
+      border-radius: var(--m3-util-rounding-extra-large);
+    }
+
+    span {
+      user-select: none;
+      font-size: unset;
+    }
+
+    &.primary {
+      background-color: rgb(var(--m3-scheme-primary));
+      color: rgb(var(--m3-scheme-on-primary));
+    }
+    &.secondary {
+      background-color: rgb(var(--m3-scheme-secondary));
+      color: rgb(var(--m3-scheme-on-secondary));
+    }
+    &.tertiary {
+      background-color: rgb(var(--m3-scheme-tertiary));
+      color: rgb(var(--m3-scheme-on-tertiary));
+    }
+    &.primary-container {
+      background-color: rgb(var(--m3-scheme-primary-container));
+      color: rgb(var(--m3-scheme-on-primary-container));
+    }
+    &.secondary-container {
+      background-color: rgb(var(--m3-scheme-secondary-container));
+      color: rgb(var(--m3-scheme-on-secondary-container));
+    }
+    &.tertiary-container {
+      background-color: rgb(var(--m3-scheme-tertiary-container));
+      color: rgb(var(--m3-scheme-on-tertiary-container));
+    }
+  }
+
+  .m3-fab-container {
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (hover: hover) {
+    .elevation-normal:hover {
+      box-shadow: var(--m3-util-elevation-4);
+    }
+    .elevation-lowered:hover {
+      box-shadow: var(--m3-util-elevation-2);
+    }
+  }
+
+  .m3-fab-container {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  @media screen and (forced-colors: active) {
+    .m3-fab-container {
+      outline: solid 0.25rem;
+    }
+  }
+}

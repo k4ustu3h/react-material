@@ -1,0 +1,140 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --default-font-family: roboto, sans-serif;
+  --font-roboto: roboto, sans-serif;
+  --font-dmsans: dmsans, sans-serif;
+
+  --color-*: initial;
+  --color-background: rgb(var(--m3-scheme-background));
+  --color-on-background: rgb(var(--m3-scheme-on-background));
+  --color-surface: rgb(var(--m3-scheme-surface));
+  --color-surface-dim: rgb(var(--m3-scheme-surface-dim));
+  --color-surface-bright: rgb(var(--m3-scheme-surface-bright));
+  --color-surface-container-lowest: rgb(var(--m3-scheme-surface-container-lowest));
+  --color-surface-container-low: rgb(var(--m3-scheme-surface-container-low));
+  --color-surface-container: rgb(var(--m3-scheme-surface-container));
+  --color-surface-container-high: rgb(var(--m3-scheme-surface-container-high));
+  --color-surface-container-highest: rgb(var(--m3-scheme-surface-container-highest));
+  --color-on-surface: rgb(var(--m3-scheme-on-surface));
+  --color-on-surface-variant: rgb(var(--m3-scheme-on-surface-variant));
+  --color-outline: rgb(var(--m3-scheme-outline));
+  --color-outline-variant: rgb(var(--m3-scheme-outline-variant));
+  --color-inverse-surface: rgb(var(--m3-scheme-inverse-surface));
+  --color-inverse-on-surface: rgb(var(--m3-scheme-inverse-on-surface));
+  --color-primary: rgb(var(--m3-scheme-primary));
+  --color-primary-dim: rgb(var(--m3-scheme-primary-dim));
+  --color-on-primary: rgb(var(--m3-scheme-on-primary));
+  --color-primary-container: rgb(var(--m3-scheme-primary-container));
+  --color-on-primary-container: rgb(var(--m3-scheme-on-primary-container));
+  --color-primary-fixed: rgb(var(--m3-scheme-primary-fixed));
+  --color-primary-fixed-dim: rgb(var(--m3-scheme-primary-fixed-dim));
+  --color-on-primary-fixed: rgb(var(--m3-scheme-on-primary-fixed));
+  --color-on-primary-fixed-variant: rgb(var(--m3-scheme-on-primary-fixed-variant));
+  --color-inverse-primary: rgb(var(--m3-scheme-inverse-primary));
+  --color-secondary: rgb(var(--m3-scheme-secondary));
+  --color-secondary-dim: rgb(var(--m3-scheme-secondary-dim));
+  --color-on-secondary: rgb(var(--m3-scheme-on-secondary));
+  --color-secondary-container: rgb(var(--m3-scheme-secondary-container));
+  --color-on-secondary-container: rgb(var(--m3-scheme-on-secondary-container));
+  --color-secondary-fixed: rgb(var(--m3-scheme-secondary-fixed));
+  --color-secondary-fixed-dim: rgb(var(--m3-scheme-secondary-fixed-dim));
+  --color-on-secondary-fixed: rgb(var(--m3-scheme-on-secondary-fixed));
+  --color-on-secondary-fixed-variant: rgb(var(--m3-scheme-on-secondary-fixed-variant));
+  --color-tertiary: rgb(var(--m3-scheme-tertiary));
+  --color-tertiary-dim: rgb(var(--m3-scheme-tertiary-dim));
+  --color-on-tertiary: rgb(var(--m3-scheme-on-tertiary));
+  --color-tertiary-container: rgb(var(--m3-scheme-tertiary-container));
+  --color-on-tertiary-container: rgb(var(--m3-scheme-on-tertiary-container));
+  --color-tertiary-fixed: rgb(var(--m3-scheme-tertiary-fixed));
+  --color-tertiary-fixed-dim: rgb(var(--m3-scheme-tertiary-fixed-dim));
+  --color-on-tertiary-fixed: rgb(var(--m3-scheme-on-tertiary-fixed));
+  --color-on-tertiary-fixed-variant: rgb(var(--m3-scheme-on-tertiary-fixed-variant));
+  --color-error: rgb(var(--m3-scheme-error));
+  --color-error-dim: rgb(var(--m3-scheme-error-dim));
+  --color-on-error: rgb(var(--m3-scheme-on-error));
+  --color-error-container: rgb(var(--m3-scheme-error-container));
+  --color-on-error-container: rgb(var(--m3-scheme-on-error-container));
+  --color-on-on-primary: rgb(var(--m3-scheme-on-on-primary));
+
+  /* Shapes */
+  /* --radius-*: initial; */
+  --radius-none: 0rem;
+  --radius-xs: var(--m3-util-rounding-extra-small);
+  --radius-sm: var(--m3-util-rounding-small);
+  --radius-md: var(--m3-util-rounding-medium);
+  --radius-lg: var(--m3-util-rounding-large);
+  --radius-xl: var(--m3-util-rounding-extra-large);
+  --radius-2xl: 3rem; /* 48px */
+  --radius-full: var(--m3-util-rounding-full);
+
+  /* Expressive easing */
+  --default-transition-timing-function: var(--ease-fast);
+  --ease-*: initial;
+  --ease-fast-spatial: var(--m3-util-easing-fast-spatial);
+  --ease-spatial: var(--m3-util-easing-spatial);
+  --ease-slow-spatial: var(--m3-util-easing-slow-spatial);
+  --ease-fast: var(--m3-util-easing-fast);
+  --ease-normal: --m3-util-easing;
+  --ease-slow: var(--m3-util-easing-slow);
+
+  --ease-curve: var(--m3-util-curve);
+  --ease-curve-decel: var(--m3-util-curve-decel);
+  --ease-curve-accel: var(--m3-util-curve-accel);
+}
+
+@layer base {
+  :root {
+    --m3-font: var(--font-roboto), system-ui, sans-serif;
+    --m3-font-display: var(--font-dmsans), system-ui, sans-serif;
+    --m3-font-headline: var(--font-dmsans), system-ui, sans-serif;
+    --m3-font-title: var(--font-dmsans), system-ui, sans-serif;
+    --m3-font-label: var(--font-roboto), system-ui, sans-serif;
+    --m3-font-body: var(--font-roboto), system-ui, sans-serif;
+  }
+  body {
+    @apply bg-surface-dim;
+  }
+}
+
+@layer utilities {
+  .prose {
+    @apply prose-headings:font-dmsans prose-headings:my-4 prose-p:mb-2 prose-pre:p-0;
+    max-width: none;
+    --tw-prose-body: var(--color-on-surface);
+    --tw-prose-headings: var(--color-on-surface);
+    --tw-prose-lead: var(--color-on-surface);
+    --tw-prose-links: var(--color-on-surface);
+    --tw-prose-bold: var(--color-on-surface);
+    --tw-prose-counters: var(--color-on-surface);
+    --tw-prose-bullets: var(--color-on-surface);
+    --tw-prose-hr: var(--color-on-surface);
+    --tw-prose-quotes: var(--color-on-surface);
+    --tw-prose-quote-borders: var(--color-on-surface);
+    --tw-prose-captions: var(--color-on-surface);
+    --tw-prose-kbd: var(--color-on-surface);
+    --tw-prose-kbd-shadows: var(--color-on-surface);
+    --tw-prose-code: var(--color-primary);
+    --tw-prose-pre-code: var(--color-on-surface);
+    --tw-prose-pre-bg: var(--color-surface-container-high);
+    --tw-prose-th-borders: var(--color-on-surface);
+    --tw-prose-td-borders: var(--color-on-surface);
+  }
+  .shiki {
+    @apply bg-transparent!;
+  }
+  .animation-fade-in > * {
+    animation: fade-in 1s var(--m3-util-curve-decel) forwards;
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

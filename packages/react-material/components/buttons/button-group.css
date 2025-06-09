@@ -1,0 +1,30 @@
+@layer components {
+  .m3-button-group-container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 0.125rem;
+    overflow: hidden;
+
+    &.round {
+      border-radius: var(--m3-util-rounding-extra-large);
+    }
+    &.square {
+      border-radius: var(--m3-util-rounding-medium);
+    }
+
+    & input[type="radio"],
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    &.round label:first-of-type {
+      border-top-left-radius: var(--m3-util-rounding-extra-large) !important;
+      border-bottom-left-radius: var(--m3-util-rounding-extra-large) !important;
+    }
+    &.round label:last-of-type {
+      border-top-right-radius: var(--m3-util-rounding-extra-large) !important;
+      border-bottom-right-radius: var(--m3-util-rounding-extra-large) !important;
+    }
+  }
+}

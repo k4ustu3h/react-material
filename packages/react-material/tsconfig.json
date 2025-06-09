@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "jsx": "react",
+    "module": "esnext",
+    "target": "esnext",
+    "declaration": true, // Generates .d.ts files for type declarations
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "include": [
+    "index.ts",
+    "types.d.ts",
+    "components",
+    "utils"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types"
+  ]
+}

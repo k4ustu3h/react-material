@@ -1,0 +1,75 @@
+@layer components {
+  .m3-radio-container {
+    display: inline-flex;
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--m3-util-rounding-full);
+    color: rgb(var(--m3-scheme-on-surface-variant));
+    cursor: pointer;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    & input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    & .radio-circle {
+      position: absolute;
+      inset: 0.625rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: var(--m3-util-rounding-full);
+      border: solid 0.125rem currentColor;
+      transition: border var(--m3-util-easing-fast);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    & .radio-dot {
+      position: absolute;
+      inset: 0.9375rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      scale: 0;
+      border-radius: var(--m3-util-rounding-full);
+      background-color: currentColor;
+      transition: scale var(--m3-util-easing-fast-spatial);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Styles for when input is focused, checked, or disabled */
+
+    /* Focus-visible state */
+    &:has(input:focus-visible) {
+      color: rgb(var(--m3-scheme-on-surface));
+    }
+
+    /* Checked state */
+    &:has(input:checked) {
+      color: rgb(var(--m3-scheme-primary));
+    }
+
+    &:has(input:checked) .radio-dot {
+      scale: 1;
+    }
+
+    /* Disabled state */
+    &:has(input:disabled) {
+      color: rgb(var(--m3-scheme-on-surface) / 0.38);
+      cursor: not-allowed;
+    }
+
+    /* Forced colors media query */
+    @media screen and (forced-colors: active) {
+      &:has(input:checked) .radio-circle {
+        border-color: selecteditem;
+      }
+      .radio-dot {
+        background-color: selecteditem;
+      }
+      &:has(input:disabled) {
+        opacity: 0.38;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Radio } from "react-material";
+
+<DocsHeader
+  title="Radio"
+  description="A component that allows users to select one option from a set of choices, ensuring only one selection at a time."
+/>
+
+# Overview
+
+The `Radio` component is designed to present a set of options where users can select only one at a time. It is commonly used in forms and settings where a single choice is required from multiple options. The component ensures that only one radio button can be selected at any given time, providing a clear and intuitive user experience.
+
+# State
+The `Radio` component can be in one of the following states:
+- **Default**: The radio button is unselected and ready for user interaction.
+- **Disabled**: The radio button is not interactive, indicating that the option is not available for selection.
+<DocsPreview>
+  <DocsComp>
+    <Radio name="test" />
+    <Radio name="test" />
+    <Radio name="test" disabled />
+  </DocsComp>
+
+  ```tsx
+  import { Radio } from "react-material";
+
+  <Radio />
+  <Radio disabled />
+  ```
+</DocsPreview>

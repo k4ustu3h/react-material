@@ -1,0 +1,20 @@
+import React from "react";
+import "./{{ kebabCase name }}.css";
+import mergeProps from "../../utils/merge-props/merge-props";
+
+type CommonProps = {
+
+};
+
+type Props = CommonProps & React.HTMLAttributes<HTMLDivElement>;
+
+export const {{ pascalCase name }}: React.FC<Props> = (props) => {
+  const { children, ...extraProps } = props;
+  const baseClasses = `m3-{{ kebabCase name }}-container`;
+
+  return (
+      <div {...mergeProps(extraProps, { className: baseClasses })}>
+        {children}
+      </div>
+  );
+};

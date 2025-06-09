@@ -1,0 +1,147 @@
+@layer components {
+  .m3-checkbox-container {
+    display: inline-flex;
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--m3-util-rounding-full);
+    color: rgb(var(--m3-scheme-on-surface-variant));
+    cursor: pointer;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    & input {
+      position: absolute;
+      opacity: 0;
+    }
+    & .m3-checkbox-box {
+      position: absolute;
+      inset: 0.6875rem;
+      border-radius: 0.125rem;
+      border: solid 0.125rem currentColor;
+      transition: var(--m3-util-easing-fast);
+      -webkit-tap-highlight-color: transparent;
+    }
+    & svg {
+      position: absolute;
+      inset: 0.6875rem;
+      color: rgb(var(--m3-scheme-on-primary));
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--m3-util-easing-fast);
+      & path {
+        stroke-dasharray: 20.874 20.874;
+        stroke-dashoffset: 20.874;
+        transition: stroke-dashoffset 0ms 300ms;
+      }
+    }
+
+    /* Focus-visible state */
+    &:has(input:focus-visible) {
+      color: rgb(var(--m3-scheme-on-surface));
+    }
+
+    /* Indeterminate state */
+    &:indeterminate {
+      color: rgb(var(--m3-scheme-primary));
+    }
+
+    &:indeterminate .m3-checkbox-box {
+      background-color: rgb(var(--m3-scheme-primary));
+    }
+
+    &:indeterminate svg {
+      opacity: 1;
+    }
+
+    &:indeterminate svg path {
+      stroke-dasharray: 14;
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset var(--m3-util-easing-slow);
+    }
+
+    /* Disabled indeterminate state */
+    &:indeterminate:has(input:disabled) {
+      color: rgb(var(--m3-scheme-on-surface) / 0.38);
+    }
+
+    &:indeterminate:has(input:disabled) .m3-checkbox-box {
+      background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
+    }
+
+    /* Checked state */
+    &:has(input:checked) {
+      color: rgb(var(--m3-scheme-primary));
+    }
+
+    &:has(input:checked) .m3-checkbox-box {
+      background-color: rgb(var(--m3-scheme-primary));
+    }
+
+    &:has(input:checked) svg {
+      opacity: 1;
+    }
+
+    &:has(input:checked) svg path {
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset var(--m3-util-easing-slow);
+    }
+
+    /* Indeterminate state */
+    &:indeterminate {
+      color: rgb(var(--m3-scheme-primary));
+    }
+
+    &:indeterminate .m3-checkbox-box {
+      background-color: rgb(var(--m3-scheme-primary));
+    }
+
+    &:indeterminate svg {
+      opacity: 1;
+    }
+
+    &:indeterminate svg path {
+      stroke-dasharray: 14;
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset var(--m3-util-easing-slow);
+    }
+
+    /* Disabled state */
+    &:has(input:disabled) {
+      color: rgb(var(--m3-scheme-on-surface) / 0.38);
+      cursor: not-allowed;
+    }
+
+    &:has(input:disabled):checked {
+      color: transparent;
+    }
+
+    &:has(input:disabled):checked .m3-checkbox-box {
+      background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
+    }
+
+    &:has(input:disabled) svg {
+      color: rgb(var(--m3-scheme-surface));
+    }
+
+    /* Disabled indeterminate state */
+    &:indeterminate:has(input:disabled) {
+      color: rgb(var(--m3-scheme-on-surface) / 0.38);
+    }
+
+    &:indeterminate:has(input:disabled) .m3-checkbox-box {
+      background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
+    }
+
+    /* Forced colors media query */
+    @media screen and (forced-colors: active) {
+      &:has(input:checked) .m3-checkbox-box,
+      &:indeterminate .m3-checkbox-box {
+        background-color: selecteditem;
+        border-color: selecteditem !important;
+      }
+      &:has(input:disabled) {
+        opacity: 0.38;
+      }
+    }
+  }
+}
