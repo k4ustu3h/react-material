@@ -1,0 +1,149 @@
+@layer components {
+  .m3-switch-container {
+    display: inline-flex;
+    position: relative;
+    width: 3.25rem;
+    height: 2rem;
+    & input[type="checkbox"] {
+      appearance: none;
+      width: 3.25rem;
+      height: 2rem;
+      margin: 0;
+      border-radius: var(--m3-util-rounding-full);
+
+      background-color: rgb(var(--m3-scheme-surface-container-highest));
+      border: solid 0.125rem rgb(var(--m3-scheme-outline));
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: var(--m3-util-easing);
+    }
+
+    & .handle {
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      border-radius: var(--m3-util-rounding-full);
+
+      background-color: rgb(var(--m3-scheme-outline));
+      /* Fallback for those without on on primary */
+      color: rgb(var(--m3-scheme-on-on-primary, var(--m3-scheme-on-primary-container)));
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: var(--m3-util-easing-fast-spatial);
+
+      left: 0.5rem;
+      top: 50%;
+      translate: 0 -50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    & .handle > svg {
+      width: 1rem;
+      height: 1rem;
+      opacity: 0;
+      transition:
+        opacity var(--m3-util-easing-fast-spatial),
+        scale var(--m3-util-easing-fast-spatial);
+    }
+    & .hover {
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      border-radius: var(--m3-util-rounding-full);
+
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: var(--m3-util-easing-fast);
+
+      left: 1rem;
+      top: 50%;
+      translate: -50% -50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:hover > input:enabled + .handle,
+    & > input:enabled:is(&:active, &:focus-visible) + .handle {
+      background-color: rgb(var(--m3-scheme-on-surface-variant));
+    }
+    &:hover > input:enabled:checked + .handle,
+    & > input:enabled:checked:is(&:active, &:focus-visible) + .handle {
+      background-color: rgb(var(--m3-scheme-primary-container));
+      color: rgb(var(--m3-scheme-on-primary-container));
+    }
+    &:hover > input ~ .hover {
+      background-color: rgb(var(--m3-scheme-on-surface) / 0.08);
+    }
+    &:hover > input:checked ~ .hover {
+      background-color: rgb(var(--m3-scheme-primary) / 0.08);
+    }
+
+    & input:checked {
+      background-color: rgb(var(--m3-scheme-primary));
+      border-color: rgb(var(--m3-scheme-primary));
+    }
+    & input:checked + .handle {
+      background-color: rgb(var(--m3-scheme-on-primary));
+      scale: 1.5;
+      left: 1.75rem;
+    }
+    & input:checked + .handle > svg {
+      scale: 0.667;
+      opacity: 1;
+    }
+    & input:checked ~ .hover {
+      left: 2.25rem;
+    }
+    &:active > input:enabled + .handle {
+      scale: 1.75;
+    }
+    &:active > input:enabled + .handle > svg {
+      scale: 0.571;
+    }
+
+    & input:disabled {
+      background-color: rgb(var(--m3-scheme-surface-container-highest) / 0.12);
+      border-color: rgb(var(--m3-scheme-outline) / 0.12);
+      cursor: auto;
+    }
+    & input:disabled:checked {
+      background-color: rgb(var(--m3-scheme-on-surface) / 0.12);
+      border-color: transparent;
+    }
+    & input:disabled + .handle {
+      background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
+      cursor: auto;
+    }
+    & input:disabled:checked + .handle {
+      background-color: rgb(var(--m3-scheme-surface));
+    }
+    & input:disabled:checked + .handle > svg {
+      color: rgb(var(--m3-scheme-on-surface) / 0.38);
+    }
+    & input:disabled ~ .hover {
+      display: none;
+    }
+
+    & {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    @media screen and (forced-colors: active) {
+      & input:checked {
+        background-color: canvastext !important;
+      }
+      .handle {
+        background-color: canvastext !important;
+      }
+      & input:checked + .handle {
+        background-color: canvas !important;
+      }
+      & input:disabled,
+      & input:disabled + .handle {
+        opacity: 0.38;
+      }
+    }
+  }
+}

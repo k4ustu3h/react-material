@@ -1,5 +1,6 @@
 import DocsHeader from "@/components/blocks/docs-header";
 import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Switch } from "react-material";
 
 <DocsHeader
   title="Switch"
@@ -9,3 +10,21 @@ import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
 # Overview
 
 The `Switch` component is a user interface element that allows users to toggle between two states, typically representing an "on" or "off" choice. It is commonly used in settings and preferences where users can enable or disable features. The switch can be styled to fit various design needs and can include labels for clarity.
+
+# State
+The `Switch` component can be in one of the following states:
+- **Default**: The switch is in its default state, ready for user interaction.
+- **Disabled**: The switch is not interactive, indicating that the option is not available for selection.
+<DocsPreview>
+  <DocsComp>
+    <Switch />
+    <Switch disabled />
+  </DocsComp>
+
+  ```tsx
+  import { Switch } from "react-material";
+
+  <Switch />
+  <Switch disabled />
+  ```
+</DocsPreview>

@@ -15,7 +15,7 @@ export const Checkbox: React.FC<Props> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useIsomorphicLayoutEffect(() => {
-    if (inputRef.current) {
+    if (typeof window !== "undefined" && inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
     }
   }, [indeterminate]);
