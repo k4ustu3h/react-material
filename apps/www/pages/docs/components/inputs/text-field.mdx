@@ -1,5 +1,6 @@
 import DocsHeader from "@/components/blocks/docs-header";
 import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { TextField } from "react-material";
 
 <DocsHeader
   title="Text Field"
@@ -9,3 +10,42 @@ import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
 # Overview
 
 The `TextField` component is a versatile input element designed to capture user text input. This component is commonly used in forms, search bars, and anywhere user text input is required.
+
+# Colors
+
+The `TextField` component supports multiple color variants to match different design needs. The available colors are:
+- **Filled**: A solid background color that provides a clear input area.
+- **Outlined**: A bordered input field that allows the background to show through, providing a more subtle appearance.
+
+<DocsPreview>
+  <DocsComp
+  >
+    <TextField name="test" color="filled" placeholder="Enter text here" />
+    <TextField name="test" color="outlined" placeholder="Enter text here" />
+  </DocsComp>
+
+```tsx
+import { TextField } from "react-material";
+
+<TextField color="filled" placeholder="Enter text here" />
+<TextField color="outlined" placeholder="Enter text here" />
+```
+</DocsPreview>
+
+# Modes
+The `TextField` component can be used in different modes to suit various use cases. The available modes are:
+- **Single Line**: A standard text input that allows for a single line of text.
+- **Multi Line**: A text area that allows for multiple lines of text input, useful for longer entries.
+<DocsPreview>
+  <DocsComp>
+    <TextField name="single" mode="singleline" />
+    <TextField name="multi" mode="multiline" />
+  </DocsComp>
+
+```tsx
+import { TextField } from "react-material";
+
+<TextField name="single" mode="singleline" />
+<TextField name="multi" mode="multiline" />
+```
+</DocsPreview>

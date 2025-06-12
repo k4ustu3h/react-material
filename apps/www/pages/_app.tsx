@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 export default function Root({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
-      <body className={`${roboto.variable} ${dmsans.variable}`}>
+      <main className={`${roboto.variable} ${dmsans.variable}`}>
         <DocsLayout>
           <Component {...pageProps} />
         </DocsLayout>
-      </body>
+      </main>
     </ThemeProvider>
   );
 }

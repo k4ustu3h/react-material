@@ -9,3 +9,4 @@ export * from "./inputs/checkbox";
 export * from "./inputs/radio";
 export * from "./inputs/slider";
 export * from "./inputs/switch";
+export * from "./inputs/text-field";

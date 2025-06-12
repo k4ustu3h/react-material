@@ -86,7 +86,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
         <Link href="/" className="absolute left-0 gap-0.5 px-5">
           <Logo className="size-8 " />
         </Link>
-        <div className="absolute right-8 gap-0.5 m3-font-body-small font-dmsans">v0.0.1rc</div>
+        <div className="absolute right-8 gap-0.5 m3-font-body-small font-dmsans">
+          <span>v0.0.1</span>
+        </div>
         <div className="flex gap-0.5">
           <Link href="/docs/get-started/introduction">
             <button

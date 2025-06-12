@@ -1,8 +1,7 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./checkbox.css";
 import mergeProps from "../../utils/merge-props/merge-props";
 import { Ripple } from "../misc/ripple";
-import { useIsomorphicLayoutEffect } from "../../utils/hooks/use-isomorphic-layout-effect";
 
 type CommonProps = {
   indeterminate?: boolean;
@@ -14,8 +13,8 @@ export const Checkbox: React.FC<Props> = (props) => {
   const { indeterminate = false, ...extraProps } = props;
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useIsomorphicLayoutEffect(() => {
-    if (typeof window !== "undefined" && inputRef.current) {
+  useEffect(() => {
+    if (typeof window === "undefined" && inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
     }
   }, [indeterminate]);
