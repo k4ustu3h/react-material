@@ -48,10 +48,13 @@ function generateIndex() {
   // Find all MDX files
   const mdxFiles = glob.sync("**/*.mdx", { cwd: DOCS_DIR });
 
+  // Filter out files from the docs/components/soon directory
+  const filteredMdxFiles = mdxFiles.filter((file) => !file.startsWith("components/soon/"));
+
   // Group files by category (folder)
   const categories = {};
 
-  mdxFiles.forEach((file) => {
+  filteredMdxFiles.forEach((file) => {
     const fullPath = path.join(DOCS_DIR, file);
     const pathParts = file.split("/");
 
@@ -155,7 +158,6 @@ const docsIndex: DocIndex = {
 
         // For items not in the manual sort order, sort by title regardless of grouping
         return a.title.localeCompare(b.title);
-
       });
     } else {
       // Categories without manual sort order in meta.json
@@ -195,8 +197,9 @@ export default docsIndex;
 
   console.log(`Index generated successfully at ${OUTPUT_FILE}`);
   console.log(
-    `Found ${mdxFiles.length} MDX files in ${Object.keys(categories).length} categories.`
+    `Found ${filteredMdxFiles.length} MDX files in ${Object.keys(categories).length} categories.`
   );
+  console.log(`Excluded files from components/soon directory.`);
 }
 
 // Execute the generator

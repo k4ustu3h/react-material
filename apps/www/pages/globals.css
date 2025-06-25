@@ -96,6 +96,20 @@
   body {
     @apply bg-surface-dim;
   }
+
+  ::-webkit-scrollbar {
+    margin-top: 10re;
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--m3-scheme-primary)/0.1);
+  }
 }
 
 @layer utilities {

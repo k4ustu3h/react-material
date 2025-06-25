@@ -15,7 +15,7 @@ export const ShapeArrow: React.FC<React.SVGAttributes<SVGElement>> = (props) => 
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      style={{ display: "none" }}
+      style={{ position: "absolute", width: 0, height: 0 }}
       xmlns="http://www.w3.org/2000/svg"
       {...props}>
       <clipPath id="m3-shape-arrow" clipPathUnits="objectBoundingBox">

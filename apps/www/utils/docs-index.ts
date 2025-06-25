@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-06-25T07:33:48.895Z
+// Generated on 2025-06-25T10:01:09.035Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -31,7 +31,9 @@ const docsIndex: DocIndex = {
     {
       title: "Accordion",
       description: "A vertically stacked set of interactive headings that each reveal a section of content when clicked.",
-      path: "/docs/components/accordion",
+      path: "/docs/components/surfaces/accordion",
+      group: "surfaces",
+      groupTitle: "Surfaces",
     },
     {
       title: "Button",
@@ -50,12 +52,16 @@ const docsIndex: DocIndex = {
     {
       title: "Card",
       description: "A flexible and extensible content container that can be used to display information in a structured format.",
-      path: "/docs/components/card",
+      path: "/docs/components/surfaces/card",
+      group: "surfaces",
+      groupTitle: "Surfaces",
     },
     {
       title: "Carousel",
       description: "A component for displaying a series of images or content in a sliding format.",
-      path: "/docs/components/carousel",
+      path: "/docs/components/surfaces/carousel",
+      group: "surfaces",
+      groupTitle: "Surfaces",
     },
     {
       title: "Checkbox",
@@ -74,7 +80,9 @@ const docsIndex: DocIndex = {
     {
       title: "Dialog",
       description: "A modal dialog component that displays content in a focused overlay, allowing users to interact with it without navigating away from the current page.",
-      path: "/docs/components/dialog",
+      path: "/docs/components/surfaces/dialog",
+      group: "surfaces",
+      groupTitle: "Surfaces",
     },
     {
       title: "FAB",
@@ -86,17 +94,23 @@ const docsIndex: DocIndex = {
     {
       title: "Loading",
       description: "A component for displaying loading indicators to inform users of ongoing processes.",
-      path: "/docs/components/loading",
+      path: "/docs/components/informatives/loading",
+      group: "informatives",
+      groupTitle: "Informatives",
     },
     {
       title: "Menu",
       description: "A component that provides a list of options or actions for users to choose from, typically displayed in a dropdown or sidebar format.",
-      path: "/docs/components/menu",
+      path: "/docs/components/surfaces/menu",
+      group: "surfaces",
+      groupTitle: "Surfaces",
     },
     {
       title: "Progress",
       description: "A component for displaying the progress of a task or operation.",
-      path: "/docs/components/progress",
+      path: "/docs/components/informatives/progress",
+      group: "informatives",
+      groupTitle: "Informatives",
     },
     {
       title: "Radio",
@@ -104,6 +118,11 @@ const docsIndex: DocIndex = {
       path: "/docs/components/inputs/radio",
       group: "inputs",
       groupTitle: "Inputs",
+    },
+    {
+      title: "Shape",
+      description: "A component for adding shapes, used to enhance visual design and user interface.",
+      path: "/docs/components/shape",
     },
     {
       title: "Slider",
@@ -115,7 +134,9 @@ const docsIndex: DocIndex = {
     {
       title: "Snackbar",
       description: "A brief message that appears temporarily to provide feedback or information to the user.",
-      path: "/docs/components/snackbar",
+      path: "/docs/components/informatives/snackbar",
+      group: "informatives",
+      groupTitle: "Informatives",
     },
     {
       title: "Switch",
@@ -127,7 +148,9 @@ const docsIndex: DocIndex = {
     {
       title: "Tabs",
       description: "A component for organizing content into separate views, allowing users to switch between them easily.",
-      path: "/docs/components/tabs",
+      path: "/docs/components/navigations/tabs",
+      group: "navigations",
+      groupTitle: "Navigations",
     },
     {
       title: "Text Field",
@@ -139,7 +162,16 @@ const docsIndex: DocIndex = {
     {
       title: "Toolbar",
       description: "A component for displaying a set of actions or navigation options in a horizontal layout.",
-      path: "/docs/components/toolbar",
+      path: "/docs/components/surfaces/toolbar",
+      group: "surfaces",
+      groupTitle: "Surfaces",
+    },
+    {
+      title: "Tooltips",
+      description: "A small pop-up box that appears when a user hovers over an element, providing additional information or context.",
+      path: "/docs/components/informatives/tooltips",
+      group: "informatives",
+      groupTitle: "Informatives",
     },
   ],
 };

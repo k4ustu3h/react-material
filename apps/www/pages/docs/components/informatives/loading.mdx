@@ -1,0 +1,51 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Loading } from "react-material";
+
+
+<DocsHeader
+  title="Loading"
+  description="A component for displaying loading indicators to inform users of ongoing processes."
+/>
+
+# Overview
+
+The `Loading` component is designed to provide visual feedback to users during processes that take time, such as data fetching, form submissions, or any operation that requires waiting. It helps improve user experience by indicating that an action is in progress.
+
+# Variants
+The `Loading` component can be customized with different variants to suit various design needs. The available variants include:
+- **Default**: A simple loading indicator that can be used in most scenarios.
+- **Contained**: A loading indicator that is contained within a specific area, often used in modals or sections of a page. 
+
+<DocsPreview>
+  <DocsComp>
+    <Loading />
+    <Loading contained />
+  </DocsComp>
+
+  ```tsx
+  import { Loading } from "react-material";
+
+  <Loading />
+  <Loading contained />
+  ```
+</DocsPreview>
+
+# Size
+The `Loading` component can also be adjusted in size to fit different contexts. Size can be set using the `size` prop, which accept number in pixel as the value. This allows for flexibility in how the loading indicator is displayed based on the surrounding content and design requirements.
+
+<DocsPreview>
+  <DocsComp>
+    <Loading size={24} />
+    <Loading size={48} />
+    <Loading size={72} />
+  </DocsComp>
+
+  ```tsx
+  import { Loading } from "react-material";
+
+  <Loading size={24} />
+  <Loading size={48} />
+  <Loading size={72} />
+  ```
+</DocsPreview>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { Button, Icon } from "react-material";
 import metaJson from "@/utils/meta.json";
 import { usePathname } from "next/navigation";
+import Link from "../misc/link";
 
 type DocItem = {
   title: string;
@@ -50,7 +50,7 @@ export default function DocList({
   >([]);
 
   // Group items by their group property
-  const groups: Record<string, DocItem[]> = {};
+  const [groups, setGroups] = useState<Record<string, DocItem[]>>({});
 
   useEffect(() => {
     const newOrganizedItems: {
@@ -61,12 +61,14 @@ export default function DocList({
       items?: DocItem[];
     }[] = [];
 
+    const newGroups: Record<string, DocItem[]> = {};
+
     items.forEach((item) => {
       if (item.group) {
-        if (!groups[item.group]) {
-          groups[item.group] = [];
+        if (!newGroups[item.group]) {
+          newGroups[item.group] = [];
         }
-        groups[item.group]?.push(item);
+        newGroups[item.group]?.push(item);
       } else {
         // Add ungrouped items directly to newOrganizedItems
         newOrganizedItems.push({
@@ -76,8 +78,11 @@ export default function DocList({
       }
     });
 
+    // Set the groups state
+    setGroups(newGroups);
+
     // Add groups to newOrganizedItems
-    Object.entries(groups).forEach(([groupName, groupItems]) => {
+    Object.entries(newGroups).forEach(([groupName, groupItems]) => {
       // Sort items within each group alphabetically by title
       groupItems.sort((a, b) => a.title.localeCompare(b.title));
 
@@ -138,7 +143,7 @@ export default function DocList({
         [currentGroup]: true, // Expand the group if it contains the current path
       }));
     }
-  }, [groups]);
+  }, [groups, pathname]);
 
   // Check if a group is expanded
   const isGroupExpanded = (groupName: string) => {
@@ -193,7 +198,7 @@ export default function DocList({
             return (
               <li
                 key={item.groupName}
-                className="transition-[height] ease-curve-decel duration-500"
+                className="transition-[height] ease-curve-decel duration-500 overflow-hidden"
                 style={{ height: isExpanded ? `${height}rem` : "3.5rem" }}>
                 <Button
                   variant="text"

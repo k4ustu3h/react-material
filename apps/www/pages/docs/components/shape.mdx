@@ -1,0 +1,347 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import {
+  Shape12SidedCookie,
+  Shape4LeafClover,
+  Shape4SidedCookie,
+  Shape6SidedCookie,
+  Shape7SidedCookie,
+  Shape8LeafClover,
+  Shape9SidedCookie,
+  ShapeArch,
+  ShapeArrow,
+  ShapeBoom,
+  ShapeBun,
+  ShapeBurst,
+  ShapeCircle,
+  ShapeDiamond,
+  ShapeFan,
+  ShapeFlower,
+  ShapeGem,
+  ShapeGhostIsh,
+  ShapeHeart,
+  ShapeHexagon,
+  ShapeOval,
+  ShapePentagon,
+  ShapePill,
+  ShapePixelCircle,
+  ShapePixelTriangle,
+  ShapePuffyDiamond,
+  ShapePuffy,
+  ShapeSemicircle,
+  ShapeSlanted,
+  ShapeSoftBoom,
+  ShapeSoftBurst,
+  ShapeSquare,
+  ShapeSunny,
+  ShapeTriangle,
+  ShapeVerySunny,
+  FAB,
+  Icon,
+} from "react-material";
+
+<DocsHeader
+  title="Shape"
+  description="A component for adding shapes, used to enhance visual design and user interface."
+/>
+
+# Overview
+
+The `Shape` component is a versatile UI element that allows to add premade shapes. It can be used to enhance visual design or draw attention to specific areas of the interface.
+
+# Usage
+
+The `Shape` component can be used almost everywhere. For example, it can be used to create decorative elements, highlight important information, or simply add visual interest to a element. You just need to put the `Shape` component inside another component, such as a `FAB`, or any other container.
+
+<DocsPreview>
+  <DocsComp>
+    <FAB size="large">
+        <Shape4SidedCookie />
+        <Icon>circle</Icon>
+    </FAB>
+  </DocsComp>
+
+```tsx
+import { Shape } from "react-material";
+
+<FAB size="large">
+  <Shape4SidedCookie />
+  <Icon>circle</Icon>
+</FAB>;
+```
+
+</DocsPreview>
+
+# Variants
+
+The `Shape` component has several variants to fit different design contexts.
+
+<DocsPreview>
+  <DocsComp>
+    <FAB size="medium">
+      <Shape12SidedCookie />
+      <Icon>star</Icon>
+    </FAB>
+    <FAB size="medium">
+      <Shape4LeafClover />
+      <Icon>eco</Icon>
+    </FAB>
+    <FAB size="medium">
+      <Shape4SidedCookie />
+      <Icon>cookie</Icon>
+    </FAB>
+    <FAB size="medium">
+      <Shape6SidedCookie />
+      <Icon>cookie</Icon>
+    </FAB>
+    <FAB size="medium">
+      <Shape7SidedCookie />
+      <Icon>cookie</Icon>
+    </FAB>
+    <FAB size="medium">
+      <Shape8LeafClover />
+      <Icon>eco</Icon>
+    </FAB>
+    <FAB size="medium">
+      <Shape9SidedCookie />
+      <Icon>cookie</Icon>
+    </FAB>
+  </DocsComp>
+
+```tsx
+import {
+  Shape12SidedCookie,
+  Shape4LeafClover,
+  Shape4SidedCookie,
+  Shape6SidedCookie,
+  Shape7SidedCookie,
+  Shape8LeafClover,
+  Shape9SidedCookie
+} from "react-material";
+
+<FAB size="medium"><Shape12SidedCookie /><Icon>star</Icon></FAB>
+<FAB size="medium"><Shape4LeafClover /><Icon>eco</Icon></FAB>
+<FAB size="medium"><Shape4SidedCookie /><Icon>cookie</Icon></FAB>
+<FAB size="medium"><Shape6SidedCookie /><Icon>cookie</Icon></FAB>
+<FAB size="medium"><Shape7SidedCookie /><Icon>cookie</Icon></FAB>
+<FAB size="medium"><Shape8LeafClover /><Icon>eco</Icon></FAB>
+<FAB size="medium"><Shape9SidedCookie /><Icon>cookie</Icon></FAB>
+```
+
+</DocsPreview>
+
+<DocsPreview>
+  <DocsComp>
+    <FAB size="medium">
+      <ShapeArch />
+      <Icon>architecture</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeArrow />
+      <Icon>arrow_upward</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeBoom />
+      <Icon>flash_on</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeBun />
+      <Icon>bakery_dining</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeBurst />
+      <Icon>auto_awesome</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeCircle />
+      <Icon>circle</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeDiamond />
+      <Icon>diamond</Icon>
+    </FAB>
+  </DocsComp>
+
+```tsx
+import {
+  ShapeArch,
+  ShapeArrow,
+  ShapeBoom,
+  ShapeBun,
+  ShapeBurst,
+  ShapeCircle,
+  ShapeDiamond
+} from "react-material";
+
+<FAB size="medium"><ShapeArch /><Icon>architecture</Icon></FAB>
+<FAB size="medium"><ShapeArrow /><Icon>arrow_upward</Icon></FAB>
+<FAB size="medium"><ShapeBoom /><Icon>flash_on</Icon></FAB>
+<FAB size="medium"><ShapeBun /><Icon>bakery_dining</Icon></FAB>
+<FAB size="medium"><ShapeBurst /><Icon>auto_awesome</Icon></FAB>
+<FAB size="medium"><ShapeCircle /><Icon>circle</Icon></FAB>
+<FAB size="medium"><ShapeDiamond /><Icon>diamond</Icon></FAB>
+```
+
+</DocsPreview>
+
+<DocsPreview>
+  <DocsComp>
+    <FAB size="medium">
+      <ShapeFan />
+      <Icon>air</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeFlower />
+      <Icon>local_florist</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeGem />
+      <Icon>diamond</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeGhostIsh />
+      <Icon>skull</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeHeart />
+      <Icon>favorite</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeHexagon />
+      <Icon>hexagon</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeOval />
+      <Icon>egg</Icon>
+    </FAB>
+  </DocsComp>
+
+```tsx
+import {
+  ShapeFan,
+  ShapeFlower,
+  ShapeGem,
+  ShapeGhostIsh,
+  ShapeHeart,
+  ShapeHexagon,
+  ShapeOval
+} from "react-material";
+
+<FAB size="medium"><ShapeFan /><Icon>air</Icon></FAB>
+<FAB size="medium"><ShapeFlower /><Icon>local_florist</Icon></FAB>
+<FAB size="medium"><ShapeGem /><Icon>diamond</Icon></FAB>
+<FAB size="medium"><ShapeGhostIsh /><Icon>skull</Icon></FAB>
+<FAB size="medium"><ShapeHeart /><Icon>favorite</Icon></FAB>
+<FAB size="medium"><ShapeHexagon /><Icon>hexagon</Icon></FAB>
+<FAB size="medium"><ShapeOval /><Icon>egg</Icon></FAB>
+```
+
+</DocsPreview>
+
+<DocsPreview>
+  <DocsComp>
+    <FAB size="medium">
+      <ShapePentagon />
+      <Icon>pentagon</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapePill />
+      <Icon>medication</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapePixelCircle />
+      <Icon>circle</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapePixelTriangle />
+      <Icon>play_arrow</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapePuffyDiamond />
+      <Icon>diamond</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapePuffy />
+      <Icon>cloud</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeSemicircle />
+      <Icon>looks</Icon>
+    </FAB>
+  </DocsComp>
+
+```tsx
+import {
+  ShapePentagon,
+  ShapePill,
+  ShapePixelCircle,
+  ShapePixelTriangle,
+  ShapePuffyDiamond,
+  ShapePuffy,
+  ShapeSemicircle
+} from "react-material";
+
+<FAB size="medium"><ShapePentagon /><Icon>pentagon</Icon></FAB>
+<FAB size="medium"><ShapePill /><Icon>medication</Icon></FAB>
+<FAB size="medium"><ShapePixelCircle /><Icon>circle</Icon></FAB>
+<FAB size="medium"><ShapePixelTriangle /><Icon>play_arrow</Icon></FAB>
+<FAB size="medium"><ShapePuffyDiamond /><Icon>diamond</Icon></FAB>
+<FAB size="medium"><ShapePuffy /><Icon>cloud</Icon></FAB>
+<FAB size="medium"><ShapeSemicircle /><Icon>looks</Icon></FAB>
+```
+
+</DocsPreview>
+
+<DocsPreview>
+  <DocsComp>
+    <FAB size="medium">
+      <ShapeSlanted />
+      <Icon>format_shapes</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeSoftBoom />
+      <Icon>bolt</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeSoftBurst />
+      <Icon>auto_awesome</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeSquare />
+      <Icon>square</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeSunny />
+      <Icon>wb_sunny</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeTriangle />
+      <Icon>change_history</Icon>
+    </FAB>
+    <FAB size="medium">
+      <ShapeVerySunny />
+      <Icon>light_mode</Icon>
+    </FAB>
+  </DocsComp>
+
+```tsx
+import {
+  ShapeSlanted,
+  ShapeSoftBoom,
+  ShapeSoftBurst,
+  ShapeSquare,
+  ShapeSunny,
+  ShapeTriangle,
+  ShapeVerySunny
+} from "react-material";
+
+<FAB size="medium"><ShapeSlanted /><Icon>format_shapes</Icon></FAB>
+<FAB size="medium"><ShapeSoftBoom /><Icon>bolt</Icon></FAB>
+<FAB size="medium"><ShapeSoftBurst /><Icon>auto_awesome</Icon></FAB>
+<FAB size="medium"><ShapeSquare /><Icon>square</Icon></FAB>
+<FAB size="medium"><ShapeSunny /><Icon>wb_sunny</Icon></FAB>
+<FAB size="medium"><ShapeTriangle /><Icon>change_history</Icon></FAB>
+<FAB size="medium"><ShapeVerySunny /><Icon>light_mode</Icon></FAB>
+```
+
+</DocsPreview>

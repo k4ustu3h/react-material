@@ -1,0 +1,11 @@
+@layer components {
+  .m3-loading-container {
+    display: inline-flex;
+    color: rgb(var(--m3-scheme-primary));
+    &.contained {
+      background-color: rgb(var(--m3-scheme-primary-container));
+      color: rgb(var(--m3-scheme-on-primary-container));
+      border-radius: var(--m3-util-rounding-full);
+    }
+  }
+}

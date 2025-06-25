@@ -11,3 +11,4 @@ export * from "./inputs/slider";
 export * from "./inputs/switch";
 export * from "./inputs/text-field";
 export * from "./buttons/chip";
+export * from "./informatives/loading";
