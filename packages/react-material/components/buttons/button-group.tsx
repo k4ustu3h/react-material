@@ -5,7 +5,7 @@ import { Button } from "./button";
 
 type CommonProps = {
   shape?: "round" | "square";
-  color?: "elevated" | "filled" | "tonal" | "outlined";
+  variant?: "elevated" | "filled" | "tonal" | "outlined";
   children: React.ReactNode;
   mode: "single" | "multiple";
 };
@@ -20,7 +20,7 @@ type ButtonGroupItemProps = React.InputHTMLAttributes<HTMLInputElement> & {
 type Props = CommonProps & React.HTMLAttributes<HTMLDivElement>;
 
 export const ButtonGroup: React.FC<Props> = (props) => {
-  const { shape = "round", color = "filled", mode, children, ...extraProps } = props;
+  const { shape = "round", variant = "filled", mode, children, ...extraProps } = props;
   const baseClasses = `m3-button-group-container ${shape}`;
 
   const groupId = useId();
@@ -33,7 +33,7 @@ export const ButtonGroup: React.FC<Props> = (props) => {
         name: groupId,
         itemKey: `${groupId}-item-${index}`,
         buttonProps: {
-          color,
+          variant,
         } as React.ComponentProps<typeof Button>,
       });
     }

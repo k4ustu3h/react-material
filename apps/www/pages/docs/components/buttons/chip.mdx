@@ -1,0 +1,96 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Chip } from "react-material";
+
+<DocsHeader
+  title="Chip"
+  description="A compact component for displaying information or actions in a small, interactive format."
+/>
+
+# Overview
+
+The `Chip` component is a compact UI element designed to display information or actions in a small, interactive format. Chip can represent tags, categories, or actions and are often used for filtering, selection, or displaying attributes in a concise manner.
+
+# Variants
+
+The `Chip` component supports several color variants to fit different design contexts. The available colors are:
+
+- **Input**: A chip that allows users to input or select values, often used in forms or filters.
+- **Assist**: A chip that provides additional information or context, typically used for tags or labels.
+- **General**: A standard chip for general use, suitable for various actions or information display.
+
+<DocsPreview>
+  <DocsComp>
+    <Chip variant="input">Input Chip</Chip>
+    <Chip variant="assist">Assist Chip</Chip>
+    <Chip variant="general">General Chip</Chip>
+  </DocsComp>
+
+```tsx
+import { Chip } from "react-material";
+
+<Chip variant="input">Input Chip</Chip>
+<Chip variant="assist">Assist Chip</Chip>
+<Chip variant="general">General Chip</Chip>
+```
+
+</DocsPreview>
+
+# Elevated
+
+The `Chip` component can be elevated to create a more prominent appearance, making it stand out in the UI. This is useful for highlighting important actions or information.
+
+<DocsPreview>
+  <DocsComp>
+    <Chip variant="input" elevated>Elevated Input Chip</Chip>
+    <Chip variant="assist" elevated>Elevated Assist Chip</Chip>
+    <Chip variant="general" elevated>Elevated General Chip</Chip>
+  </DocsComp>
+
+```tsx
+import { Chip } from "react-material";
+
+<Chip variant="input" elevated>Elevated Input Chip</Chip>
+<Chip variant="assist" elevated>Elevated Assist Chip</Chip>
+<Chip variant="general" elevated>Elevated General Chip</Chip>
+```
+
+</DocsPreview>
+
+# Icon
+
+The `Chip` component can include an icon to enhance its functionality and visual appeal. This is particularly useful for actions that are better represented with an icon, such as delete or edit.
+
+- **Right Icon**: An icon displayed on the right side of the chip, often used for actions like cancel or menu
+- **Left Icon**: An icon displayed on the left side of the chip, typically used for categorization or tagging.
+
+<DocsPreview>
+  <DocsComp>
+    <Chip iconRight="close">Right Icon Chip</Chip>
+    <Chip iconLeft="info">Left Icon Chip</Chip>
+    <Chip iconLeft="check" iconRight="arrow_drop_down">Both Icon Chip</Chip>
+  </DocsComp>
+
+```tsx
+import { Chip } from "react-material";
+
+<Chip iconRight="close">Right Icon Chip</Chip>
+<Chip iconLeft="info">Left Icon Chip</Chip>
+<Chip iconLeft="check" iconRight="arrow_drop_down">Both Icon Chip</Chip>
+```
+
+</DocsPreview>
+
+# Unclickable
+The `Chip` component can be disabled to prevent user interaction, which is useful when the chip represents a state that cannot be changed or when the action is not applicable.
+<DocsPreview>
+  <DocsComp>
+    <Chip variant="input" clickable={false}>Unclickable Input Chip</Chip>
+  </DocsComp>
+
+```tsx
+import { Chip } from "react-material";
+
+<Chip variant="input" clickable={false}>Unclickable Input Chip</Chip>
+```
+</DocsPreview>

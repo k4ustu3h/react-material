@@ -37,6 +37,8 @@
 @layer components {
   .m3-icon {
     user-select: all;
+    font-size: 1em;
+    line-height: 1;
   }
 
   .material-symbols-outlined {

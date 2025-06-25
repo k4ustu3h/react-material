@@ -11,11 +11,11 @@ import { Button, Icon } from "react-material";
 
 The `Button` component is a core element of user interaction in any application. It can be used to trigger actions, submit forms, or navigate users to different parts of your app. The component is highly customizable, offering various styles, sizes, and colors to suit your design needs.
 
-# Colors
+# Variants
 
-The `Button` component supports multiple colors to match different use cases and design preferences. Below are the available colors:
+The `Button` component supports several color variants to fit different design contexts. The available colors are:
 
-- **Default**: A standard button for general use.
+- **Filled**: A standard button with a solid background color, suitable for primary actions.
 - **Tonal**: A softer, more subdued button style.
 - **Outlined**: A button with a border and no background, ideal for secondary actions.
 - **Elevated**: A button with a shadow, giving it a raised appearance.
@@ -23,22 +23,21 @@ The `Button` component supports multiple colors to match different use cases and
 
 <DocsPreview>
 <DocsComp>
-<Button color="filled">Hello</Button>
-<Button color="tonal">Hello</Button>
-<Button color="outlined">Hello</Button>
-<Button color="elevated">Hello</Button>
-<Button color="text">Hello</Button>
+<Button variant="filled">Hello</Button>
+<Button variant="tonal">Hello</Button>
+<Button variant="outlined">Hello</Button>
+<Button variant="elevated">Hello</Button>
+<Button variant="text">Hello</Button>
 </DocsComp>
-
 
 ```tsx
 import { Button } from "react-material";
 
-<Button color="filled">Hello</Button>
-<Button color="elevated">Hello</Button>
-<Button color="outlined">Hello</Button>
-<Button color="tonal">Hello</Button>
-<Button color="text">Hello</Button>
+<Button variant="filled">Hello</Button>
+<Button variant="elevated">Hello</Button>
+<Button variant="outlined">Hello</Button>
+<Button variant="tonal">Hello</Button>
+<Button variant="text">Hello</Button>
 ```
 
 </DocsPreview>
@@ -59,14 +58,23 @@ The `Button` component also supports different sizes to fit various contexts, su
 <Button size="large">Large</Button>
 <Button size="extralarge">XLarge</Button>
 
-<Button shape="square" size="extrasmall">XSmall</Button>
-<Button shape="square" size="small">Small</Button>
-<Button shape="square" size="medium">Medium</Button>
-<Button shape="square" size="large">Large</Button>
-<Button shape="square" size="extralarge">XLarge</Button>
+<Button shape="square" size="extrasmall">
+  XSmall
+</Button>
+<Button shape="square" size="small">
+  Small
+</Button>
+<Button shape="square" size="medium">
+  Medium
+</Button>
+<Button shape="square" size="large">
+  Large
+</Button>
+<Button shape="square" size="extralarge">
+  XLarge
+</Button>
 
 </DocsComp>
-
 
 ```tsx
 import { Button } from "react-material";
@@ -103,7 +111,9 @@ import { Button } from "react-material";
 </DocsPreview>
 
 # States
+
 The `Button` component supports various states to indicate its current interaction status. These states include:
+
 - **Default**: The normal state of the button.
 - **Disabled**: The state when the button is not interactive, often grayed out to indicate it cannot be clicked.
 - **Toggle**: A special state that can be used to indicate a input toggle, such as a checkbox or switch. This state can be controlled via the `htmlFor` prop to link it with an input element.
@@ -123,4 +133,5 @@ import { Button } from "react-material";
 <Button disabled>Disabled</Button>
 <Button htmlFor="id">Toggle</Button>
 ```
+
 </DocsPreview>

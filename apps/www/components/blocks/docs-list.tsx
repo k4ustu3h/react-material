@@ -1,7 +1,8 @@
-import React, { use, useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button, Icon } from "react-material";
 import metaJson from "@/utils/meta.json";
+import { usePathname } from "next/navigation";
 
 type DocItem = {
   title: string;
@@ -35,6 +36,7 @@ export default function DocList({
 }: DocListProps) {
   // Track expanded groups
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
+  const pathname = usePathname();
 
   // Organize items by group
   const [organizedItems, setOrganizedItems] = useState<
@@ -125,6 +127,19 @@ export default function DocList({
     setDocsPaths((prev) => [...(prev || []), ...paths]);
   }, [items, category]);
 
+  useEffect(() => {
+    // Set expanded group by default based on the current path
+    const currentGroup = Object.keys(groups).find((groupName) =>
+      groups[groupName]?.some((item) => item.path === pathname)
+    );
+    if (currentGroup) {
+      setExpandedGroups((prev) => ({
+        ...prev,
+        [currentGroup]: true, // Expand the group if it contains the current path
+      }));
+    }
+  }, [groups]);
+
   // Check if a group is expanded
   const isGroupExpanded = (groupName: string) => {
     // Initialize group expansion if it's not set yet
@@ -136,6 +151,7 @@ export default function DocList({
       }));
       return isGroupActive || false;
     }
+
     return expandedGroups[groupName];
   };
 
@@ -161,7 +177,7 @@ export default function DocList({
               <li key={item.item.path}>
                 <Link href={item.item.path}>
                   <Button
-                    color={item.item.path === currentPath ? "tonal" : "text"}
+                    variant={item.item.path === currentPath ? "tonal" : "text"}
                     size="medium"
                     className="w-full justify-start">
                     {item.item.title}
@@ -180,7 +196,7 @@ export default function DocList({
                 className="transition-[height] ease-curve-decel duration-500"
                 style={{ height: isExpanded ? `${height}rem` : "3.5rem" }}>
                 <Button
-                  color="text"
+                  variant="text"
                   size="medium"
                   className={`w-full justify-between ${currentPath.includes(`/${item.groupName}/`) ? "bg-secondary-container/50" : ""}`}
                   onClick={() => toggleGroup(item.groupName!)}>
@@ -194,7 +210,7 @@ export default function DocList({
                       <li key={groupItem.path} className="">
                         <Link href={groupItem.path}>
                           <Button
-                            color={groupItem.path === currentPath ? "tonal" : "text"}
+                            variant={groupItem.path === currentPath ? "tonal" : "text"}
                             size="medium"
                             className="w-full justify-start">
                             {groupItem.title}

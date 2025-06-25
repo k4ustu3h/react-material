@@ -11,30 +11,32 @@ import { FAB, Icon } from "react-material";
 
 The `FAB` (Floating Action Button) is a prominent circular button that floats above the content of your application. It is typically used for the most important action on a page, such as creating a new item or starting a new task. The FAB is designed to be easily accessible and visually distinct, drawing the user's attention to the primary action.
 
-# Colors
-The `FAB` component supports multiple colors to match different use cases and design preferences. Below are the available colors:
+# Variants
+
+The `FAB` component supports several color variants to fit different design contexts. The available colors are:
+
 - **Primary**: A FAB that stands out as the main action button.
 - **Secondary**: A FAB for secondary actions, providing a less prominent alternative.
 - **Tertiary**: A FAB for less critical actions, often used for additional options or features.
 
 <DocsPreview>
 <DocsComp>
-<FAB color="primary">
+<FAB variant="primary">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="secondary">
+<FAB variant="secondary">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="tertiary">
+<FAB variant="tertiary">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="primary-container">
+<FAB variant="primary-container">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="secondary-container">
+<FAB variant="secondary-container">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="tertiary-container">
+<FAB variant="tertiary-container">
   <Icon>circle</Icon>
 </FAB>
 </DocsComp>
@@ -42,29 +44,32 @@ The `FAB` component supports multiple colors to match different use cases and de
 ```tsx
 import { FAB, Icon } from "react-material";
 
-<FAB color="primary">
+<FAB variant="primary">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="secondary">
+<FAB variant="secondary">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="tertiary">
+<FAB variant="tertiary">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="primary-container">
+<FAB variant="primary-container">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="secondary-container">
+<FAB variant="secondary-container">
   <Icon>circle</Icon>
 </FAB>
-<FAB color="tertiary-container">
+<FAB variant="tertiary-container">
   <Icon>circle</Icon>
 </FAB>
 ```
+
 </DocsPreview>
 
 # Sizes
+
 The `FAB` component also supports different sizes to fit various contexts, such as compact buttons for toolbars or larger buttons for prominent actions. The available sizes include:
+
 - **Small**: A compact FAB for less prominent actions.
 - **Medium**: The default size, suitable for most use cases.
 - **Large**: A larger FAB for actions that require more emphasis.
@@ -94,4 +99,5 @@ import { FAB, Icon } from "react-material";
   <Icon>circle</Icon>
 </FAB>
 ```
+
 </DocsPreview>

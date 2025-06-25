@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-06-09T10:25:38.214Z
+// Generated on 2025-06-25T07:33:48.895Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -65,9 +65,9 @@ const docsIndex: DocIndex = {
       groupTitle: "Inputs",
     },
     {
-      title: "Chips",
+      title: "Chip",
       description: "A compact component for displaying information or actions in a small, interactive format.",
-      path: "/docs/components/buttons/chips",
+      path: "/docs/components/buttons/chip",
       group: "buttons",
       groupTitle: "Buttons",
     },

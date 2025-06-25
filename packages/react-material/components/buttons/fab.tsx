@@ -4,7 +4,7 @@ import { Ripple } from "../misc/ripple";
 import mergeProps from "../../utils/merge-props/merge-props";
 
 type CommonProps = {
-  color?:
+  variant?:
     | "primary"
     | "secondary"
     | "tertiary"
@@ -19,14 +19,14 @@ type CommonProps = {
 type Props = CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const FAB: React.FC<Props> = (props) => {
-  const { color = "primary", shape = "round", size = "small", children, ...extraProps } = props;
+  const { variant = "primary", shape = "round", size = "small", children, ...extraProps } = props;
 
   const fontSizeClasses = {
     small: "m3-font-headline-small",
     medium: "m3-font-headline-medium",
     large: "m3-font-display-small",
   };
-  const baseClasses = `m3-fab-container ${color} ${shape} ${size} ${fontSizeClasses[size]}`;
+  const baseClasses = `m3-fab-container ${variant} ${shape} ${size} ${fontSizeClasses[size]}`;
 
   return (
     <button {...mergeProps(extraProps, { className: baseClasses })}>

@@ -131,11 +131,11 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           <div ref={contentContainerRef} className="grow rounded-xl px-2 overflow-y-auto relative">
             <article className="prose w-200 mx-auto mt-140 animation-fade-in">{children}</article>
             <footer>
-              <div className="grid grid-cols-2 p-20 gap-2 bg-surface shadow-2xl shadow-surface">
+              <div className="grid grid-cols-2 p-20 gap-2 bg-surface-dim shadow-2xl shadow-surface-dim">
                 {Navigation[0]?.[0] && (
                   <Link href={`${Navigation[0][1]}`} className="col-start-1">
                     <Button
-                      color="tonal"
+                      variant="tonal"
                       shape="square"
                       size="extralarge"
                       className="w-full flex flex-col items-start gap-0 bg-surface-container">
@@ -150,7 +150,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                 {Navigation[1]?.[0] && (
                   <Link href={`${Navigation[1][1]}`} className="col-start-2">
                     <Button
-                      color="tonal"
+                      variant="tonal"
                       shape="square"
                       size="extralarge"
                       className="w-full flex flex-col items-end gap-0 bg-surface-container">

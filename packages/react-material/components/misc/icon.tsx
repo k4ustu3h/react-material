@@ -1,5 +1,6 @@
 import React from "react";
 import "./icon.css";
+import mergeProps from "../../utils/merge-props/merge-props";
 
 export const Icon = ({
   children,
@@ -7,8 +8,9 @@ export const Icon = ({
 }: { children: React.ReactNode } & React.HTMLAttributes<HTMLSpanElement>) => {
   return (
     <span
-      {...props}
-      className={`m3-icon material-symbols-rounded ${props.className}`}>
+      {...mergeProps(props, {
+        className: "m3-icon material-symbols-rounded",
+      })}>
       {children}
     </span>
   );

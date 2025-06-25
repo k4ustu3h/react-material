@@ -40,7 +40,7 @@
     }
 
     &.multiline {
-      min-height: 5rem;
+      min-height: 5.5rem;
       & .input {
         resize: none;
       }
@@ -60,7 +60,7 @@
       }
 
       & .layer {
-        border: 1px solid rgb(var(--error, var(--m3-scheme-outline)));
+        border: .0625rem solid rgb(var(--error, var(--m3-scheme-outline)));
         border-radius: var(--m3-util-rounding-extra-small);
       }
     }
@@ -70,29 +70,17 @@
       display: block;
       width: 100%;
       bottom: 0;
-      height: 1px;
+      height: .0625rem;
       background-color: rgb(var(--error, var(--m3-scheme-on-surface-variant)));
       transition: all 200ms;
     }
 
-    & .trailing {
-      position: absolute;
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      height: 100%;
-      right: 0;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      background-color: transparent;
-      border-top-right-radius: 0.25rem;
-      border-bottom-right-radius: 0.25rem;
-
-      -webkit-tap-highlight-color: transparent;
-      cursor: pointer;
-      transition: all 200ms;
+    & .leading {
+      position: relative;
+      margin: 0.75rem;
+      font-size: 1.5rem;
+      text-align: center;
+      color: rgb(var(--m3-scheme-on-surface-variant));
     }
 
     & .input:enabled:hover ~ .layer {
@@ -153,14 +141,11 @@
       background-color: rgb(var(--m3-scheme-on-surface-variant) / 0.12);
     }
 
-    & .leading-icon > .input {
-      padding-left: 3.25rem;
+    &:has(> .leading) .input {
+      padding-left: 3rem;
     }
-    & .leading-icon > label {
-      left: 3.25rem;
-    }
-    & .trailing-icon > .input {
-      padding-right: 3.25rem;
+    &:has(> .leading) label {
+      left: 3rem;
     }
     & .error {
       --error: var(--m3-scheme-error);
@@ -179,7 +164,7 @@
     & .input:disabled ~ .layer::after {
       background-color: rgb(var(--m3-scheme-on-surface) / 0.38);
     }
-    & .input:disabled ~ svg {
+    & .input:disabled ~ .leading {
       color: rgb(var(--m3-scheme-on-surface) / 0.38);
     }
 

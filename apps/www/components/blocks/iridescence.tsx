@@ -52,6 +52,7 @@ interface IridescenceProps {
   amplitude?: number;
   mouseReact?: boolean;
   resolution?: number;
+  className?: string;
 }
 
 export default function Iridescence({
@@ -60,6 +61,7 @@ export default function Iridescence({
   amplitude = 0.1,
   mouseReact = true,
   resolution = 1.0,
+  className,
   ...rest
 }: IridescenceProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
@@ -142,5 +144,5 @@ export default function Iridescence({
     };
   }, [color, speed, amplitude, mouseReact]);
 
-  return <div ref={ctnDom} className="w-full h-full" {...rest} />;
+  return <div ref={ctnDom} className={"w-full h-full " + className} {...rest} />;
 }

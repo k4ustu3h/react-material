@@ -5,7 +5,7 @@ import { Ripple } from "../misc/ripple";
 import mergeProps from "../../utils/merge-props/merge-props";
 
 type CommonProps = {
-  color?: "elevated" | "filled" | "tonal" | "outlined" | "text";
+  variant?: "elevated" | "filled" | "tonal" | "outlined" | "text";
   shape?: "round" | "square";
   size?: "extrasmall" | "small" | "medium" | "large" | "extralarge";
   children: React.ReactNode;
@@ -20,7 +20,7 @@ type LabelProps = CommonProps & React.LabelHTMLAttributes<HTMLLabelElement>;
 type Props = ButtonProps | AnchorProps | LabelProps;
 
 export const Button: React.FC<Props> = (props) => {
-  const { color = "filled", shape = "round", size = "small", children, ...extraProps } = props;
+  const { variant = "filled", shape = "round", size = "small", children, ...extraProps } = props;
 
   const fontSizeClasses = {
     extrasmall: "m3-font-label-large",
@@ -29,7 +29,7 @@ export const Button: React.FC<Props> = (props) => {
     large: "m3-font-headline-small",
     extralarge: "m3-font-headline-large",
   };
-  const baseClasses = `m3-button-container ${color} ${shape} ${size} ${fontSizeClasses[size]}`;
+  const baseClasses = `m3-button-container ${variant} ${shape} ${size} ${fontSizeClasses[size]}`;
 
   if ("htmlFor" in props) {
     return (

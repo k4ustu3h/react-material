@@ -1,11 +1,13 @@
 import React, { useEffect, useId, useRef } from "react";
 import "./text-field.css";
 import mergeProps from "../../utils/merge-props/merge-props";
+import { Icon } from "../misc/icon";
 
 type CommonProps = {
   name: string;
-  color: "filled" | "outlined";
-  mode: "singleline" | "multiline";
+  icon?: string;
+  variant?: "filled" | "outlined";
+  mode?: "singleline" | "multiline";
 };
 
 type Props<TMode extends "singleline" | "multiline"> = CommonProps & {
@@ -16,9 +18,10 @@ type Props<TMode extends "singleline" | "multiline"> = CommonProps & {
 
 export const TextField = <TMode extends "singleline" | "multiline">(props: Props<TMode>) => {
   const {
-    color = "filled",
+    variant = "filled",
     mode = "singleline",
     name,
+    icon,
     placeholder,
     children,
     ...extraProps
@@ -42,7 +45,7 @@ export const TextField = <TMode extends "singleline" | "multiline">(props: Props
       }
     }, [textareaRef.current]);
     return (
-      <div className={`m3-text-field-container ${mode} ${color}`}>
+      <div className={`m3-text-field-container ${mode} ${variant}`}>
         <textarea
           ref={textareaRef}
           placeholder=" "
@@ -53,11 +56,12 @@ export const TextField = <TMode extends "singleline" | "multiline">(props: Props
         <label className="m3-font-body-large" htmlFor={id}>
           {name}
         </label>
+        {icon && <Icon className="leading">{icon}</Icon>}
       </div>
     );
   } else if (mode === "singleline") {
     return (
-      <div className={`m3-text-field-container ${mode} ${color}`}>
+      <div className={`m3-text-field-container ${mode} ${variant}`}>
         <input
           type="text"
           placeholder=" "
@@ -68,6 +72,7 @@ export const TextField = <TMode extends "singleline" | "multiline">(props: Props
         <label className="m3-font-body-large" htmlFor={id}>
           {name}
         </label>
+        {icon && <Icon className="leading">{icon}</Icon>}
       </div>
     );
   }
