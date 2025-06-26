@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
 import {
-  argbFromHex, DynamicScheme,
+  argbFromHex,
+  DynamicScheme,
   Hct,
-  Variant
-} from "../../utils/material-color-utilities/index";
-import variants from "./variant"; 
-import { genCSS } from "./generator"; 
+  Variant,
+} from "../../utils/material-color-utilities/typescript/index";
+import variants from "./variant";
+import { genCSS } from "./generator";
 import "./styles.css";
 
 export const schemesGen = (sourceColor: number, contrast: number) => {
@@ -29,44 +30,34 @@ interface ThemeState {
   variant: Variant;
   contrast: number;
   schemes: ReturnType<typeof schemesGen>;
-  styles: string; 
+  styles: string;
 }
 
 interface ThemeActions {
   setSourceColor: (sourceColor: number) => void;
   setVariant: (variant: Variant) => void;
   setContrast: (contrast: number) => void;
-  changeTheme: (options: {
-    CsourceColor?: number;
-    Cvariant?: Variant;
-    Ccontrast?: number;
-  }) => void;
+  changeTheme: (options: { CsourceColor?: number; Cvariant?: Variant; Ccontrast?: number }) => void;
 }
 
-
 type ThemeContextType = ThemeState & ThemeActions;
-
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const [sourceColor, setSourceColor] = useState<number>(argbFromHex("#D0BCFF")); 
+  const [sourceColor, setSourceColor] = useState<number>(argbFromHex("#D0BCFF"));
   const [variant, setVariant] = useState<Variant>(Variant.TONAL_SPOT);
   const [contrast, setContrast] = useState<number>(0);
 
-  
   const schemes = useMemo(() => schemesGen(sourceColor, contrast), [sourceColor, contrast]);
 
-  
   const styles = useMemo(() => {
-    
     if (schemes[variant]) {
       return genCSS(schemes[variant].light, schemes[variant].dark);
     }
-    return ""; 
+    return "";
   }, [schemes, variant]);
 
-  
   const changeTheme = useCallback(
     ({
       CsourceColor,
@@ -84,7 +75,6 @@ export const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children 
     []
   );
 
-  
   const contextValue = useMemo(
     () => ({
       sourceColor,

@@ -1,4 +1,4 @@
-import { type DynamicScheme } from "../../utils/material-color-utilities/index";
+import { type DynamicScheme } from "../../utils/material-color-utilities/typescript/index";
 import { colors } from "./colors";
 
 /**
