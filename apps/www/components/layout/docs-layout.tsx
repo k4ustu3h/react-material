@@ -1,5 +1,5 @@
 import Logo from "@/components/misc/logo";
-import Link from "next/link";
+import Link from "../misc/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Seperator from "../misc/seperator";
@@ -83,8 +83,8 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   return (
     <div>
       <nav className="absolute z-50 w-full flex justify-center items-center top-4 left-0 right-0 gap-0.5 px-5 text-on-primary-container">
-        <Link href="/" className="absolute left-0 gap-0.5 px-5">
-          <Logo className="size-8 " />
+        <Link href="/" className="absolute left-0 gap-0.5 px-5" notAsChild>
+          <Logo className="size-8 grid place-items-center" />
         </Link>
         <div className="absolute right-8 gap-0.5 m3-font-body-small font-dmsans">
           <span>v0.0.1</span>
@@ -131,14 +131,14 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           <div ref={contentContainerRef} className="grow rounded-xl px-2 overflow-y-auto relative">
             <article className="prose w-200 mx-auto mt-140 animation-fade-in">{children}</article>
             <footer>
-              <div className="grid grid-cols-2 p-20 gap-2 bg-surface-dim shadow-2xl shadow-surface-dim">
+              <div className="grid grid-cols-2 p-20 gap-2 bg-surface shadow-2xl shadow-surface relative z-10">
                 {Navigation[0]?.[0] && (
                   <Link href={`${Navigation[0][1]}`} className="col-start-1">
                     <Button
                       variant="tonal"
                       shape="square"
                       size="extralarge"
-                      className="w-full flex flex-col items-start gap-0 bg-surface-container">
+                      className="w-full flex flex-col items-start gap-0 bg-surface-container text-on-surface">
                       <p className="m3-font-headline-small text-base flex gap-1 items-center">
                         <Icon>arrow_back</Icon>Previous
                       </p>
@@ -153,7 +153,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                       variant="tonal"
                       shape="square"
                       size="extralarge"
-                      className="w-full flex flex-col items-end gap-0 bg-surface-container">
+                      className="w-full flex flex-col items-end gap-0 bg-surface-container text-on-surface">
                       <p className="m3-font-headline-small text-base flex gap-1 items-center">
                         Next<Icon>arrow_forward</Icon>
                       </p>
@@ -162,26 +162,129 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                   </Link>
                 )}
               </div>
-              <Seperator />
-              <div className="px-20 grid place-items-center grid-cols-2 gap-4 sticky bottom-0 h-82 -z-10">
-                <p className="m3-font-headline-small text-base text-on-surface">
-                  <Logo className="size-8 text-on-surface mb-6" />
-                  React Material is unofficial and independent port of Material Design 3. As an
-                  unofficial project, <b>it is not affiliated with Google.</b> All copyrights,
-                  trademarks, and intellectual property related to Material Design are the property
-                  of Google.
-                </p>
-                <div className="flex items-center justify-center gap-8 grow h-full place-items-center">
-                  <p className="m3-font-headline-small text-lg text-primary underline">Github</p>
-                  <p className="m3-font-headline-small text-lg text-primary underline">Discord</p>
-                </div>
-              </div>
+              <Footer />
             </footer>
           </div>
         </div>
       ) : (
-        <div style={{ transition: "margin 1s var(--m3-util-curve-decel)" }}>{children}</div>
+        <div style={{ transition: "margin 1s var(--m3-util-curve-decel)" }}>
+          <div className="bg-surface z-10 relative shadow-2xl shadow-surface">{children}</div>
+          <Footer />
+        </div>
       )}
     </div>
   );
 }
+
+const Footer = () => (
+  <>
+    <Seperator className="z-10 relative" />
+    <div className="px-4 sm:px-8 md:px-12 lg:px-20 grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-6 lg:gap-4 sticky bottom-0 min-h-82 py-8 bg-surface">
+      <p className="m3-font-headline-small text-base text-on-surface col-span-1 sm:col-span-2 lg:col-span-2 text-center sm:text-left">
+        <Logo className="size-8 text-on-surface mb-6 mx-auto sm:mx-0" />
+        React Material is unofficial and independent port of Material Design 3. As an unofficial
+        project, <b>it is not affiliated with Google.</b> All copyrights, trademarks, and
+        intellectual property related to Material Design are the property of Google.
+      </p>
+      <div className="hidden sm:block md:block lg:block">
+        <h4 className="m3-font-title-medium text-on-surface mb-4 text-center sm:text-left">
+          Documentation
+        </h4>
+        <ul className="space-y-2">
+          <li>
+            <Link href="/docs/get-started/introduction">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                Introduction
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/docs/get-started/installation">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                Installation
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/docs/get-started/theming">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                Theming
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/docs/components">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                Components
+              </a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="hidden sm:block md:block lg:block">
+        <h4 className="m3-font-title-medium text-on-surface mb-4 text-center sm:text-left">
+          Community
+        </h4>
+        <ul className="space-y-2">
+          <li>
+            <Link href="https://github.com/yourusername/react-material">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                GitHub
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="https://discord.gg/yourinvite">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                Discord
+              </a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="hidden sm:block md:block lg:block">
+        <h4 className="m3-font-title-medium text-on-surface mb-4 text-center sm:text-left">
+          Resources
+        </h4>
+        <ul className="space-y-2">
+          <li>
+            <Link href="https://m3.material.io/">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                Material Design 3
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/docs/contributing">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                Contributing
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/docs/changelog">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+                Changelog
+              </a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="grid grid-cols-3 gap-4 sm:hidden col-span-1">
+        <Link href="/docs/get-started/introduction">
+          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+            Docs
+          </a>
+        </Link>
+        <Link href="https://github.com/yourusername/react-material">
+          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+            GitHub
+          </a>
+        </Link>
+        <Link href="https://discord.gg/yourinvite">
+          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">Discord</a>
+        </Link>
+      </div>
+    </div>
+  </>
+);

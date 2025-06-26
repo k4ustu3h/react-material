@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const DOCS_DIR = path.join(import.meta.dirname, "../pages/docs"); // Adjust if your docs are elsewhere
-const OUTPUT_FILE = path.join(import.meta.dirname, "../utils/seach-index.json");
+const OUTPUT_FILE = path.join(import.meta.dirname, "../utils/search-index.json");
 
 async function generateSearchIndex() {
   const files = fs.readdirSync(DOCS_DIR, { recursive: true });

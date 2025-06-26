@@ -94,7 +94,7 @@
     --m3-font-body: var(--font-roboto), system-ui, sans-serif;
   }
   body {
-    @apply bg-surface-dim;
+    @apply bg-surface;
   }
 
   ::-webkit-scrollbar {

@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-06-25T10:01:09.035Z
+// Generated on 2025-06-26T07:08:50.353Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -44,7 +44,7 @@ const docsIndex: DocIndex = {
     },
     {
       title: "Button Group",
-      description: "A component that groups multiple buttons together for better organization and user interaction.",
+      description: "A component for grouping buttons together, allowing for better organization and user interaction.",
       path: "/docs/components/buttons/button-group",
       group: "buttons",
       groupTitle: "Buttons",
@@ -58,7 +58,7 @@ const docsIndex: DocIndex = {
     },
     {
       title: "Carousel",
-      description: "A component for displaying a series of images or content in a sliding format.",
+      description: "A versatile UI element that allows users to view a series of images or content in a sliding format.",
       path: "/docs/components/surfaces/carousel",
       group: "surfaces",
       groupTitle: "Surfaces",
@@ -93,40 +93,40 @@ const docsIndex: DocIndex = {
     },
     {
       title: "Loading",
-      description: "A component for displaying loading indicators to inform users of ongoing processes.",
+      description: "Provides visual feedback to users during processes that take time, such as data fetching, form submissions, or any operation that requires waiting.",
       path: "/docs/components/informatives/loading",
       group: "informatives",
       groupTitle: "Informatives",
     },
     {
       title: "Menu",
-      description: "A component that provides a list of options or actions for users to choose from, typically displayed in a dropdown or sidebar format.",
+      description: "A versatile UI element that presents a list of options or actions for users to select from.",
       path: "/docs/components/surfaces/menu",
       group: "surfaces",
       groupTitle: "Surfaces",
     },
     {
       title: "Progress",
-      description: "A component for displaying the progress of a task or operation.",
+      description: "Used to visually indicate the progress of a task or operation, providing feedback to users about the current state of the operation.",
       path: "/docs/components/informatives/progress",
       group: "informatives",
       groupTitle: "Informatives",
     },
     {
       title: "Radio",
-      description: "A component that allows users to select one option from a set of choices, ensuring only one selection at a time.",
+      description: "Designed to present a set of options where users can select only one at a time.",
       path: "/docs/components/inputs/radio",
       group: "inputs",
       groupTitle: "Inputs",
     },
     {
       title: "Shape",
-      description: "A component for adding shapes, used to enhance visual design and user interface.",
+      description: "A versatile UI component for adding premade shapes to your interface.",
       path: "/docs/components/shape",
     },
     {
       title: "Slider",
-      description: "A component for selecting a value from a range, allowing users to adjust settings or preferences.",
+      description: "A versatile UI element that allows users to select a value from a predefined range.",
       path: "/docs/components/inputs/slider",
       group: "inputs",
       groupTitle: "Inputs",
@@ -147,7 +147,7 @@ const docsIndex: DocIndex = {
     },
     {
       title: "Tabs",
-      description: "A component for organizing content into separate views, allowing users to switch between them easily.",
+      description: "A user interface element that organizes content into separate views, allowing users to switch between them easily.",
       path: "/docs/components/navigations/tabs",
       group: "navigations",
       groupTitle: "Navigations",
@@ -161,7 +161,7 @@ const docsIndex: DocIndex = {
     },
     {
       title: "Toolbar",
-      description: "A component for displaying a set of actions or navigation options in a horizontal layout.",
+      description: "A versatile UI element that provides a horizontal layout for displaying a set of actions or navigation options.",
       path: "/docs/components/surfaces/toolbar",
       group: "surfaces",
       groupTitle: "Surfaces",
