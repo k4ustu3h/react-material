@@ -27,7 +27,7 @@ export default function SEO({
   const fullTitle = (title || defaultTitle) + ` - ${description}`;
   const currentUrl =
     canonicalUrl ||
-    `${process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com"}${router.asPath}`;
+    `${process.env.NEXT_PUBLIC_SITE_URL || "https://material.miukyo.my.id"}${router.asPath}`;
 
   // Get the appropriate OG image URL based on the current page path
   const finalOgImage =

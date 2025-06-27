@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-06-26T07:08:50.353Z
+// Generated on 2025-06-27T04:04:37.351Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -25,6 +25,11 @@ const docsIndex: DocIndex = {
       title: "Installation",
       description: "A guide to installing and setting up the necessary components for your project.",
       path: "/docs/get-started/installation",
+    },
+    {
+      title: "Theming",
+      description: "Learn how to customize and apply themes to your React Material application.",
+      path: "/docs/get-started/theming",
     },
   ],
   "components": [
@@ -93,7 +98,7 @@ const docsIndex: DocIndex = {
     },
     {
       title: "Loading",
-      description: "Provides visual feedback to users during processes that take time, such as data fetching, form submissions, or any operation that requires waiting.",
+      description: "A component designed to provides visual feedback to users during processes that take time.",
       path: "/docs/components/informatives/loading",
       group: "informatives",
       groupTitle: "Informatives",
@@ -107,14 +112,14 @@ const docsIndex: DocIndex = {
     },
     {
       title: "Progress",
-      description: "Used to visually indicate the progress of a task or operation, providing feedback to users about the current state of the operation.",
+      description: "A component used to visually indicate the progress of a task or operation.",
       path: "/docs/components/informatives/progress",
       group: "informatives",
       groupTitle: "Informatives",
     },
     {
       title: "Radio",
-      description: "Designed to present a set of options where users can select only one at a time.",
+      description: "A radio buttons that allows users to select one option from a set of choices, ensuring only one selection at a time.",
       path: "/docs/components/inputs/radio",
       group: "inputs",
       groupTitle: "Inputs",
