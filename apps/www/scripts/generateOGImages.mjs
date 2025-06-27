@@ -194,7 +194,7 @@ async function generateOgImage({ slug, title, description }) {
       },
       fitTo: {
         mode: "width",
-        value: 1200,
+        value: 600,
       },
       background: "white", // Ensure a white background
       logLevel: "error",
