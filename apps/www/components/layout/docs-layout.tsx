@@ -132,7 +132,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             <article className="prose w-200 mx-auto mt-140 animation-fade-in">{children}</article>
             <footer>
               <div className="grid grid-cols-2 p-20 gap-2 bg-surface shadow-2xl shadow-surface relative z-10">
-                {Navigation[0]?.[0] && (
+                {Navigation[0]?.[0] ? (
                   <Link href={`${Navigation[0][1]}`} className="col-start-1">
                     <Button
                       variant="tonal"
@@ -145,9 +145,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                       <p className="m3-font-headline-large">{Navigation[0][0]}</p>
                     </Button>
                   </Link>
-                )}
+                ):<span/>}
 
-                {Navigation[1]?.[0] && (
+                {Navigation[1]?.[0] ? (
                   <Link href={`${Navigation[1][1]}`} className="col-start-2">
                     <Button
                       variant="tonal"
@@ -160,7 +160,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                       <p className="m3-font-headline-large">{Navigation[1][0]}</p>
                     </Button>
                   </Link>
-                )}
+                ): <span/>}
               </div>
               <Footer />
             </footer>
@@ -227,14 +227,14 @@ const Footer = () => (
         </h4>
         <ul className="space-y-2">
           <li>
-            <Link href="https://github.com/yourusername/react-material">
+            <Link href="https://github.com/miukyo/react-material">
               <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
                 GitHub
               </a>
             </Link>
           </li>
           <li>
-            <Link href="https://discord.gg/yourinvite">
+            <Link href="https://discord.gg/">
               <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
                 Discord
               </a>

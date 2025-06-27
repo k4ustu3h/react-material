@@ -1,7 +1,35 @@
 {
   "name": "react-material",
+  "author": "miukyo",
+  "version": "0.0.1",
+  "description": "Material Design 3 Expressive Implementation in React",
+  "license": "Apache-2.0",
+  "keywords": [
+    "react",
+    "material design",
+    "ui components",
+    "frontend",
+    "web development",
+    "design system",
+    "expressive",
+    "responsive",
+    "accessible",
+    "modern web",
+    "react components",
+    "material ui",
+    "material design 3",
+    "md3",
+    "react material"
+  ],
   "main": "dist/index.cjs",
   "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
@@ -26,6 +54,9 @@
     "dev": "rollup -c ./rollup.config.js --bundleConfigAsCjs --watch",
     "generate": "turbo gen react-component && npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "types": "dist/index.d.ts",
   "dependencies": {
     "material-symbols": "^0.31.5",

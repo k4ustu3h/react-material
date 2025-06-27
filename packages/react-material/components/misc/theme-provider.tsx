@@ -1,8 +1,9 @@
-import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
+import React, { createContext, useContext, useState, useMemo, useCallback, useEffect } from "react";
 import {
   argbFromHex,
   DynamicScheme,
   Hct,
+  sourceColorFromImage,
   Variant,
 } from "../../utils/material-color-utilities/typescript/index";
 import variants from "./variant";
@@ -34,9 +35,6 @@ interface ThemeState {
 }
 
 interface ThemeActions {
-  setSourceColor: (sourceColor: number) => void;
-  setVariant: (variant: Variant) => void;
-  setContrast: (contrast: number) => void;
   changeTheme: (options: { CsourceColor?: number; Cvariant?: Variant; Ccontrast?: number }) => void;
 }
 
@@ -44,10 +42,27 @@ type ThemeContextType = ThemeState & ThemeActions;
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const [sourceColor, setSourceColor] = useState<number>(argbFromHex("#D0BCFF"));
-  const [variant, setVariant] = useState<Variant>(Variant.TONAL_SPOT);
-  const [contrast, setContrast] = useState<number>(0);
+export const ThemeProvider: React.FC<
+  React.PropsWithChildren<{
+    sourceColor?: number;
+    sourceImage?: string;
+    variant?: Variant;
+    contrast?: number;
+    root?: boolean;
+  }>
+> = ({
+  children,
+  sourceColor: initialSourceColor,
+  sourceImage,
+  variant: initialVariant,
+  contrast: initialContrast,
+  root = false,
+}) => {
+  const [sourceColor, setSourceColor] = useState<number>(
+    initialSourceColor || argbFromHex("#D0BCFF")
+  );
+  const [variant, setVariant] = useState<Variant>(initialVariant || Variant.TONAL_SPOT);
+  const [contrast, setContrast] = useState<number>(initialContrast || 0);
 
   const schemes = useMemo(() => schemesGen(sourceColor, contrast), [sourceColor, contrast]);
 
@@ -57,6 +72,20 @@ export const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children 
     }
     return "";
   }, [schemes, variant]);
+
+  useEffect(() => {
+    if (sourceImage) {
+      const img = new Image();
+      img.src = sourceImage;
+      img.onload = () => {
+        sourceColorFromImage(img).then((color) => {
+          if (color) {
+            setSourceColor(color);
+          }
+        });
+      };
+    }
+  }, [sourceImage]);
 
   const changeTheme = useCallback(
     ({
@@ -92,8 +121,14 @@ export const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children 
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      <style dangerouslySetInnerHTML={{ __html: `@layer theme { ${styles} }` }} />
-      {children}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: root
+            ? `@layer theme { :root, ::backdrop { ${styles} } }`
+            : `@layer theme { .m3-theme-${sourceColor} { ${styles} } }`,
+        }}
+      />
+      <div className={`m3-theme-${sourceColor}`}>{children}</div>
     </ThemeContext.Provider>
   );
 };

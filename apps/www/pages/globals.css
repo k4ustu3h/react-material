@@ -114,7 +114,8 @@
 
 @layer utilities {
   .prose {
-    @apply prose-headings:font-dmsans prose-headings:my-4 prose-p:mb-2 prose-pre:p-0;
+    @apply prose-headings:font-dmsans prose-headings:my-4 prose-p:mb-2 prose-pre:p-0 prose-code:before:content-none prose-code:after:content-none
+      ;
     max-width: none;
     --tw-prose-body: var(--color-on-surface);
     --tw-prose-headings: var(--color-on-surface);
@@ -132,8 +133,8 @@
     --tw-prose-code: var(--color-primary);
     --tw-prose-pre-code: var(--color-on-surface);
     --tw-prose-pre-bg: var(--color-surface-container-high);
-    --tw-prose-th-borders: var(--color-on-surface);
-    --tw-prose-td-borders: var(--color-on-surface);
+    --tw-prose-th-borders: var(--color-primary-container);
+    --tw-prose-td-borders: var(--color-primary-container);
   }
   .shiki {
     @apply bg-transparent!;

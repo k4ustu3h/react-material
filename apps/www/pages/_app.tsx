@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function Root({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider>
+    <ThemeProvider root>
       <SEO />
       <main className={`${roboto.variable} ${dmsans.variable}`}>
         <DocsLayout>

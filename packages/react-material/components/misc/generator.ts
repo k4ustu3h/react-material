@@ -19,20 +19,12 @@ export const genCSS = (light: DynamicScheme, dark: DynamicScheme) => {
     .map((color) => genColorVariable(color.name, color.getArgb(dark)))
     .join("\n");
   return `@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-  }
-  :root, ::backdrop {
+color-scheme: light;
 ${lightColors}
-  }
 }
 @media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-  }
-  :root, ::backdrop {
+color-scheme: dark;
 ${darkColors}
-  }
 }`;
 };
 

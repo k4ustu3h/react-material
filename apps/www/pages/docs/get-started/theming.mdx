@@ -1,0 +1,280 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Button, ThemeProvider, argbFromHex } from "react-material";
+
+<DocsHeader
+  title="Theming"
+  description="Learn how to customize and apply themes to your React Material application."
+/>
+
+# Introduction to Theming
+
+Theming in React Material is based on Material Design 3's dynamic color system, which allows you to create beautiful, cohesive themes with minimal effort. The library provides a powerful `ThemeProvider` component that manages color schemes based on a source color or image.
+
+## ThemeProvider
+
+The `ThemeProvider` component is the foundation of theming in React Material. It must wrap your application to provide the theme context to all components.
+
+```tsx
+import { ThemeProvider } from "react-material";
+
+function App() {
+  return <ThemeProvider>{/* Your application */}</ThemeProvider>;
+}
+```
+
+## Basic Theme Customization
+
+The `ThemeProvider` accepts several props that allow you to customize the theme:
+
+| Prop          | Type      | Description                                                                            |
+| ------------- | --------- | -------------------------------------------------------------------------------------- |
+| `sourceColor` | `number`  | The main color used to generate the theme palette                                      |
+| `sourceImage` | `string`  | URL to an image from which to extract a source color                                   |
+| `variant`     | `Variant` | The theme variant style (e.g., `TONAL_SPOT`, `VIBRANT`)                                |
+| `contrast`    | `number`  | Contrast level from -1 to 1 (-1 for minimum, 1 for maximum)                            |
+| `root`        | `boolean` | When `true`, applies theme to `:root` (required at the root level of your application) |
+
+## Theme Variants
+
+React Material supports various theme variants from Material Design 3:
+
+- `TONAL_SPOT` (default): Low to medium colorfulness with tertiary colors related to the source color
+- `VIBRANT`: High colorfulness with vivid colors
+- `EXPRESSIVE`: High colorfulness with unexpected color combinations
+- `CONTENT`: Places the source color in the primary container
+- `MONOCHROME`: Grayscale theme based on the source color
+
+## Using a Source Color
+
+The simplest way to customize your theme is by providing a source color. The source color is used as the base for generating the entire color palette.
+
+```tsx
+import { ThemeProvider, argbFromHex } from "react-material";
+
+function App() {
+  // Convert a hex color to ARGB format
+  const greenColor = argbFromHex("#aaffaa");
+
+  return <ThemeProvider sourceColor={greenColor}>{/* Your application */}</ThemeProvider>;
+}
+```
+
+<DocsPreview>
+  <DocsComp>
+    <ThemeProvider sourceColor={argbFromHex("#aaffaa")}>
+      <div className="flex gap-2">
+        <Button>Default</Button>
+        <Button variant="tonal">Tonal</Button>
+        <Button variant="outlined">Outlined</Button>
+      </div>
+    </ThemeProvider>
+  </DocsComp>
+
+```tsx
+import { ThemeProvider, Button, argbFromHex } from "react-material";
+
+function Example() {
+  const greenColor = argbFromHex("#aaffaa");
+
+  return (
+    <ThemeProvider sourceColor={greenColor}>
+      <Button>Default</Button>
+      <Button variant="tonal">Tonal</Button>
+      <Button variant="outlined">Outlined</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+</DocsPreview>
+
+## Using a Source Image
+
+One of the most powerful features of React Material's theming system is the ability to extract a theme from an image. This is great for creating themes that match your branding or content.
+
+
+
+<DocsPreview>
+  <DocsComp>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+      <div>
+        <img 
+          src="/images/ColorExample.png" 
+          alt="Source image for theme" 
+          className="w-full h-auto rounded-md"
+        />
+      </div>
+      <div className="flex flex-col justify-center">
+        <ThemeProvider sourceImage="/images/ColorExample.png">
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-2 flex-wrap">
+              <Button>Default</Button>
+              <Button variant="tonal">Tonal</Button>
+              <Button variant="outlined">Outlined</Button>
+              <Button variant="text">Text</Button>
+            </div>
+            
+            <div className="flex gap-2">
+              <div className="h-10 w-10 rounded-full bg-primary"></div>
+              <div className="h-10 w-10 rounded-full bg-secondary"></div>
+              <div className="h-10 w-10 rounded-full bg-tertiary"></div>
+              <div className="h-10 w-10 rounded-full bg-error"></div>
+            </div>
+          </div>
+        </ThemeProvider>
+      </div>
+    </div>
+  </DocsComp>
+
+```tsx
+import { ThemeProvider } from "react-material";
+
+function App() {
+  return (
+    <ThemeProvider sourceImage="/images/ColorExample.png">{/* Your application */}</ThemeProvider>
+  );
+}
+```
+
+</DocsPreview>
+
+The `sourceImage` prop accepts a URL to an image. When the image loads, React Material extracts representative colors from the image and generates a harmonious theme based on the dominant color.
+
+## The Root Prop
+
+The `root` prop is a boolean value that determines whether the theme variables are applied to the `:root` selector. **It is required to set `root={true}` on at least one ThemeProvider at the root level of your application** to ensure that global styles are applied correctly to elements like `body`, `html`, and other global elements.
+
+```tsx
+import { ThemeProvider } from "react-material";
+
+function App() {
+  return (
+    <ThemeProvider sourceColor={argbFromHex("#6750A4")} root={true}>
+      {/* Your application */}
+    </ThemeProvider>
+  );
+}
+```
+
+When `root={true}`, the theme CSS variables are applied to the `:root` selector, making them available throughout your entire application, even outside of React components. Without setting this at the root level, some styling might not be applied properly to global elements.
+
+For nested ThemeProviders, you should generally set `root={false}` (or omit it as it defaults to `false`) to ensure themes are scoped appropriately:
+
+```tsx
+<ThemeProvider sourceColor={argbFromHex("#6750A4")} root={true}>
+  {/* Global theme */}
+  <div>
+    <ThemeProvider sourceColor={argbFromHex("#FF0000")}>
+      {/* Local theme only affects its children */}
+      <Button>Red themed button</Button>
+    </ThemeProvider>
+    <Button>Purple themed button</Button>
+  </div>
+</ThemeProvider>
+```
+
+This approach ensures that:
+
+- Global styles are consistently applied to all elements
+- Local theme overrides work as expected
+- Your application maintains a coherent design system
+
+## Combining Theme Options
+
+You can combine different theme options to create a highly customized theme:
+
+```tsx
+import { ThemeProvider, Variant } from "react-material";
+
+function App() {
+  return (
+    <ThemeProvider sourceImage="/images/ColorExample.png" variant={Variant.VIBRANT} contrast={0.2}>
+      {/* Your application */}
+    </ThemeProvider>
+  );
+}
+```
+
+## Dynamic Theming
+
+The theme can be changed at runtime using the `useTheme` hook:
+
+```tsx
+import { useTheme, Button, argbFromHex } from "react-material";
+
+function ThemeSwitcher() {
+  const { changeTheme } = useTheme();
+
+  const setRedTheme = () => {
+    changeTheme({ CsourceColor: argbFromHex("#FF0000") });
+  };
+
+  const setImageTheme = () => {
+    changeTheme({ CsourceImage: "/images/ColorExample.png" });
+  };
+
+  return (
+    <div>
+      <Button onClick={setRedTheme}>Red Theme</Button>
+      <Button onClick={setImageTheme}>Image Theme</Button>
+    </div>
+  );
+}
+```
+
+## Accessing Theme Values
+
+You can access the current theme values using the `useTheme` hook:
+
+```tsx
+import { useTheme } from "react-material";
+
+function ThemeInfo() {
+  const { sourceColor, variant, contrast, schemes } = useTheme();
+
+  return (
+    <div>
+      <p>Current source color: {sourceColor.toString(16)}</p>
+      <p>Current variant: {variant}</p>
+      <p>Current contrast level: {contrast}</p>
+    </div>
+  );
+}
+```
+
+## CSS Variables
+
+React Material automatically generates CSS variables for all theme colors. These variables follow the naming pattern `--m3-scheme-{color-name}` and contain RGB values (without the rgb() wrapper) that you can use in your CSS:
+
+```css
+.my-custom-element {
+  background-color: rgb(var(--m3-scheme-primary));
+  color: rgb(var(--m3-scheme-on-primary));
+}
+```
+
+Available color variables include:
+
+- Primary colors: `primary`, `on-primary`, `primary-container`, `on-primary-container`
+- Secondary colors: `secondary`, `on-secondary`, `secondary-container`, `on-secondary-container`
+- Tertiary colors: `tertiary`, `on-tertiary`, `tertiary-container`, `on-tertiary-container`
+- Surface colors: `surface`, `on-surface`, `surface-variant`, `on-surface-variant`
+- Error colors: `error`, `on-error`, `error-container`, `on-error-container`
+- And many more!
+
+## Best Practices
+
+1. **Place the ThemeProvider at the root of your application** to ensure all components have access to the theme.
+
+2. **Use semantic color names** instead of hardcoded color values in your components for better theme consistency.
+
+3. **Test your themes in both light and dark modes** to ensure good contrast and readability.
+
+4. **Consider accessibility** when choosing source colors and contrast levels.
+
+5. **Provide a default theme** even if you expect users to customize it later.
+
+## Conclusion
+
+The theming system in React Material provides a powerful way to create dynamic, customizable themes based on Material Design 3 principles. Whether you're using a specific brand color or extracting colors from images, React Material makes it easy to create cohesive and beautiful designs.
