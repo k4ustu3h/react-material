@@ -1,7 +1,7 @@
 {
   "name": "react-material",
   "author": "miukyo",
-  "version": "0.0.1",
+  "version": "0.0.1-pre1",
   "description": "Material Design 3 Expressive Implementation in React",
   "license": "Apache-2.0",
   "keywords": [
@@ -28,6 +28,10 @@
       "types": "./dist/types.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
     }
   },
   "devDependencies": {
@@ -54,9 +58,6 @@
     "dev": "rollup -c ./rollup.config.js --bundleConfigAsCjs --watch",
     "generate": "turbo gen react-component && npm run build"
   },
-  "files": [
-    "dist"
-  ],
   "types": "dist/index.d.ts",
   "dependencies": {
     "material-symbols": "^0.31.5",

@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-06-27T04:04:37.351Z
+// Generated on 2025-07-01T09:41:40.664Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -30,6 +30,11 @@ const docsIndex: DocIndex = {
       title: "Theming",
       description: "Learn how to customize and apply themes to your React Material application.",
       path: "/docs/get-started/theming",
+    },
+    {
+      title: "Tailwind",
+      description: "Learn how to integrate React Material with Tailwind CSS for a complete design system.",
+      path: "/docs/get-started/tailwind",
     },
   ],
   "components": [

@@ -24,7 +24,6 @@ const DocsHeader = (props: { title: string; description: string; img?: string })
             alt={props.title + " Image"}
             className="absolute inset-0 z-10"
           />
-          <Iridescence resolution={0.1} className="blur-xl scale-120 opacity-50" />
         </div>
       </div>
     </>

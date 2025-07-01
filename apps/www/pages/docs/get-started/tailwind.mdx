@@ -1,0 +1,239 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+
+<DocsHeader
+  title="Tailwind"
+  description="Learn how to integrate React Material with Tailwind CSS for a complete design system."
+/>
+
+# Introduction to integrating Tailwind CSS
+
+React Material provides seamless integration with Tailwind CSS, allowing you to use Material Design 3 tokens and utilities alongside Tailwind's utility classes.
+
+## Installation
+
+First, make sure you have both React Material and Tailwind CSS installed:
+
+```bash
+npm install react-material tailwindcss
+```
+
+## Setup
+
+### 1. Import Tailwind CSS
+
+In your main CSS file (typically `globals.css` or `index.css`), import Tailwind CSS:
+
+```css
+@import "tailwindcss";
+```
+
+### 2. Add Material Design Theme Configuration
+
+Add the Material Design theme configuration using the `@theme` directive. This makes Material Design 3 tokens available as CSS custom properties:
+
+```css
+@theme {
+  /* Material Design 3 Color Tokens */
+  --color-*: initial;
+  --color-background: rgb(var(--m3-scheme-background));
+  --color-on-background: rgb(var(--m3-scheme-on-background));
+  --color-surface: rgb(var(--m3-scheme-surface));
+  --color-surface-dim: rgb(var(--m3-scheme-surface-dim));
+  --color-surface-bright: rgb(var(--m3-scheme-surface-bright));
+  --color-surface-container-lowest: rgb(var(--m3-scheme-surface-container-lowest));
+  --color-surface-container-low: rgb(var(--m3-scheme-surface-container-low));
+  --color-surface-container: rgb(var(--m3-scheme-surface-container));
+  --color-surface-container-high: rgb(var(--m3-scheme-surface-container-high));
+  --color-surface-container-highest: rgb(var(--m3-scheme-surface-container-highest));
+  --color-on-surface: rgb(var(--m3-scheme-on-surface));
+  --color-on-surface-variant: rgb(var(--m3-scheme-on-surface-variant));
+  --color-outline: rgb(var(--m3-scheme-outline));
+  --color-outline-variant: rgb(var(--m3-scheme-outline-variant));
+  --color-inverse-surface: rgb(var(--m3-scheme-inverse-surface));
+  --color-inverse-on-surface: rgb(var(--m3-scheme-inverse-on-surface));
+  --color-primary: rgb(var(--m3-scheme-primary));
+  --color-primary-dim: rgb(var(--m3-scheme-primary-dim));
+  --color-on-primary: rgb(var(--m3-scheme-on-primary));
+  --color-primary-container: rgb(var(--m3-scheme-primary-container));
+  --color-on-primary-container: rgb(var(--m3-scheme-on-primary-container));
+  --color-primary-fixed: rgb(var(--m3-scheme-primary-fixed));
+  --color-primary-fixed-dim: rgb(var(--m3-scheme-primary-fixed-dim));
+  --color-on-primary-fixed: rgb(var(--m3-scheme-on-primary-fixed));
+  --color-on-primary-fixed-variant: rgb(var(--m3-scheme-on-primary-fixed-variant));
+  --color-inverse-primary: rgb(var(--m3-scheme-inverse-primary));
+  --color-secondary: rgb(var(--m3-scheme-secondary));
+  --color-secondary-dim: rgb(var(--m3-scheme-secondary-dim));
+  --color-on-secondary: rgb(var(--m3-scheme-on-secondary));
+  --color-secondary-container: rgb(var(--m3-scheme-secondary-container));
+  --color-on-secondary-container: rgb(var(--m3-scheme-on-secondary-container));
+  --color-secondary-fixed: rgb(var(--m3-scheme-secondary-fixed));
+  --color-secondary-fixed-dim: rgb(var(--m3-scheme-secondary-fixed-dim));
+  --color-on-secondary-fixed: rgb(var(--m3-scheme-on-secondary-fixed));
+  --color-on-secondary-fixed-variant: rgb(var(--m3-scheme-on-secondary-fixed-variant));
+  --color-tertiary: rgb(var(--m3-scheme-tertiary));
+  --color-tertiary-dim: rgb(var(--m3-scheme-tertiary-dim));
+  --color-on-tertiary: rgb(var(--m3-scheme-on-tertiary));
+  --color-tertiary-container: rgb(var(--m3-scheme-tertiary-container));
+  --color-on-tertiary-container: rgb(var(--m3-scheme-on-tertiary-container));
+  --color-tertiary-fixed: rgb(var(--m3-scheme-tertiary-fixed));
+  --color-tertiary-fixed-dim: rgb(var(--m3-scheme-tertiary-fixed-dim));
+  --color-on-tertiary-fixed: rgb(var(--m3-scheme-on-tertiary-fixed));
+  --color-on-tertiary-fixed-variant: rgb(var(--m3-scheme-on-tertiary-fixed-variant));
+  --color-error: rgb(var(--m3-scheme-error));
+  --color-error-dim: rgb(var(--m3-scheme-error-dim));
+  --color-on-error: rgb(var(--m3-scheme-on-error));
+  --color-error-container: rgb(var(--m3-scheme-error-container));
+  --color-on-error-container: rgb(var(--m3-scheme-on-error-container));
+  --color-on-on-primary: rgb(var(--m3-scheme-on-on-primary));
+
+  /* Material Design 3 Radius Tokens */
+  --radius-none: 0rem;
+  --radius-xs: var(--m3-util-rounding-extra-small);
+  --radius-sm: var(--m3-util-rounding-small);
+  --radius-md: var(--m3-util-rounding-medium);
+  --radius-lg: var(--m3-util-rounding-large);
+  --radius-xl: var(--m3-util-rounding-extra-large);
+  --radius-2xl: 3rem; /* 48px */
+  --radius-full: var(--m3-util-rounding-full);
+
+  /* Material Design 3 Motion Tokens */
+  --default-transition-timing-function: var(--ease-normal);
+  --ease-*: initial;
+  --ease-fast-spatial: var(--m3-util-easing-fast-spatial);
+  --ease-spatial: var(--m3-util-easing-spatial);
+  --ease-slow-spatial: var(--m3-util-easing-slow-spatial);
+  --ease-fast: var(--m3-util-easing-fast);
+  --ease-normal: var(--m3-util-easing);
+  --ease-slow: var(--m3-util-easing-slow);
+  --ease-curve: var(--m3-util-curve);
+  --ease-curve-decel: var(--m3-util-curve-decel);
+  --ease-curve-accel: var(--m3-util-curve-accel);
+}
+```
+
+### 3. Import Material Design Utilities
+
+After setting up the theme configuration, import the React Material Tailwind utilities in your root React app file (e.g., `App.tsx`, `main.tsx`, or `index.tsx`):
+
+```tsx
+import "react-material/tailwind.css";
+```
+
+> Due to Tailwind CSS's compilation process, the `@theme` directive alone is not sufficient for dynamic theming. The `react-material/tailwind.css` file contains pre-compiled utility classes that map to the Material Design 3 color tokens, enabling per-content theming support. This ensures that components can dynamically respond to theme changes at runtime.
+
+## Complete Example
+
+Here's a complete example of your setup:
+
+### CSS File (globals.css)
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --default-font-family: roboto, sans-serif;
+  --font-roboto: roboto, sans-serif;
+  --font-dmsans: dmsans, sans-serif;
+
+  --color-*: initial;
+  --color-background: rgb(var(--m3-scheme-background));
+  --color-on-background: rgb(var(--m3-scheme-on-background));
+  --color-surface: rgb(var(--m3-scheme-surface));
+  /* ... other color tokens ... */
+
+  --radius-none: 0rem;
+  --radius-xs: var(--m3-util-rounding-extra-small);
+  /* ... other radius tokens ... */
+
+  --ease-fast: var(--m3-util-easing-fast);
+  /* ... other easing tokens ... */
+}
+
+@layer base {
+  :root {
+    --m3-font: var(--font-roboto), system-ui, sans-serif;
+    --m3-font-display: var(--font-dmsans), system-ui, sans-serif;
+    --m3-font-headline: var(--font-dmsans), system-ui, sans-serif;
+    --m3-font-title: var(--font-dmsans), system-ui, sans-serif;
+    --m3-font-label: var(--font-roboto), system-ui, sans-serif;
+    --m3-font-body: var(--font-roboto), system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-surface text-on-surface;
+  }
+}
+```
+
+### Root React App File (App.tsx)
+
+```tsx
+import React from "react";
+import "./globals.css"; // Your main CSS file with theme configuration
+import "react-material/tailwind.css"; // Import Material Design utilities
+
+function App() {
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Your app content */}
+    </div>
+  );
+}
+
+export default App;
+```
+
+## Using Material Design Utilities
+
+Once configured, you can use Material Design utilities alongside regular Tailwind classes:
+
+```jsx
+export function Example() {
+  return (
+    <div className="bg-surface-container p-4 rounded-md">
+      <h1 className="text-on-surface text-2xl font-semibold mb-4">
+        Material Design Card
+      </h1>
+      <p className="text-on-surface-variant mb-4">
+        This card uses Material Design 3 color tokens.
+      </p>
+      <button className="bg-primary text-on-primary px-4 py-2 rounded-full hover:bg-primary-dim transition-colors">
+        Primary Button
+      </button>
+    </div>
+  );
+}
+```
+
+## Why Both `@theme` and `tailwind.css` Are Required
+
+Tailwind CSS has a fundamental limitation when it comes to dynamic theming:
+
+### The Problem
+- Tailwind CSS compiles utility classes at **build time**
+- The `@theme` directive defines CSS custom properties, but Tailwind cannot generate utility classes that reference these properties dynamically
+- Traditional Tailwind utilities like `bg-red-500` are static and compiled to fixed color values
+
+### The Solution
+React Material solves this by providing:
+
+1. **`@theme` directive**: Defines all Material Design 3 tokens as CSS custom properties
+2. **`react-material/tailwind.css`**: Contains pre-compiled utility classes that reference the custom properties
+
+```css
+/* Example of what's in react-material/tailwind.css */
+.bg-primary {
+  background-color: rgb(var(--m3-scheme-primary));
+}
+
+.text-on-primary {
+  color: rgb(var(--m3-scheme-on-primary));
+}
+```
+
+This approach enables:
+- ✅ **Dynamic theming**: Colors change when CSS custom properties update
+- ✅ **Runtime theme switching**: No rebuild required for theme changes
+- ✅ **Per-content theming**: Different parts of your app can have different themes
+- ✅ **Dark mode support**: Automatic adaptation to theme changes

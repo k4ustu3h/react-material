@@ -143,14 +143,14 @@ The `sourceImage` prop accepts a URL to an image. When the image loads, React Ma
 
 ## The Root Prop
 
-The `root` prop is a boolean value that determines whether the theme variables are applied to the `:root` selector. **It is required to set `root={true}` on at least one ThemeProvider at the root level of your application** to ensure that global styles are applied correctly to elements like `body`, `html`, and other global elements.
+The `root` prop is a boolean value that determines whether the theme variables are applied to the `:root` selector. **It is required to set `root={true}` or you can just add prop `root` on at least one ThemeProvider at the root level of your application** to ensure that global styles are applied correctly to elements like `body`, `html`, and other global elements.
 
 ```tsx
 import { ThemeProvider } from "react-material";
 
 function App() {
   return (
-    <ThemeProvider sourceColor={argbFromHex("#6750A4")} root={true}>
+    <ThemeProvider sourceColor={argbFromHex("#6750A4")} root>
       {/* Your application */}
     </ThemeProvider>
   );
@@ -162,7 +162,7 @@ When `root={true}`, the theme CSS variables are applied to the `:root` selector,
 For nested ThemeProviders, you should generally set `root={false}` (or omit it as it defaults to `false`) to ensure themes are scoped appropriately:
 
 ```tsx
-<ThemeProvider sourceColor={argbFromHex("#6750A4")} root={true}>
+<ThemeProvider sourceColor={argbFromHex("#6750A4")} root>
   {/* Global theme */}
   <div>
     <ThemeProvider sourceColor={argbFromHex("#FF0000")}>
@@ -263,6 +263,167 @@ Available color variables include:
 - Error colors: `error`, `on-error`, `error-container`, `on-error-container`
 - And many more!
 
+## Typography and Fonts
+
+React Material follows Material Design 3's typography system, with **Roboto** as the default font family. The library provides built-in typography scaling and font management to ensure consistent text rendering across your application.
+
+### Default Font (Roboto)
+
+React Material automatically applies Roboto as the default font family for all components. The font is loaded and includes support for multiple weights and styles:
+
+```css
+/* Default font configuration in React Material */
+:root {
+  --m3-font: 'Roboto', system-ui, sans-serif;
+  --m3-font-display: 'Roboto', system-ui, sans-serif;
+  --m3-font-headline: 'Roboto', system-ui, sans-serif;
+  --m3-font-title: 'Roboto', system-ui, sans-serif;
+  --m3-font-label: 'Roboto', system-ui, sans-serif;
+  --m3-font-body: 'Roboto', system-ui, sans-serif;
+}
+```
+
+The default typography scale includes:
+
+- **Display Large**: 57px / 64px line height
+- **Display Medium**: 45px / 52px line height
+- **Display Small**: 36px / 44px line height
+- **Headline Large**: 32px / 40px line height
+- **Headline Medium**: 28px / 36px line height
+- **Headline Small**: 24px / 32px line height
+- **Title Large**: 22px / 28px line height
+- **Title Medium**: 16px / 24px line height
+- **Title Small**: 14px / 20px line height
+- **Body Large**: 16px / 24px line height
+- **Body Medium**: 14px / 20px line height
+- **Body Small**: 12px / 16px line height
+- **Label Large**: 14px / 20px line height
+- **Label Medium**: 12px / 16px line height
+- **Label Small**: 11px / 16px line height
+
+### Customizing Fonts with CSS Variables
+
+React Material provides dedicated CSS variables for different typography categories. You can override these variables to use custom fonts for specific text styles:
+
+```css
+:root {
+  --m3-font: 'Roboto', system-ui, sans-serif;           /* Default font */
+  --m3-font-display: 'Playfair Display', serif;         /* For display text */
+  --m3-font-headline: 'Inter', system-ui, sans-serif;   /* For headlines */
+  --m3-font-title: 'Inter', system-ui, sans-serif;      /* For titles */
+  --m3-font-label: 'Roboto', system-ui, sans-serif;     /* For labels */
+  --m3-font-body: 'Source Sans Pro', system-ui, sans-serif; /* For body text */
+}
+```
+
+### Loading Custom Fonts
+
+You can load custom fonts using various methods. Here are the most common approaches:
+
+#### 1. Using @font-face
+
+```css
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./fonts/CustomFont-Regular.woff2') format('woff2'),
+       url('./fonts/CustomFont-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./fonts/CustomFont-Bold.woff2') format('woff2'),
+       url('./fonts/CustomFont-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --m3-font-headline: 'CustomFont', system-ui, sans-serif;
+}
+```
+
+#### 2. Using Google Fonts
+
+```html
+<!-- In your HTML head -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+```
+
+```css
+:root {
+  --m3-font: 'Inter', system-ui, sans-serif;
+  --m3-font-headline: 'Inter', system-ui, sans-serif;
+  --m3-font-body: 'Inter', system-ui, sans-serif;
+}
+```
+
+#### 3. Using Next.js Font Optimization
+
+```tsx
+// pages/_app.tsx or app/layout.tsx
+import { Inter, Roboto } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+});
+
+export default function App({ Component, pageProps }) {
+  return (
+    <div className={`${inter.variable} ${roboto.variable}`}>
+      <Component {...pageProps} />
+    </div>
+  );
+}
+```
+
+```css
+:root {
+  --m3-font: var(--font-roboto), system-ui, sans-serif;
+  --m3-font-headline: var(--font-inter), system-ui, sans-serif;
+}
+```
+
+### Font Loading Best Practices
+
+1. **Always provide fallback fonts**: Include system font fallbacks to ensure text remains readable:
+
+```css
+:root {
+  --m3-font: 'CustomFont', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+```
+
+2. **Use font-display: swap**: Ensure text remains visible during font load:
+
+```css
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./fonts/custom-font.woff2') format('woff2');
+  font-display: swap; /* Shows fallback font while loading */
+}
+```
+
+3. **Preload critical fonts**: Use `<link rel="preload">` for fonts used above the fold:
+
+```html
+<link rel="preload" href="/fonts/CustomFont-Regular.woff2" as="font" type="font/woff2" crossorigin>
+```
+
+4. **Optimize font loading**: Only load the font weights and styles you actually use.
+
 ## Best Practices
 
 1. **Place the ThemeProvider at the root of your application** to ensure all components have access to the theme.
@@ -275,6 +436,16 @@ Available color variables include:
 
 5. **Provide a default theme** even if you expect users to customize it later.
 
+6. **Use CSS variables for font customization** by overriding the `--m3-font-*` variables in your `:root` selector.
+
+7. **Always include system font fallbacks** to ensure text remains readable even if custom fonts fail to load.
+
+8. **Limit font weights** to only those you actually use to reduce bundle size and improve loading times.
+
+9. **Use `font-display: swap`** in your `@font-face` declarations for better loading performance.
+
+10. **Test typography across different devices** to ensure readability on various screen sizes and pixel densities.
+
 ## Conclusion
 
-The theming system in React Material provides a powerful way to create dynamic, customizable themes based on Material Design 3 principles. Whether you're using a specific brand color or extracting colors from images, React Material makes it easy to create cohesive and beautiful designs.
+The theming system in React Material provides a powerful way to create dynamic, customizable themes based on Material Design 3 principles. Combined with the comprehensive typography system using Roboto as the default font, React Material makes it easy to create cohesive and beautiful designs. Whether you're using specific brand colors, extracting colors from images, or implementing custom fonts, React Material provides the flexibility and tools needed for professional-grade applications.

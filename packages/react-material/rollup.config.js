@@ -32,7 +32,10 @@ export default [
       terser(),
       postcss(),
       copy({
-        targets: [{ src: "components/misc/fonts/**/*", dest: "dist/fonts" }],
+        targets: [
+          { src: "components/misc/fonts/**/*", dest: "dist/fonts" },
+          { src: "css/**/*", dest: "dist" },
+        ],
       }),
     ],
     external: ["react", "react-dom"],

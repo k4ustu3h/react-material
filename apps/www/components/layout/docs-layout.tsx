@@ -128,7 +128,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
               ))}
             </div>
           </div>
-          <div ref={contentContainerRef} className="grow rounded-xl px-2 overflow-y-auto relative">
+          <div ref={contentContainerRef} className="grow rounded-xl px-2 overflow-y-auto relative scroll-smooth">
             <article className="prose w-200 mx-auto mt-140 animation-fade-in">{children}</article>
             <footer>
               <div className="grid grid-cols-2 p-20 gap-2 bg-surface shadow-2xl shadow-surface relative z-10">

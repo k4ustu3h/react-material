@@ -158,7 +158,7 @@ function createSvg({ title, description }) {
   
   <!-- Description with text wrapping using tspan elements -->
   <text x="600" y="465" font-family="'DM Sans', Arial, sans-serif" font-size="32" text-anchor="middle" fill="#666666">
-    ${wrapText(escapedDesc, 50)}
+    ${wrapText(escapedDesc, 60)}
   </text>
   
   <!-- Website URL -->
@@ -194,7 +194,7 @@ async function generateOgImage({ slug, title, description }) {
       },
       fitTo: {
         mode: "width",
-        value: 600,
+        value: 1200,
       },
       background: "white", // Ensure a white background
       logLevel: "error",

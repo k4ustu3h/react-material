@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-
 @theme {
   --default-font-family: roboto, sans-serif;
   --font-roboto: roboto, sans-serif;
@@ -70,7 +69,7 @@
   --radius-full: var(--m3-util-rounding-full);
 
   /* Expressive easing */
-  --default-transition-timing-function: var(--ease-fast);
+  --default-transition-timing-function: var(--ease-normal);
   --ease-*: initial;
   --ease-fast-spatial: var(--m3-util-easing-fast-spatial);
   --ease-spatial: var(--m3-util-easing-spatial);
@@ -108,14 +107,13 @@
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgb(var(--m3-scheme-primary)/0.1);
+    background: rgb(var(--m3-scheme-primary) / 0.1);
   }
 }
 
 @layer utilities {
   .prose {
-    @apply prose-headings:font-dmsans prose-headings:my-4 prose-p:mb-2 prose-pre:p-0 prose-code:before:content-none prose-code:after:content-none
-      ;
+    @apply prose-headings:font-dmsans prose-headings:my-4 prose-p:mb-2 prose-pre:p-0;
     max-width: none;
     --tw-prose-body: var(--color-on-surface);
     --tw-prose-headings: var(--color-on-surface);
@@ -152,4 +150,15 @@
       transform: translateY(0);
     }
   }
+}
+
+/* Smooth scrolling for anchor links */
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* Offset for fixed headers when scrolling to anchors */
+:target {
+  scroll-margin-top: 5rem;
 }

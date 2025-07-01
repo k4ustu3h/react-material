@@ -27,7 +27,7 @@ async function generateSearchIndex() {
 
     documents.push({
       slug,
-      title: titleMatch ? titleMatch[1] : filePath.basename(filePath, ".mdx"),
+      title: titleMatch ? titleMatch[1] : "",
       description: descriptionMatch ? descriptionMatch[1] : "",
       content: fileContent, // Full content for indexing
     });
