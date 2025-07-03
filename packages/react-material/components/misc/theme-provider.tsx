@@ -35,7 +35,12 @@ interface ThemeState {
 }
 
 interface ThemeActions {
-  changeTheme: (options: { CsourceColor?: number; Cvariant?: Variant; Ccontrast?: number }) => void;
+  changeTheme: (options: {
+    sourceColor?: number;
+    sourceImage?: string;
+    variant?: Variant;
+    contrast?: number;
+  }) => void;
 }
 
 type ThemeContextType = ThemeState & ThemeActions;
@@ -53,7 +58,7 @@ export const ThemeProvider: React.FC<
 > = ({
   children,
   sourceColor: initialSourceColor,
-  sourceImage,
+  sourceImage: initialSourceImage,
   variant: initialVariant,
   contrast: initialContrast,
   root = false,
@@ -61,6 +66,7 @@ export const ThemeProvider: React.FC<
   const [sourceColor, setSourceColor] = useState<number>(
     initialSourceColor || argbFromHex("#D0BCFF")
   );
+  const [sourceImage, setSourceImage] = useState<string | undefined>(initialSourceImage);
   const [variant, setVariant] = useState<Variant>(initialVariant || Variant.TONAL_SPOT);
   const [contrast, setContrast] = useState<number>(initialContrast || 0);
 
@@ -89,15 +95,18 @@ export const ThemeProvider: React.FC<
 
   const changeTheme = useCallback(
     ({
-      CsourceColor,
-      Cvariant,
-      Ccontrast,
+      sourceColor: CsourceColor,
+      sourceImage: CsourceImage,
+      variant: Cvariant,
+      contrast: Ccontrast,
     }: {
-      CsourceColor?: number;
-      Cvariant?: Variant;
-      Ccontrast?: number;
+      sourceColor?: number;
+      sourceImage?: string;
+      variant?: Variant;
+      contrast?: number;
     }) => {
       setSourceColor((prev) => CsourceColor ?? prev);
+      setSourceImage((prev) => CsourceImage ?? prev);
       setVariant((prev) => Cvariant ?? prev);
       setContrast((prev) => Ccontrast ?? prev);
     },

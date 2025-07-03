@@ -19,7 +19,7 @@ The `ThemeProvider` component is the foundation of theming in React Material. It
 import { ThemeProvider } from "react-material";
 
 function App() {
-  return <ThemeProvider>{/* Your application */}</ThemeProvider>;
+  return <ThemeProvider root>{/* Your application */}</ThemeProvider>;
 }
 ```
 
@@ -48,17 +48,6 @@ React Material supports various theme variants from Material Design 3:
 ## Using a Source Color
 
 The simplest way to customize your theme is by providing a source color. The source color is used as the base for generating the entire color palette.
-
-```tsx
-import { ThemeProvider, argbFromHex } from "react-material";
-
-function App() {
-  // Convert a hex color to ARGB format
-  const greenColor = argbFromHex("#aaffaa");
-
-  return <ThemeProvider sourceColor={greenColor}>{/* Your application */}</ThemeProvider>;
-}
-```
 
 <DocsPreview>
   <DocsComp>
@@ -130,9 +119,9 @@ One of the most powerful features of React Material's theming system is the abil
 ```tsx
 import { ThemeProvider } from "react-material";
 
-function App() {
+function Example() {
   return (
-    <ThemeProvider sourceImage="/images/ColorExample.png">{/* Your application */}</ThemeProvider>
+    <ThemeProvider sourceImage="/images/ColorExample.png">{/* Your content */}</ThemeProvider>
   );
 }
 ```
@@ -187,7 +176,7 @@ You can combine different theme options to create a highly customized theme:
 ```tsx
 import { ThemeProvider, Variant } from "react-material";
 
-function App() {
+function Example() {
   return (
     <ThemeProvider sourceImage="/images/ColorExample.png" variant={Variant.VIBRANT} contrast={0.2}>
       {/* Your application */}
@@ -207,11 +196,11 @@ function ThemeSwitcher() {
   const { changeTheme } = useTheme();
 
   const setRedTheme = () => {
-    changeTheme({ CsourceColor: argbFromHex("#FF0000") });
+    changeTheme({ sourceColor: argbFromHex("#FF0000") });
   };
 
   const setImageTheme = () => {
-    changeTheme({ CsourceImage: "/images/ColorExample.png" });
+    changeTheme({ sourceImage: "/images/ColorExample.png" });
   };
 
   return (

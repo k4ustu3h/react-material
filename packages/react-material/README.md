@@ -1,4 +1,4 @@
-![](.img/banner.png)
+![](https://raw.githubusercontent.com/miukyo/react-material/refs/heads/dev/packages/react-material/.img/banner.png)
 
 [![npm version](https://badge.fury.io/js/react-material.svg)](https://badge.fury.io/js/react-material)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)

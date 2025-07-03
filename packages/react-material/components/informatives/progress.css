@@ -1,0 +1,17 @@
+@layer components {
+  .m3-progress-container {
+    height: 0.5rem;
+    width: 10rem;
+    display: inline-flex;
+    & line,
+    path {
+      transition-property: x1, x2, d;
+      transition: var(--m3-util-easing-slow);
+    }
+
+    & path {
+      transition-property: d;
+      transition: var(--m3-util-easing-slow);
+    }
+  }
+}

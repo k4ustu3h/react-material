@@ -1,5 +1,6 @@
 import DocsHeader from "@/components/blocks/docs-header";
 import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Progress } from "react-material";
 
 <DocsHeader
   title="Progress"
@@ -9,3 +10,23 @@ import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
 # Overview
 
 The `Progress` component is used to visually indicate the progress of a task or operation. It can be used in various scenarios, such as file uploads, downloads, or any process that takes time to complete. The component provides feedback to users about the current state of the operation.
+
+# Variants
+
+The `Progress` component supports different variants to customize its appearance. You can choose from the following variants:
+- **Linear**: A simple progress bar that shows the current progress.
+- **Wavy**: A progress bar with a wavy animation to indicate ongoing progress.
+
+<DocsPreview>
+<DocsComp>
+<Progress percent={50} />
+<Progress percent={55} variant="wavy" />
+</DocsComp>
+
+```tsx
+import { Progress } from "react-material";
+
+<Progress percent={50} />
+<Progress percent={55} variant="wavy" />
+```
+</DocsPreview>

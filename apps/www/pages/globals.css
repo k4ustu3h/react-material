@@ -75,10 +75,8 @@
   --ease-spatial: var(--m3-util-easing-spatial);
   --ease-slow-spatial: var(--m3-util-easing-slow-spatial);
   --ease-fast: var(--m3-util-easing-fast);
-  --ease-normal: --m3-util-easing;
+  --ease-normal: var(--m3-util-easing);
   --ease-slow: var(--m3-util-easing-slow);
-
-  --ease-curve: var(--m3-util-curve);
   --ease-curve-decel: var(--m3-util-curve-decel);
   --ease-curve-accel: var(--m3-util-curve-accel);
 }

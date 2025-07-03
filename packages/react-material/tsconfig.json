@@ -4,9 +4,7 @@
     "jsx": "react",
     "module": "esnext",
     "target": "esnext",
-    "declaration": true, // Generates .d.ts files for type declarations
-    "declarationDir": "dist/types",
-    "emitDeclarationOnly": true,
+    "declaration": false,
     "sourceMap": true,
     "esModuleInterop": true,
     "strict": true,

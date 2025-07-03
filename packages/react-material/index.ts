@@ -1,2 +1,2 @@
 export * from "./components/index";
-export * from "./utils/material-color-utilities/typescript/index";
+export { argbFromHex, argbFromRgb } from "./utils/material-color-utilities/typescript/index";

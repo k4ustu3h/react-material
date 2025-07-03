@@ -5,7 +5,7 @@ import mergeProps from "../../utils/merge-props/merge-props";
 type CommonProps = {
   min?: number;
   max?: number;
-  mode: "continuous";
+  mode?: "continuous";
   step?: number | "any";
   disabled?: boolean;
   showValue?: boolean;
