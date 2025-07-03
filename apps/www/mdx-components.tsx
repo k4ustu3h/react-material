@@ -1,8 +1,8 @@
 import type { MDXComponents } from "mdx/types";
-import React, { JSX, ReactNode, useState } from "react";
+import React, { JSX, ReactNode, useState, useEffect, useRef } from "react";
 import ShikiHighlighter from "react-shiki/web";
 import Bullet from "./components/misc/bullet";
-import { Icon } from "react-material";
+import { Button, Icon } from "react-material";
 
 interface CodeHighlightProps {
   inline?: boolean | undefined;
@@ -18,13 +18,151 @@ const CodeHighlight = ({
   node,
   ...props
 }: CodeHighlightProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true); // Default to collapsed
+  const [needsCollapse, setNeedsCollapse] = useState(false); // Track if collapse is needed
+  const [copied, setCopied] = useState(false); // Track copy state
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const match = className?.match(/language-(\w+)/);
   const language = match ? match[1] : undefined;
 
+  useEffect(() => {
+    const loadCodeHighlight = async () => {
+      if (inline) {
+        setIsVisible(true);
+        setIsLoaded(true);
+        return;
+      }
+
+      // Wait for DOM to be ready
+      await new Promise((resolve) => {
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", resolve);
+        } else {
+          resolve(true);
+        }
+      });
+
+      // Set up intersection observer for lazy loading
+      const observer = new IntersectionObserver(
+        async (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting && !isVisible) {
+              setIsVisible(true);
+
+              // Add a small delay for smooth rendering
+              await new Promise((resolve) => setTimeout(resolve, 100));
+              setIsLoaded(true);
+
+              // Check if content needs collapse after a small delay
+              setTimeout(() => {
+                if (contentRef.current) {
+                  const contentHeight = contentRef.current.scrollHeight;
+                  const maxHeight = 20 * 16; // 20rem in pixels (assuming 16px base font)
+                  setNeedsCollapse(contentHeight > maxHeight);
+                  if (contentHeight <= maxHeight) {
+                    setIsCollapsed(false); // Don't collapse if content is small
+                  }
+                }
+              }, 50);
+
+              observer.disconnect();
+              break;
+            }
+          }
+        },
+        {
+          rootMargin: "100px 0px",
+          threshold: 0.1,
+        }
+      );
+
+      if (containerRef.current) {
+        observer.observe(containerRef.current);
+      }
+
+      return () => observer.disconnect();
+    };
+
+    const cleanup = loadCodeHighlight();
+    return () => {
+      cleanup.then((cleanupFn) => cleanupFn && cleanupFn());
+    };
+  }, [inline, isVisible]);
+
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(String(children));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy code: ", err);
+    }
+  };
+
   return !inline ? (
-    <ShikiHighlighter language={language} theme={"one-dark-pro"} {...props}>
-      {String(children)}
-    </ShikiHighlighter>
+    <div
+      ref={containerRef}
+      className={`relative transition-all duration-300 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
+      {/* Action buttons */}
+      <div className="absolute top-2 right-2 z-10 flex gap-1">
+        {/* Copy button */}
+        <Button
+          variant="text"
+          className="size-8 p-0"
+          onClick={copyToClipboard}
+          title={copied ? "Copied!" : "Copy code"}
+          aria-label={copied ? "Copied!" : "Copy code to clipboard"}>
+          <Icon className="text-sm">{copied ? "check" : "content_copy"}</Icon>
+        </Button>
+
+        {/* Collapse Button - only show if content needs collapse */}
+        {needsCollapse && (
+          <Button
+            variant="text"
+            className="size-8 p-0"
+            onClick={toggleCollapse}
+            title={isCollapsed ? "Expand code" : "Collapse code"}
+            aria-label={isCollapsed ? "Expand code" : "Collapse code"}>
+            <Icon className="text-sm">{isCollapsed ? "expand_more" : "expand_less"}</Icon>
+          </Button>
+        )}
+      </div>
+
+      {/* Code content */}
+      <div
+        ref={contentRef}
+        className={`overflow-hidden transition-all duration-300 ${
+          needsCollapse && isCollapsed ? "max-h-80" : "max-h-none"
+        }`}
+        style={{
+          maskImage:
+            needsCollapse && isCollapsed
+              ? "linear-gradient(to bottom, black 0%, black 85%, transparent 100%)"
+              : "none",
+        }}>
+        {isVisible && (
+          <ShikiHighlighter
+            showLanguage={false}
+            language={language}
+            theme={"one-dark-pro"}
+            {...props}>
+            {String(children)}
+          </ShikiHighlighter>
+        )}
+      </div>
+
+      {/* Collapsed state overlay - only show if content needs collapse and is collapsed */}
+      {needsCollapse && isCollapsed && (
+        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-surface-container to-transparent pointer-events-none" />
+      )}
+    </div>
   ) : (
     <code className={className} {...props}>
       {children}
@@ -118,6 +256,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {props.children}
       </li>
     ),
+    wrapper: ({ children }: { children: ReactNode }) => <>{children}</>,
     ...components,
   };
 }

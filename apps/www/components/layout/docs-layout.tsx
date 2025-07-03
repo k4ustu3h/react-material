@@ -8,6 +8,7 @@ import { Button, Icon } from "react-material";
 import DocsListComp from "../blocks/docs-list";
 
 import metaJson from "@/utils/meta.json";
+import TableOfContents from "../misc/table-of-contents";
 
 interface DocsMetadata {
   categoryOrder: string[];
@@ -128,8 +129,20 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
               ))}
             </div>
           </div>
-          <div ref={contentContainerRef} className="grow rounded-xl px-2 overflow-y-auto relative scroll-smooth">
-            <article className="prose w-200 mx-auto mt-140 animation-fade-in">{children}</article>
+          <div
+            ref={contentContainerRef}
+            className="grow rounded-xl overflow-y-auto relative scroll-smooth">
+            <div className="flex flex-col relative">
+              <div id="docs-content" className="min-h-120" />
+              <article
+                key={CurrentPath}
+                className="order-2 w-200 mx-auto mt-20 prose animation-fade-in">
+                <div className="absolute h-full w-full ml-60">
+                  <TableOfContents />
+                </div>
+                {children}
+              </article>
+            </div>
             <footer>
               <div className="grid grid-cols-2 p-20 gap-2 bg-surface shadow-2xl shadow-surface relative z-10">
                 {Navigation[0]?.[0] ? (
@@ -145,7 +158,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                       <p className="m3-font-headline-large">{Navigation[0][0]}</p>
                     </Button>
                   </Link>
-                ):<span/>}
+                ) : (
+                  <span />
+                )}
 
                 {Navigation[1]?.[0] ? (
                   <Link href={`${Navigation[1][1]}`} className="col-start-2">
@@ -160,7 +175,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                       <p className="m3-font-headline-large">{Navigation[1][0]}</p>
                     </Button>
                   </Link>
-                ): <span/>}
+                ) : (
+                  <span />
+                )}
               </div>
               <Footer />
             </footer>
@@ -272,14 +289,10 @@ const Footer = () => (
       </div>
       <div className="grid grid-cols-3 gap-4 sm:hidden col-span-1">
         <Link href="/docs/get-started/introduction">
-          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
-            Docs
-          </a>
+          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">Docs</a>
         </Link>
         <Link href="https://github.com/yourusername/react-material">
-          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
-            GitHub
-          </a>
+          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">GitHub</a>
         </Link>
         <Link href="https://discord.gg/yourinvite">
           <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">Discord</a>

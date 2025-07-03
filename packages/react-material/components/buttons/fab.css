@@ -32,11 +32,6 @@
       border-radius: var(--m3-util-rounding-extra-large);
     }
 
-    span {
-      user-select: none;
-      font-size: unset;
-    }
-
     &.primary {
       background-color: rgb(var(--m3-scheme-primary));
       color: rgb(var(--m3-scheme-on-primary));

@@ -23,9 +23,6 @@
     font-family: var(--m3-font);
     text-wrap: nowrap;
 
-    & span {
-      user-select: none;
-    }
 
     &:disabled,
     &:is(input:disabled + label) {

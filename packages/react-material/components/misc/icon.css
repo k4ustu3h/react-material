@@ -36,7 +36,7 @@
 
 @layer components {
   .m3-icon {
-    user-select: all;
+    user-select: none;
     font-size: 1em;
     line-height: 1;
   }

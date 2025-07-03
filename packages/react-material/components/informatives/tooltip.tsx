@@ -1,5 +1,5 @@
 import React from "react";
-import "./{{ kebabCase name }}.css";
+import "./tooltip.css";
 import mergeProps from "../../utils/merge-props/merge-props";
 
 type CommonProps = {
@@ -8,9 +8,9 @@ type CommonProps = {
 
 type Props = CommonProps & React.HTMLAttributes<HTMLDivElement>;
 
-export const {{ pascalCase name }}: React.FC<Props> = (props) => {
+export const Tooltip: React.FC<Props> = (props) => {
   const { children, ...extraProps } = props;
-  const baseClasses = `m3-{{ kebabCase name }}-container`;
+  const baseClasses = `m3-tooltip-container`;
 
   return (
       <div {...mergeProps(extraProps, { className: baseClasses })}>

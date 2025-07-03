@@ -11,8 +11,8 @@ type CommonProps = {
 };
 
 type ButtonGroupItemProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  buttonProps: typeof Button extends React.ComponentType<infer P> ? P : never;
-  mode: "single" | "multiple";
+  buttonProps?: typeof Button extends React.ComponentType<infer P> ? P : never;
+  mode?: "single" | "multiple";
   name?: string;
   itemKey?: string;
 };
@@ -44,7 +44,7 @@ export const ButtonGroup: React.FC<Props> = (props) => {
 };
 
 export const ButtonGroupItem: React.FC<ButtonGroupItemProps> = (props) => {
-  const { buttonProps, mode, children, itemKey, ...extraProps } = props;
+  const { buttonProps = {}, mode, children, itemKey, ...extraProps } = props;
 
   const id = itemKey || useId();
 

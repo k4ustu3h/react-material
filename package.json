@@ -2,6 +2,7 @@
   "name": "react-material-monorepo",
   "version": "0.0.1",
   "devDependencies": {
+    "@types/minimatch": "^6.0.0",
     "prettier": "^3.5.3",
     "turbo": "^2.5.4",
     "typescript": "5.8.2"
@@ -21,8 +22,5 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "sass": "^1.89.1"
-  }
+  ]
 }

@@ -65,7 +65,7 @@
   --radius-md: var(--m3-util-rounding-medium);
   --radius-lg: var(--m3-util-rounding-large);
   --radius-xl: var(--m3-util-rounding-extra-large);
-  --radius-2xl: 3rem; /* 48px */
+  --radius-2xl: var(--m3-util-rounding-extra-extra-large)
   --radius-full: var(--m3-util-rounding-full);
 
   /* Expressive easing */
@@ -95,7 +95,6 @@
   }
 
   ::-webkit-scrollbar {
-    margin-top: 10re;
     width: 4px;
   }
 
@@ -135,7 +134,7 @@
   .shiki {
     @apply bg-transparent!;
   }
-  .animation-fade-in > * {
+  .animation-fade-in {
     animation: fade-in 1s var(--m3-util-curve-decel) forwards;
   }
   @keyframes fade-in {
