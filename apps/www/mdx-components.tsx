@@ -82,7 +82,10 @@ const createHeading = (level: 1 | 2 | 3 | 4 | 5 | 6) => {
     const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 
     return (
-      <Tag id={slug} className={`group scroll-mt-20 flex items-center -ml-12 ${className || ""}`} {...restProps}>
+      <Tag
+        id={slug}
+        className={`group scroll-mt-20 flex items-center -ml-12 ${className || ""}`}
+        {...restProps}>
         <CopyLinkButton slug={slug} />
         <a href={`#${slug}`} className="no-underline">
           {children}
@@ -104,6 +107,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h4: createHeading(4),
     h5: createHeading(5),
     h6: createHeading(6),
+    table: (props: JSX.IntrinsicElements["table"]) => (
+      <div className="bg-surface-container p-8 rounded-md">
+        <table className="w-full" {...props} />
+      </div>
+    ),
     li: (props: JSX.IntrinsicElements["li"]) => (
       <li className="relative list-none" {...props}>
         <Bullet className="absolute -left-4 top-2.5" />

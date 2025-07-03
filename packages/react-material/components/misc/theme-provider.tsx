@@ -9,6 +9,7 @@ import {
 import variants from "./variant";
 import { genCSS } from "./generator";
 import "./styles.css";
+import { SnackbarProvider } from "../informatives/snackbar-context";
 
 export const schemesGen = (sourceColor: number, contrast: number) => {
   const commonArgs = {
@@ -54,6 +55,7 @@ export const ThemeProvider: React.FC<
     variant?: Variant;
     contrast?: number;
     root?: boolean;
+    maxSnackbars?: number;
   }>
 > = ({
   children,
@@ -62,6 +64,7 @@ export const ThemeProvider: React.FC<
   variant: initialVariant,
   contrast: initialContrast,
   root = false,
+  maxSnackbars = 3,
 }) => {
   const [sourceColor, setSourceColor] = useState<number>(
     initialSourceColor || argbFromHex("#D0BCFF")
@@ -128,8 +131,8 @@ export const ThemeProvider: React.FC<
     [sourceColor, variant, contrast, schemes, styles, changeTheme]
   );
 
-  return (
-    <ThemeContext.Provider value={contextValue}>
+  const content = (
+    <>
       <style
         dangerouslySetInnerHTML={{
           __html: root
@@ -138,6 +141,19 @@ export const ThemeProvider: React.FC<
         }}
       />
       <div className={`m3-theme-${sourceColor}`}>{children}</div>
+    </>
+  );
+
+  return (
+    <ThemeContext.Provider value={contextValue}>
+      {root ? (
+        <SnackbarProvider
+          maxSnackbars={maxSnackbars}>
+          {content}
+        </SnackbarProvider>
+      ) : (
+        content
+      )}
     </ThemeContext.Provider>
   );
 };

@@ -8,6 +8,7 @@ type CommonProps = {
   variant?: "elevated" | "filled" | "tonal" | "outlined" | "text";
   shape?: "round" | "square";
   size?: "extrasmall" | "small" | "medium" | "large" | "extralarge";
+  ripple?: boolean;
   children: React.ReactNode;
 };
 
@@ -20,7 +21,14 @@ type LabelProps = CommonProps & React.LabelHTMLAttributes<HTMLLabelElement>;
 type Props = ButtonProps | AnchorProps | LabelProps;
 
 export const Button: React.FC<Props> = (props) => {
-  const { variant = "filled", shape = "round", size = "small", children, ...extraProps } = props;
+  const {
+    ripple = true,
+    variant = "filled",
+    shape = "round",
+    size = "small",
+    children,
+    ...extraProps
+  } = props;
 
   const fontSizeClasses = {
     extrasmall: "m3-font-label-large",
@@ -34,21 +42,21 @@ export const Button: React.FC<Props> = (props) => {
   if ("htmlFor" in props) {
     return (
       <label {...mergeProps(extraProps as LabelProps, { className: baseClasses })}>
-        <Ripple />
+        {ripple && <Ripple />}
         {children}
       </label>
     );
   } else if ("href" in props) {
     return (
       <a {...mergeProps(extraProps as AnchorProps, { className: baseClasses })}>
-        <Ripple />
+        {ripple && <Ripple />}
         {children}
       </a>
     );
   } else {
     return (
       <button {...mergeProps(extraProps, { className: baseClasses })}>
-        <Ripple />
+        {ripple && <Ripple />}
         {children}
       </button>
     );

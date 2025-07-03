@@ -1,5 +1,7 @@
 import DocsHeader from "@/components/blocks/docs-header";
 import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Button, ThemeProvider } from "react-material";
+import { BasicSnackbar, SnackbarWithAction, SnackbarWithClose, StackingSnackbarDemo, SnackbarDemoWrapper } from "@/components/preview/snackbar-preview";
 
 <DocsHeader
   title="Snackbar"
@@ -8,4 +10,127 @@ import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
 
 # Overview
 
-The `Snackbar` component is a transient message that appears at the bottom of the screen to provide feedback or information to the user. It is typically used to inform users about actions they have taken, such as saving data, deleting items, or other notifications that require acknowledgment but do not interrupt the user's workflow.
+The Snackbar component provides a way to display brief messages at the bottom of the screen to provide feedback or information to the user. It can be used to show notifications, alerts, or confirmations in a non-intrusive way.
+
+# Variants
+
+The snackbar component supports several variants to suit different use cases:
+- **Basic Snackbar**: Displays a simple message to the user.
+- **Snackbar with Action Button**: Includes an action button for immediate user interaction.
+- **Snackbar with Close Button**: Allows users to manually close the snackbar.
+
+<DocsPreview>
+<DocsComp>
+  <BasicSnackbar />
+  <SnackbarWithAction />
+  <SnackbarWithClose />
+</DocsComp>
+```tsx
+import { useSnackbar, Button } from "react-material";
+
+function BasicSnackbar() {
+  const { showSnackbar } = useSnackbar();
+
+  return (
+    <Button onClick={() => showSnackbar({ 
+      message: "This is a basic snackbar message" 
+    })}>
+      Show Snackbar
+    </Button>
+    <Button
+      onClick={() => 
+        showSnackbar({
+          message: "Email sent successfully",
+          actionName: "Undo",
+          onActionClick: () => console.log("Undo clicked")
+        })
+      }
+    >
+      Show Snackbar with Action
+    </Button>
+    <Button
+      onClick={() => 
+        showSnackbar({
+          message: "This snackbar can be manually closed",
+          closeable: true,
+          autoHideDuration: 0
+        })
+      }
+    >
+      Show Closeable Snackbar
+    </Button>
+  );
+}
+```
+</DocsPreview>
+
+# Configuration
+
+## ThemeProvider Integration
+
+The snackbar system is integrated into the `ThemeProvider`, so you don't need any additional providers. Just make sure you have `root={true}` set on your ThemeProvider at the application root:
+
+```tsx
+import { ThemeProvider } from "react-material";
+
+function App() {
+  return (
+    <ThemeProvider root>
+      {/* Your application */}
+    </ThemeProvider>
+  );
+}
+```
+
+## Configuring Snackbar System
+
+You can configure the snackbar system with additional props on the `ThemeProvider`:
+
+```tsx
+<ThemeProvider 
+  root
+  maxSnackbars={5} // Maximum number of snackbars visible at once (default: 3)
+>
+  {/* Your application */}
+</ThemeProvider>
+```
+
+## useSnackbar Hook
+
+The `useSnackbar` hook provides access to the snackbar system from anywhere in your application:
+
+```tsx
+import { useSnackbar } from "react-material";
+
+function MyComponent() {
+  const { showSnackbar, hideSnackbar, hideAllSnackbars } = useSnackbar();
+  
+  // ...
+}
+```
+
+
+## Manual Snackbar Component
+
+While the context-based approach is recommended, you can still use the `Snackbar` component directly for advanced use cases where you need full control:
+
+```tsx
+import { Snackbar } from "react-material";
+import { useState } from "react";
+
+function ManualSnackbar() {
+  const [open, setOpen] = useState(false);
+  
+  return (
+    <Snackbar
+      open={open}
+      message="Manual snackbar message"
+      onClose={() => setOpen(false)}
+      actionName="Action"
+      onActionClick={() => console.log("Action clicked")}
+      closeable
+      autoHideDuration={4000}
+    />
+  );
+}
+```

@@ -23,6 +23,10 @@
     font-family: var(--m3-font);
     text-wrap: nowrap;
 
+    & span {
+      user-select: none;
+    }
+
     &:disabled,
     &:is(input:disabled + label) {
       background-color: rgb(var(--m3-scheme-on-surface) / 0.12);

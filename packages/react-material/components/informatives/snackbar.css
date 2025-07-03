@@ -1,0 +1,67 @@
+@layer components {
+  .m3-snackbar-container {
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all var(--m3-util-easing);
+    background-color: rgb(var(--m3-scheme-inverse-surface));
+    color: rgb(var(--m3-scheme-inverse-on-surface));
+    border-radius: var(--m3-util-rounding-medium);
+    box-shadow: var(--m3-util-elevation-2);
+    backdrop-filter: blur(4px);
+    min-width: 21.5rem;
+    max-width: 42rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1rem;
+    height: 3rem;
+    bottom: 16px;
+    transform-origin: left bottom;
+    opacity: 1;
+
+    /* Animation states */
+    &.showing {
+      opacity: 1;
+      animation: show var(--m3-util-easing);
+    }
+
+    &.hiding {
+      opacity: 0 !important;
+    }
+
+    /* Message text */
+    & .m3-snackbar-message {
+      flex: 1;
+      margin-right: 16px;
+    }
+
+    /* Actions container */
+    & .m3-snackbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      & .m3-snackbar-action {
+        color: rgb(var(--m3-scheme-inverse-primary)) !important;
+      }
+      & .m3-snackbar-close {
+        padding: 0.375rem;
+        color: rgb(var(--m3-scheme-inverse-on-surface)) !important;
+      }
+    }
+  }
+  @keyframes show {
+    from {
+      scale: 1.05;
+      bottom: 10px;
+      /* opacity: 0; */
+    }
+    to {
+      scale: 1;
+      bottom: 16px;
+      /* opacity: 1; */
+    }
+  }
+}

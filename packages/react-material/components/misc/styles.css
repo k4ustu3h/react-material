@@ -2,6 +2,7 @@
 
 @layer theme {
   :root {
+    --m3-scheme-shadow: 0, 0, 0;
     --m3-util-elevation-0: none;
     --m3-util-elevation-1:
       0px 3px 1px -2px rgb(var(--m3-scheme-shadow) / 0.2),
