@@ -41,7 +41,7 @@ export default function Index() {
             {/* Modern Design System */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon className="text-primary text-3xl">auto_awesome</Icon>
+                <Icon size={30} className="text-primary">auto_awesome</Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Modern Design System</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -57,7 +57,7 @@ export default function Index() {
             {/* Responsive Components */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon className="text-primary text-3xl">devices</Icon>
+                <Icon size={30} className="text-primary">devices</Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Responsive</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -72,7 +72,7 @@ export default function Index() {
             {/* Performance Optimized */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon className="text-primary text-3xl">speed</Icon>
+                <Icon size={30} className="text-primary">speed</Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Optimized</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -87,7 +87,7 @@ export default function Index() {
             {/* Theming */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon className="text-primary text-3xl">palette</Icon>
+                <Icon size={30} className="text-primary">palette</Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Dynamic Theming</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -101,7 +101,7 @@ export default function Index() {
             {/* Accessibility */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon className="text-primary text-3xl">accessibility</Icon>
+                <Icon size={30} className="text-primary">accessibility</Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Accessibility First</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -116,7 +116,7 @@ export default function Index() {
             {/* Developer Experience */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon className="text-primary text-3xl">code</Icon>
+                <Icon size={30} className="text-primary">code</Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Developer Friendly</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">

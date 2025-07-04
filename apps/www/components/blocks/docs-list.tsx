@@ -171,7 +171,7 @@ export default function DocList({
   return (
     <div className="mb-4">
       <h2 className="m3-font-headline-small text-lg font-semibold text-on-secondary-container mb-2 ml-4 flex gap-2">
-        <Icon className="text-xl">{docsIcons[category as keyof typeof docsIcons]}</Icon>
+        <Icon size={20}>{docsIcons[category as keyof typeof docsIcons]}</Icon>
         {kebabToTitleCase(category)}
       </h2>
       <ul className="list-none p-0 m-0">

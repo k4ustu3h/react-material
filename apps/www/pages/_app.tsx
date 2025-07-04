@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "react-material/tailwind.css";
+import "material-symbols"
 import { AppProps } from "next/app";
 import DocsLayout from "@/components/layout/docs-layout";
 import { ThemeProvider } from "react-material";

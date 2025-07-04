@@ -130,14 +130,14 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ className }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="lg:hidden fixed bottom-6 right-6 z-20 bg-primary text-on-primary rounded-full p-3 shadow-lg hover:bg-primary-container hover:text-on-primary-container transition-colors"
         aria-label="Toggle table of contents">
-        <Icon className="text-xl">{isOpen ? "close" : "list"}</Icon>
+        <Icon>{isOpen ? "close" : "list"}</Icon>
       </button> */}
 
       {/* Desktop floating panel */}
       <div className={`order-2 not-prose hidden lg:block sticky top-0 bottom-0 z-10 h-0 w-full`}>
         <div className="absolute right-0 bg-surface-container rounded-lg shadow-lg p-4 w-56 max-h-[calc(100vh-8rem)]">
           <div className="flex items-center mb-3 text-sm font-medium text-on-surface-variant">
-            <Icon className="text-base mr-2">list</Icon>
+            <Icon size={20} className="mr-2">list</Icon>
             On this page
           </div>
           <nav>
@@ -168,13 +168,13 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ className }) => {
           <div className="fixed bottom-0 left-0 right-0 bg-surface-container rounded-t-lg p-6 max-h-80 overflow-y-auto">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center text-sm font-medium text-on-surface-variant">
-                <Icon className="text-base mr-2">list</Icon>
+                <Icon size={20} className="mr-2">list</Icon>
                 On this page
               </div>
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-1 rounded-full hover:bg-surface-bright transition-colors">
-                <Icon className="text-base">close</Icon>
+                <Icon size={20}>close</Icon>
               </button>
             </div>
             <nav>

@@ -119,7 +119,7 @@ const CodeHighlight = ({
           onClick={copyToClipboard}
           title={copied ? "Copied!" : "Copy code"}
           aria-label={copied ? "Copied!" : "Copy code to clipboard"}>
-          <Icon className="text-sm">{copied ? "check" : "content_copy"}</Icon>
+          <Icon size={16}>{copied ? "check" : "content_copy"}</Icon>
         </Button>
 
         {/* Collapse Button - only show if content needs collapse */}
@@ -130,7 +130,7 @@ const CodeHighlight = ({
             onClick={toggleCollapse}
             title={isCollapsed ? "Expand code" : "Collapse code"}
             aria-label={isCollapsed ? "Expand code" : "Collapse code"}>
-            <Icon className="text-sm">{isCollapsed ? "expand_more" : "expand_less"}</Icon>
+            <Icon size={16}>{isCollapsed ? "expand_more" : "expand_less"}</Icon>
           </Button>
         )}
       </div>

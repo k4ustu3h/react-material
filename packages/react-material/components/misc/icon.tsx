@@ -1,7 +1,6 @@
 import React from "react";
 import "./icon.css";
 import mergeProps from "../../utils/merge-props/merge-props";
-import "material-symbols/index.css";
 export type IconVariant = "outlined" | "rounded" | "sharp";
 
 export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
