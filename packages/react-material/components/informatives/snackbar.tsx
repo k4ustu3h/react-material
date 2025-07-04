@@ -104,6 +104,3 @@ export const Snackbar: React.FC<Props> = (props) => {
     </Portal>
   );
 };
-
-// Re-export from context for easier imports
-export { useSnackbar, SnackbarProvider, type SnackbarOptions } from "./snackbar-context";

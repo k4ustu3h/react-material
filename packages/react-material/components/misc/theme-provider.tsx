@@ -146,14 +146,7 @@ export const ThemeProvider: React.FC<
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      {root ? (
-        <SnackbarProvider
-          maxSnackbars={maxSnackbars}>
-          {content}
-        </SnackbarProvider>
-      ) : (
-        content
-      )}
+      {root ? <SnackbarProvider maxSnackbars={maxSnackbars}>{content}</SnackbarProvider> : content}
     </ThemeContext.Provider>
   );
 };

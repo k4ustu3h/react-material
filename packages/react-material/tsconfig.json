@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
     "jsx": "react",
     "module": "esnext",
     "target": "esnext",
@@ -13,7 +12,11 @@
       "dom.iterable",
       "esnext"
     ],
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   },
   "include": [
     "index.ts",
@@ -24,6 +27,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "types"
+    "types",
+    "utils/material-color-utilities/**/*_test.ts",
   ]
 }

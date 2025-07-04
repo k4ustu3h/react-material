@@ -15,5 +15,5 @@ export * from "./buttons/chip";
 export * from "./informatives/loading";
 export * from "./informatives/progress";
 export * from "./informatives/snackbar";
-
+export * from "./informatives/snackbar-context"
 export * from "./informatives/tooltip";
