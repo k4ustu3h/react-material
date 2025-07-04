@@ -8,7 +8,6 @@ import {
 } from "../../utils/material-color-utilities/typescript/index";
 import variants from "./variant";
 import { genCSS } from "./generator";
-import "./styles.css";
 import { SnackbarProvider } from "../informatives/snackbar-context";
 
 export const schemesGen = (sourceColor: number, contrast: number) => {
