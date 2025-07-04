@@ -31,8 +31,8 @@
       "require": "./dist/cjs/index.cjs"
     },
     "./*.css": {
-      "import": "./dist/css/*.css",
-      "require": "./dist/css/*.css"
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
     }
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "@rollup/plugin-typescript": "^12.1.4",
     "@types/bun": "latest",
     "@web/rollup-plugin-copy": "^0.5.1",
-    "concurrently": "^9.2.0",
+    "cross-env": "^7.0.3",
     "glob": "^11.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -58,13 +58,8 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "build": "rolldown -c ./rolldown.config.mjs && npm run build:types",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationMap --outDir dist/types",
-    "build:rollup": "rollup -c ./rollup.config.js --bundleConfigAsCjs",
-    "dev": "concurrently \"npm run dev:rolldown\" \"npm run dev:types\"",
-    "dev:rolldown": "rolldown -c ./rolldown.config.mjs --watch",
-    "dev:types": "tsc --emitDeclarationOnly --declaration --declarationMap --outDir dist/types --watch",
-    "dev:rollup": "rollup -c ./rollup.config.js --bundleConfigAsCjs --watch",
+    "build": "rollup -c ./rollup.config.js --bundleConfigAsCjs",
+    "dev": "rollup -c ./rollup.config.js --bundleConfigAsCjs --watch",
     "generate": "turbo gen react-component && npm run build"
   },
   "dependencies": {
