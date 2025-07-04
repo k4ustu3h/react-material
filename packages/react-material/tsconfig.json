@@ -3,19 +3,19 @@
     "jsx": "react",
     "module": "esnext",
     "target": "esnext",
-    "declaration": false,
-    "sourceMap": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist/types",
+    "sourceMap": false,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
-    ],
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules"
-      }
     ]
   },
   "include": [
@@ -27,7 +27,17 @@
   "exclude": [
     "node_modules",
     "dist",
-    "types",
-    "utils/material-color-utilities/**/*_test.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "esbuild.config.js",
+    "build.js",
+    "**/test.ts",
+    "**/test.tsx",
+    "**/*_test.ts",
+    "**/*_test.tsx"
   ]
 }
