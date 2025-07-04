@@ -21,7 +21,7 @@ export const Icon: React.FC<IconProps> = ({
   ...props
 }) => {
   const iconStyle = {
-    fontSize: size ? (typeof size === "number" ? `${size}px` : size) : undefined,
+    fontSize: size ? (typeof size === "number" ? `${size}px` : size) : "1em",
     fontWeight: weight,
     fontVariationSettings: `'FILL' ${fill ? 1 : 0}, 'wght' ${weight}`,
     ...style,

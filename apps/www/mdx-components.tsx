@@ -195,13 +195,14 @@ const CopyLinkButton = ({ slug }: { slug: string }) => {
   };
 
   return (
-    <button
+    <Button
+      variant="text"
+      className="size-10 p-1 mr-2 hover:bg-surface-container opacity-0 group-hover:opacity-100"
       onClick={copyToClipboard}
-      className="p-1 mr-2 rounded-full hover:bg-surface-bright transition-colors opacity-0 group-hover:opacity-100 size-10 inline-flex items-center justify-center cursor-pointer"
       title={copied ? "Copied!" : "Copy link"}
       aria-label={copied ? "Copied!" : "Copy link to this heading"}>
-      <Icon className="text-base select-none">{copied ? "check" : "link"}</Icon>
-    </button>
+      <Icon size={18}>{copied ? "check" : "link"}</Icon>
+    </Button>
   );
 };
 

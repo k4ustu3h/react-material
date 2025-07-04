@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-07-01T09:41:40.664Z
+// Generated on 2025-07-04T14:39:41.672Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -177,9 +177,9 @@ const docsIndex: DocIndex = {
       groupTitle: "Surfaces",
     },
     {
-      title: "Tooltips",
+      title: "Tooltip",
       description: "A small pop-up box that appears when a user hovers over an element, providing additional information or context.",
-      path: "/docs/components/informatives/tooltips",
+      path: "/docs/components/informatives/tooltip",
       group: "informatives",
       groupTitle: "Informatives",
     },

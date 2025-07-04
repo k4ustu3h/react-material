@@ -56,19 +56,21 @@ function generateIndex() {
 
   filteredMdxFiles.forEach((file) => {
     const fullPath = path.join(DOCS_DIR, file);
-    const pathParts = file.split("/");
+    // Normalize path separators for consistent processing
+    const normalizedFile = file.replace(/\\/g, "/");
+    const pathParts = normalizedFile.split("/");
 
     let category;
     let group = null;
 
-    if (path.dirname(file) === ".") {
+    if (path.dirname(normalizedFile) === ".") {
       category = "root";
     } else if (pathParts.length >= 3) {
       // This is a file in a subgroup (e.g., components/buttons/button.mdx)
       category = pathParts[0];
       group = pathParts[1];
     } else {
-      // This is a file directly in a category (e.g., components/button.mdx)
+      // This is a file directly in a category (e.g., components/shape.mdx)
       category = pathParts[0];
     }
 
