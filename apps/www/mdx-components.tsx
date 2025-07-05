@@ -23,6 +23,7 @@ const CodeHighlight = ({
   const [isCollapsed, setIsCollapsed] = useState(true); // Default to collapsed
   const [needsCollapse, setNeedsCollapse] = useState(false); // Track if collapse is needed
   const [copied, setCopied] = useState(false); // Track copy state
+  const [contentHeight, setContentHeight] = useState<number>(0); // Track actual content height
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const match = className?.match(/language-(\w+)/);
@@ -59,10 +60,11 @@ const CodeHighlight = ({
               // Check if content needs collapse after a small delay
               setTimeout(() => {
                 if (contentRef.current) {
-                  const contentHeight = contentRef.current.scrollHeight;
+                  const scrollHeight = contentRef.current.scrollHeight;
                   const maxHeight = 20 * 16; // 20rem in pixels (assuming 16px base font)
-                  setNeedsCollapse(contentHeight > maxHeight);
-                  if (contentHeight <= maxHeight) {
+                  setContentHeight(scrollHeight);
+                  setNeedsCollapse(scrollHeight > maxHeight);
+                  if (scrollHeight <= maxHeight) {
                     setIsCollapsed(false); // Don't collapse if content is small
                   }
                 }
@@ -138,10 +140,14 @@ const CodeHighlight = ({
       {/* Code content */}
       <div
         ref={contentRef}
-        className={`overflow-hidden transition-all duration-300 ${
-          needsCollapse && isCollapsed ? "max-h-80" : "max-h-none"
-        }`}
+        className="overflow-hidden transition-all duration-500 ease-in-out"
         style={{
+          height:
+            needsCollapse && isCollapsed
+              ? "20rem"
+              : contentHeight > 0
+                ? `${contentHeight}px`
+                : "auto",
           maskImage:
             needsCollapse && isCollapsed
               ? "linear-gradient(to bottom, black 0%, black 85%, transparent 100%)"

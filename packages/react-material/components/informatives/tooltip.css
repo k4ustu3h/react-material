@@ -1,5 +1,115 @@
 @layer components {
-  .m3-tooltip-container {
+  .m3-tooltip-trigger {
     display: inline-flex;
+    position: relative;
+  }
+
+  .m3-tooltip-container {
+    position: fixed;
+    z-index: 1000;
+    opacity: 0;
+    transform-origin: center;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition-property: opacity, transform;
+    transition: var(--m3-util-easing-fast);
+
+    &.tooltip-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &.tooltip-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Plain tooltip variant */
+    &.plain {
+      background-color: rgb(var(--m3-scheme-inverse-surface));
+      color: rgb(var(--m3-scheme-inverse-on-surface));
+      border-radius: var(--m3-util-rounding-extra-small);
+      padding: 0.25rem 0.5rem;
+      max-width: 12.5rem;
+      box-shadow: var(--m3-util-elevation-2);
+    }
+
+    /* Rich tooltip variant */
+    &.rich {
+      background-color: rgb(var(--m3-scheme-surface-container));
+      color: rgb(var(--m3-scheme-on-surface-variant));
+      border-radius: 0.5rem;
+      padding: 0;
+      max-width: 20rem;
+      box-shadow: var(--m3-util-elevation-2);
+      pointer-events: auto;
+    }
+
+    /* Rich tooltip content structure */
+    & .m3-tooltip-rich-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    & .m3-tooltip-header {
+      padding: 0.75rem 1rem 0rem 1rem;
+
+      & p {
+        color: rgb(var(--m3-scheme-on-surface-variant));
+        font-weight: 700;
+      }
+    }
+
+    & .m3-tooltip-body {
+      padding: 0.25rem 1rem 0rem 1rem;
+
+      & p {
+        color: rgb(var(--m3-scheme-on-surface-variant));
+      }
+    }
+
+    & .m3-tooltip-action {
+      padding: 0.5rem 1rem 0.75rem 1rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    /* Position-specific transforms for animations */
+    &.top {
+      transform-origin: center bottom;
+
+      &.tooltip-hidden {
+        transform: translateX(-50%) translateY(0.25rem) scale(0.8) !important;
+      }
+    }
+
+    &.bottom {
+      transform-origin: center top;
+
+      &.tooltip-hidden {
+        transform: translateX(-50%) translateY(-0.25rem) scale(0.8) !important;
+      }
+    }
+
+    &.left {
+      transform-origin: right center;
+
+      &.tooltip-hidden {
+        transform: translateY(-50%) translateX(0.25rem) scale(0.8) !important;
+      }
+    }
+
+    &.right {
+      transform-origin: left center;
+
+      &.tooltip-hidden {
+        transform: translateY(-50%) translateX(-0.25rem) scale(0.8) !important;
+      }
+    }
   }
 }

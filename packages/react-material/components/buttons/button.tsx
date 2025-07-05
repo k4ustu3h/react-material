@@ -31,7 +31,7 @@ export const Button: React.FC<Props> = (props) => {
   } = props;
 
   const fontSizeClasses = {
-    extrasmall: "m3-font-label-large",
+    extrasmall: "m3-font-label-medium",
     small: "m3-font-label-large",
     medium: "m3-font-title-medium",
     large: "m3-font-headline-small",

@@ -3,10 +3,11 @@
 const { buildProd, buildDev } = require("./esbuild.config.js");
 const { spawn } = require("child_process");
 const { glob } = require("glob");
+const { watch } = require("chokidar");
 
 let devProcess = null;
 let isRestarting = false;
-let fileCheckInterval = null;
+let watcher = null;
 
 // Get current file list
 const getFileList = () => {
@@ -65,29 +66,54 @@ const restartBuild = () => {
   }, 1000);
 };
 
-// Poll for file changes (more reliable than fs.watch on Windows)
-const startFilePolling = () => {
-  let currentFiles = getFileList();
-  console.log(`📊 Watching ${currentFiles.length} files for changes`);
+// Watch for file changes using chokidar
+const startFileWatching = () => {
+  const watchPatterns = [
+    "components/**/*.{ts,tsx}",
+    "utils/**/*.{ts,tsx}",
+    "index.ts",
+    "esbuild.config.js",
+    "package.json",
+  ];
 
-  fileCheckInterval = setInterval(() => {
-    const newFiles = getFileList();
+//   console.log(`📊 Watching files for changes: ${watchPatterns.join(", ")}`);
 
-    if (JSON.stringify(currentFiles) !== JSON.stringify(newFiles)) {
-      const added = newFiles.filter((f) => !currentFiles.includes(f));
-      const removed = currentFiles.filter((f) => !newFiles.includes(f));
+  watcher = watch(watchPatterns, {
+    ignored: [
+      "**/*.test.{ts,tsx}",
+      "**/*.stories.{ts,tsx}",
+      "**/*_test.{ts,tsx}",
+      "**/test.{ts,tsx}",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.git/**",
+    ],
+    ignoreInitial: true,
+    persistent: true,
+  });
 
-      if (added.length > 0) {
-        console.log(`➕ Added files: ${added.join(", ")}`);
-      }
-      if (removed.length > 0) {
-        console.log(`➖ Removed files: ${removed.join(", ")}`);
-      }
+  watcher.on("add", (path) => {
+    console.log(`➕ File added: ${path}`);
+    restartBuild();
+  });
 
-      currentFiles = newFiles;
+  watcher.on("unlink", (path) => {
+    console.log(`➖ File removed: ${path}`);
+    restartBuild();
+  });
+
+  watcher.on("change", (path) => {
+    // Only restart for config changes, not regular file changes
+    // (regular file changes are handled by esbuild's own watcher)
+    if (path.includes("esbuild.config.js") || path.includes("package.json")) {
+      console.log(`🔄 Config file changed: ${path}`);
       restartBuild();
     }
-  }, 2000); // Check every 2 seconds
+  });
+
+  watcher.on("error", (error) => {
+    console.error("❌ File watcher error:", error);
+  });
 };
 
 // Get the mode from command line arguments
@@ -102,7 +128,7 @@ async function main() {
       case "dev":
       case "watch":
         startDevBuild();
-        startFilePolling();
+        startFileWatching();
         // await buildDev();
         break;
       default:
@@ -118,10 +144,10 @@ async function main() {
 main();
 
 const cleanup = () => {
-//   console.log("\n🛑 Stopping auto-restart build...");
+  //   console.log("\n🛑 Stopping auto-restart build...");
 
-  if (fileCheckInterval) {
-    clearInterval(fileCheckInterval);
+  if (watcher) {
+    watcher.close();
   }
 
   if (devProcess) {

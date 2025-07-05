@@ -1,9 +1,17 @@
 const { build, context } = require("esbuild");
+const path = require("path");
 const { resolve } = require("path");
 const { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } = require("fs");
-const { dirname, join } = require("path");
+const { dirname, basename } = require("path");
 const { glob } = require("glob");
-const { dtsPlugin } = require("esbuild-plugin-d.ts");
+const {
+  cssPlugin,
+  cssWatchPlugin,
+  copyPlugin,
+  createNewFileDetectorPlugin,
+  createDevDtsGeneratorPlugin,
+  createProductionDtsPlugin,
+} = require("./esbuild-plugins");
 
 // Cache for entry points to avoid regenerating them
 let cachedEntryPoints = null;
@@ -92,124 +100,6 @@ const createDynamicEntryPoints = () => {
   return createEntryPoints(false);
 };
 
-// Optimized CSS processing plugin with caching
-const cssPlugin = {
-  name: "css-processor",
-  setup(build) {
-    const cssCache = new Map();
-
-    build.onLoad({ filter: /\.(ts|tsx|js|jsx)$/ }, async (args) => {
-      if (args.namespace === "css-virtual") return;
-
-      let contents;
-      try {
-        contents = readFileSync(args.path, "utf8");
-      } catch (error) {
-        console.warn(`⚠️  Warning: Could not read file ${args.path}:`, error.message);
-        return;
-      }
-
-      const cssImportRegex = /import\s+["']([^"']+\.css)["'];?/g;
-
-      let hasModifications = false;
-      let transformedContents = contents;
-      const matches = [...contents.matchAll(cssImportRegex)];
-
-      if (matches.length === 0) return;
-
-      for (const match of matches) {
-        const cssPath = match[1];
-        const fullCssPath = resolve(dirname(args.path), cssPath);
-
-        if (!existsSync(fullCssPath)) {
-          console.warn(`⚠️  Warning: CSS file not found, skipping: ${cssPath}`);
-          continue;
-        }
-
-        hasModifications = true;
-        let minifiedCss = cssCache.get(fullCssPath);
-
-        if (!minifiedCss) {
-          try {
-            const css = readFileSync(fullCssPath, "utf8");
-            // Simplified minification for better performance
-            minifiedCss = css
-              .replace(/\/\*[\s\S]*?\*\//g, "")
-              .replace(/\s+/g, " ")
-              .replace(/;\s*}/g, "}")
-              .replace(/\s*[{};:,>+~]\s*/g, (match) => match.trim())
-              .trim();
-
-            cssCache.set(fullCssPath, minifiedCss);
-          } catch (error) {
-            console.warn(`⚠️  Warning: Could not read CSS file ${fullCssPath}:`, error.message);
-            continue;
-          }
-        }
-
-        const cssId = fullCssPath.replace(/[^a-zA-Z0-9]/g, "_");
-        const cssInjection = `
-// CSS injection for ${cssPath}
-if (typeof document !== 'undefined') {
-  const cssId = '${cssId}';
-  if (!document.head.querySelector('[data-css-id="' + cssId + '"]')) {
-    const style = document.createElement('style');
-    style.setAttribute('data-css-id', cssId);
-    style.textContent = ${JSON.stringify(minifiedCss)};
-    document.head.appendChild(style);
-  }
-}`;
-
-        transformedContents = transformedContents.replace(match[0], cssInjection);
-      }
-
-      if (hasModifications) {
-        return {
-          contents: transformedContents,
-          loader: args.path.endsWith(".tsx")
-            ? "tsx"
-            : args.path.endsWith(".ts")
-              ? "ts"
-              : args.path.endsWith(".jsx")
-                ? "jsx"
-                : "js",
-        };
-      }
-    });
-  },
-};
-
-// Optimized file copy plugin
-const copyPlugin = {
-  name: "copy-files",
-  setup(build) {
-    build.onEnd(() => {
-      // Only copy files in production builds for better dev performance
-      if (process.env.NODE_ENV === "development") return;
-
-      try {
-        // Copy CSS files from css directory using optimized glob
-        const cssFiles = glob.sync("css/**/*", { absolute: false });
-        cssFiles.forEach((file) => {
-          const src = resolve(__dirname, file);
-          const dest = resolve(__dirname, "dist", file);
-
-          const destDir = dirname(dest);
-          if (!existsSync(destDir)) {
-            mkdirSync(destDir, { recursive: true });
-          }
-
-          if (existsSync(src)) {
-            copyFileSync(src, dest);
-          }
-        });
-      } catch (error) {
-        console.warn("⚠️  CSS file copying failed:", error);
-      }
-    });
-  },
-};
-
 // Base configuration for the main bundle
 /**
  * @type {import("esbuild").BuildOptions}
@@ -242,13 +132,7 @@ const prodConfig = {
   legalComments: "none",
   sourcemap: false,
   metafile: true, // Only generate metafile for prod builds
-  plugins: [
-    cssPlugin,
-    dtsPlugin({
-      tsconfig: resolve(__dirname, "tsconfig.json"),
-    }),
-    copyPlugin,
-  ],
+  plugins: [cssPlugin, createProductionDtsPlugin(resolve(__dirname, "tsconfig.json")), copyPlugin],
   define: {
     "process.env.NODE_ENV": '"production"',
   },
@@ -262,6 +146,7 @@ const devConfig = {
   metafile: false, // Skip metafile generation for dev builds
   plugins: [
     cssPlugin,
+    cssWatchPlugin, // Add CSS watcher for development
     // Skip TypeScript declaration generation in dev for speed
     copyPlugin,
   ],
@@ -306,8 +191,7 @@ async function buildProd() {
     });
 
     const duration = Date.now() - startTime;
-    const durationText = duration < 1000 ? `${duration}ms` : `${(duration / 1000).toFixed(2)}s`;
-    console.log(`✅ Production build completed successfully! (${durationText})`);
+    console.log(`✅ Production build completed successfully! (${(duration/1000).toFixed(2)}s)`);
   } catch (error) {
     console.error("❌ Production build failed:", error);
     process.exit(1);
@@ -320,9 +204,6 @@ async function buildDev() {
 
   // Invalidate cache for dev builds to pick up new files
   cachedEntryPoints = null;
-
-  // Track entry points for new file detection
-  let lastEntryPointsHash = "";
 
   const getEntryPointsHash = () => {
     const entryPoints = createDynamicEntryPoints();
@@ -351,59 +232,21 @@ async function buildDev() {
       entryPoints: getValidEntryPoints(),
       plugins: [
         ...devConfig.plugins,
-        {
-          name: "new-file-detector",
-          setup(build) {
-            let startTime;
-            let buildCount = 0;
-
-            build.onStart(() => {
-              startTime = Date.now();
-              buildCount++;
-
-              // Check for new files every few builds
-              if (buildCount % 3 === 0) {
-                const currentHash = getEntryPointsHash();
-                if (lastEntryPointsHash && currentHash !== lastEntryPointsHash) {
-                  console.log(
-                    "📁 File structure changed! You may need to restart dev mode for updated entry points."
-                  );
-                }
-                lastEntryPointsHash = currentHash;
-              }
-
-              console.log("⚠️  File changed. Rebuilding...");
-            });
-
-            build.onEnd((result) => {
-              const duration = Date.now() - startTime;
-              const durationText =
-                duration < 1000 ? `${duration}ms` : `${(duration / 1000).toFixed(2)}s`;
-
-              if (result.errors.length > 0) {
-                console.log(`❌ Build completed with errors (${durationText}):`);
-                result.errors.forEach((error) => console.error("  ", error.text));
-              } else if (result.warnings.length > 0) {
-                console.log(`⚠️  Build completed with warnings (${durationText}):`);
-                result.warnings.forEach((warning) => console.warn("  ", warning.text));
-              } else {
-                console.log(`✅ Build completed successfully! (${durationText})`);
-              }
-            });
-          },
-        },
+        createNewFileDetectorPlugin(getEntryPointsHash),
+        createDevDtsGeneratorPlugin(),
       ],
     });
 
-    // Initialize hash
-    lastEntryPointsHash = getEntryPointsHash();
+    // Store build context globally for CSS watcher access
+    global._currentBuildContext = ctx;
 
     await ctx.watch();
-    console.log("🔍 Watching for changes... (Press Ctrl+C to stop)");
+    // console.log("🔍 Watching for changes... (Press Ctrl+C to stop)");
 
     // Keep the process alive
     process.on("SIGINT", async () => {
       // console.log("\n🛑 Stopping watch mode...");
+      global._currentBuildContext = null; // Clean up global reference
       await ctx.dispose();
       process.exit(0);
     });

@@ -1,5 +1,16 @@
 import DocsHeader from "@/components/blocks/docs-header";
 import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import {
+  BasicTooltip,
+  TooltipPositions,
+  TooltipVariants,
+  RichTooltipWithAction,
+  RichTooltipWithMultipleActions,
+  TooltipWithIcon,
+  TooltipWithDelay,
+  TooltipLongText,
+  DisabledTooltip
+} from "@/components/preview/tooltip-preview";
 
 <DocsHeader
   title="Tooltip"
@@ -9,3 +20,160 @@ import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
 # Overview
 
 The `Tooltip` component is designed to provide additional information or context about an element when a user hovers over it. Tooltips are commonly used to enhance user experience by offering explanations, tips, or details without cluttering the interface. They are particularly useful for icons, buttons, and other interactive elements where space is limited.
+
+# Basic Usage
+
+The most basic tooltip requires only text content and wraps around the element you want to provide information for.
+
+<DocsPreview>
+<DocsComp>
+  <BasicTooltip />
+</DocsComp>
+
+```tsx
+import { Tooltip, Button } from "react-material";
+
+<Tooltip text="This is a basic tooltip">
+  <Button>Hover me</Button>
+</Tooltip>
+```
+
+</DocsPreview>
+
+# Positions
+
+The `Tooltip` component supports four different positions relative to the trigger element:
+
+- **Top**: Displays above the element (default)
+- **Bottom**: Displays below the element
+- **Left**: Displays to the left of the element
+- **Right**: Displays to the right of the element
+
+<DocsPreview>
+<DocsComp>
+  <TooltipPositions />
+</DocsComp>
+
+```tsx
+import { Tooltip, Button } from "react-material";
+
+<Tooltip text="Top tooltip" position="top">
+  <Button>Top</Button>
+</Tooltip>
+<Tooltip text="Bottom tooltip" position="bottom">
+  <Button>Bottom</Button>
+</Tooltip>
+<Tooltip text="Left tooltip" position="left">
+  <Button>Left</Button>
+</Tooltip>
+<Tooltip text="Right tooltip" position="right">
+  <Button>Right</Button>
+</Tooltip>
+```
+
+</DocsPreview>
+
+# Variants
+
+The tooltip component offers two visual variants to suit different design contexts:
+
+- **Plain**: A minimal tooltip with a dark background and small text
+- **Rich**: A more prominent tooltip with structured content with a header, body, and an optional action button
+
+<DocsPreview>
+<DocsComp>
+  <TooltipVariants />
+</DocsComp>
+
+```tsx
+import { Tooltip, Button } from "react-material";
+
+<Tooltip text="Plain tooltip" variant="plain">
+  <Button>Plain</Button>
+</Tooltip>
+<Tooltip
+  variant="rich"
+  header="Feature Update"
+  text="New features are now available. Click to learn more about the latest improvements and enhancements."
+  actions={[
+    { label: "Learn More", onClick: () => console.log("Action clicked!"), variant: "text" }
+  ]}
+  >
+  <Button>Rich with Action</Button>
+</Tooltip>
+```
+
+</DocsPreview>
+
+# Delay Configuration
+
+You can customize the delay before the tooltip appears by setting the `delay` prop. This is useful for preventing tooltips from appearing too quickly during normal navigation.
+
+<DocsPreview>
+<DocsComp>
+  <TooltipWithDelay />
+</DocsComp>
+
+```tsx
+import { Tooltip, Button } from "react-material";
+
+<Tooltip text="Fast tooltip" delay={200}>
+  <Button>Fast (200ms)</Button>
+</Tooltip>
+<Tooltip text="Default tooltip" delay={700}>
+  <Button>Default (700ms)</Button>
+</Tooltip>
+<Tooltip text="Slow tooltip" delay={1500}>
+  <Button>Slow (1500ms)</Button>
+</Tooltip>
+```
+
+</DocsPreview>
+
+# Disabled State
+
+Tooltips can be disabled when they're not needed, such as when an element is disabled or when the tooltip would not provide useful information.
+
+<DocsPreview>
+<DocsComp>
+  <DisabledTooltip />
+</DocsComp>
+
+```tsx
+import { Tooltip, Button } from "react-material";
+
+<Tooltip text="This tooltip is disabled" disabled>
+  <Button>Disabled tooltip</Button>
+</Tooltip>
+<Tooltip text="This tooltip is enabled">
+  <Button>Enabled tooltip</Button>
+</Tooltip>
+```
+
+</DocsPreview>
+
+# Multiple Actions
+
+Rich tooltips can support multiple action buttons, allowing for more complex interactions. You can specify different button variants for each action.
+
+<DocsPreview>
+<DocsComp>
+  <RichTooltipWithMultipleActions />
+</DocsComp>
+
+```tsx
+import { Tooltip, Button } from "react-material";
+
+<Tooltip
+  variant="rich"
+  header="Confirmation"
+  text="Are you sure you want to delete this item?"
+  actions={[
+    { label: "Cancel", onClick: () => console.log("Cancelled"), variant: "text" }
+    { label: "Delete", onClick: () => console.log("Deleted"), variant: "filled" },
+  ]}>
+  <Button variant="outlined">Delete Item</Button>
+</Tooltip>
+```
+
+</DocsPreview>
