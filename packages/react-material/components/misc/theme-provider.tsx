@@ -4,7 +4,7 @@ import {
   Hct,
   sourceColorFromImage,
   Variant,
-} from "../../utils/material-color-utilities/typescript/index";
+} from "@material/material-color-utilities";
 import variants from "./variant";
 import { genCSS } from "./generator";
 import "./styles.css";
@@ -65,9 +65,7 @@ export const ThemeProvider: React.FC<
   root = false,
   maxSnackbars,
 }) => {
-  const [sourceColor, setSourceColor] = useState<number>(
-    initialSourceColor || 0xD0BCFF
-  );
+  const [sourceColor, setSourceColor] = useState<number>(initialSourceColor || 0xd0bcff);
   const [sourceImage, setSourceImage] = useState<string | undefined>(initialSourceImage);
   const [variant, setVariant] = useState<Variant>(initialVariant || Variant.TONAL_SPOT);
   const [contrast, setContrast] = useState<number>(initialContrast || 0);

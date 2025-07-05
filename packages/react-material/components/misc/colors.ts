@@ -1,4 +1,4 @@
-import { MaterialDynamicColors } from "../../utils/material-color-utilities/typescript/index";
+import { MaterialDynamicColors } from "@material/material-color-utilities";
 
 export const materialColors = new MaterialDynamicColors();
 

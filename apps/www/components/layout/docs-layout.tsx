@@ -89,7 +89,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             <Logo className="size-8 grid place-items-center" />
           </Link>
           <div className="m3-font-body-small font-dmsans ml-2">
-            <span>v0.0.1alpha-2</span>
+            <span>v0.0.1-alpha1</span>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { Variant } from "../../utils/material-color-utilities/typescript/index";
+import { Variant } from "@material/material-color-utilities";
 
 export default [
   {

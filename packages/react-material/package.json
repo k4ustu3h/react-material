@@ -1,6 +1,6 @@
 {
   "name": "react-material",
-  "version": "0.0.1-pre1",
+  "version": "0.0.1-alpha1",
   "author": "miukyo",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -16,9 +16,13 @@
     "glob": "^11.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "rimraf": "^6.0.1",
     "typescript": "^5.8.3",
     "typescript-plugin-css-modules": "^5.1.0"
   },
+  "bundledDependencies": [
+    "@material/material-color-utilities"
+  ],
   "peerDependencies": {
     "typescript": "^5.8.3"
   },
@@ -56,7 +60,7 @@
   ],
   "license": "Apache-2.0",
   "scripts": {
-    "build": "node build.js build",
+    "build": "rimraf dist && node build.js build",
     "dev": "node build.js dev",
     "tsgo": "tsgo",
     "generate": "turbo gen react-component && bun run build"
