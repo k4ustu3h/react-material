@@ -27,14 +27,12 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   ]);
 
   const [CurrentPath, setCurrentPath] = useState<string>("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
   const isDocsPage = router.pathname.startsWith("/docs");
-  const btnClass = isDocsPage
-    ? "bg-surface-container hover:bg-surface-containerest"
-    : "bg-[white]/20 hover:bg-[white]/10";
 
   const docsIcons = docsMetadata.categoryIcons;
 
@@ -79,43 +77,72 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
       const container = contentContainerRef.current;
       container.scrollTo({ top: 0, behavior: "instant" });
     }
+    // Close mobile menu when navigating to a new page
+    setIsMobileMenuOpen(false);
   }, [router.asPath]);
 
   return (
     <div>
       <nav className="absolute z-50 w-full flex justify-center items-center top-4 left-0 right-0 gap-0.5 px-5 text-on-primary-container">
-        <Link href="/" className="absolute left-0 gap-0.5 px-5" notAsChild>
-          <Logo className="size-8 grid place-items-center" />
-        </Link>
-        <div className="absolute right-8 gap-0.5 m3-font-body-small font-dmsans">
-          <span>v0.0.1</span>
+        <div className="flex absolute items-center left-5 gap-2">
+          <Link href="/" notAsChild>
+            <Logo className="size-8 grid place-items-center" />
+          </Link>
+          <div className="m3-font-body-small font-dmsans ml-2">
+            <span>v0.0.1alpha-2</span>
+          </div>
         </div>
-        <div className="flex gap-0.5">
+
+        {/* Mobile menu button */}
+        {isDocsPage && (
+          <Button
+            variant="text"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden z-50 size-10 absolute right-3"
+            aria-label="Toggle navigation menu">
+            <Icon size={20}>{isMobileMenuOpen ? "close" : "menu"}</Icon>
+          </Button>
+        )}
+
+        <div className="invisible sm:visible flex gap-0.5 rounded-xl overflow-hidden">
           <Link href="/docs/get-started/introduction">
-            <button
-              className={`${btnClass} cursor-pointer m3-font-headline-small text-base transition-all ease-fast text-on-primary-container rounded-l-lg rounded-r-sm px-4 py-2`}>
+            <Button variant="text" shape="square" className="shadow-none font-dmsans">
               Docs
-            </button>
+            </Button>
           </Link>
           <Link href="/">
-            <button
-              className={`${btnClass} cursor-pointer m3-font-headline-small text-base transition-all ease-fast text-on-primary-container rounded-sm px-4 py-2`}>
+            <Button variant="text" shape="square" className="shadow-none font-dmsans">
               Components
-            </button>
+            </Button>
           </Link>
           <Link href="/">
-            <button
-              className={`${btnClass} cursor-pointer m3-font-headline-small text-base transition-all ease-fast text-on-primary-container rounded-l-sm rounded-r-lg px-4 py-2`}>
+            <Button variant="text" shape="square" className="shadow-none font-dmsans">
               Themes
-            </button>
+            </Button>
           </Link>
         </div>
       </nav>
       {isDocsPage ? (
         <div
-          className="mt-18 flex px-2 gap-2 h-[calc(100vh-5rem)]"
+          className="mt-18 flex px-2 gap-2 h-[calc(100vh-5rem)] relative"
           style={{ transition: "margin 1s var(--m3-util-curve-decel)" }}>
-          <div className="rounded-xl overflow-hidden w-80 shrink-0">
+          {/* Mobile sidebar overlay */}
+
+          <div
+            className={`fixed inset-0 bg-surface/50 z-40 transition md:hidden ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none invisible"}`}
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+
+          {/* Sidebar */}
+          <div
+            className={`
+            fixed lg:relative top-0 right-0 lg:left-auto
+            w-80 lg:w-80 shrink-0 h-[calc(100%-5rem)] lg:h-auto
+            transform transition-transform duration-300 ease-in-out
+            ${isMobileMenuOpen ? "-translate-x-2" : "translate-x-full"} lg:translate-x-0
+            z-50 lg:z-auto rounded-xl overflow-hidden
+            mt-18 lg:mt-0 shadow-2xl
+          `}>
             <div className="bg-surface-container transition-colors px-4 pt-8 sticky top-4 overflow-y-auto h-full">
               {Object.entries(DocsList).map(([category, items]) => (
                 <DocsListComp
@@ -129,24 +156,27 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
               ))}
             </div>
           </div>
+
+          {/* Main content area */}
           <div
             ref={contentContainerRef}
-            className="grow rounded-xl overflow-y-auto relative scroll-smooth">
-            <div className="flex flex-col relative">
+            className="grow rounded-xl overflow-y-auto relative scroll-smooth w-full md:w-auto">
+            <div className="flex flex-col relative bg-surface">
               <div id="docs-content" className="min-h-120" />
               <article
                 key={CurrentPath}
-                className="order-2 w-200 mx-auto mt-20 prose animation-fade-in">
-                <div className="absolute h-full w-full ml-60">
+                className="order-2 w-full xl:w-200 mx-auto mt-20 px-4 md:px-8 prose animation-fade-in">
+                {/* Table of Contents - hidden on mobile and tablet */}
+                <div className="absolute h-full xl:-right-35">
                   <TableOfContents />
                 </div>
-                {children}
+                <div className="relative xl:-left-30">{children}</div>
               </article>
             </div>
             <footer>
-              <div className="grid grid-cols-2 p-20 gap-2 bg-surface shadow-2xl shadow-surface relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 px-2 py-10 md:px-10 xl:px-20 gap-2 bg-surface shadow-2xl shadow-surface relative z-10">
                 {Navigation[0]?.[0] ? (
-                  <Link href={`${Navigation[0][1]}`} className="col-start-1">
+                  <Link href={`${Navigation[0][1]}`} className="col-start-1 mb-4 md:mb-0">
                     <Button
                       variant="tonal"
                       shape="square"
@@ -155,7 +185,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                       <p className="m3-font-headline-small text-base flex gap-1 items-center">
                         <Icon>arrow_back</Icon>Previous
                       </p>
-                      <p className="m3-font-headline-large">{Navigation[0][0]}</p>
+                      <p className="m3-font-headline-medium">
+                        {Navigation[0][0]}
+                      </p>
                     </Button>
                   </Link>
                 ) : (
@@ -163,16 +195,18 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                 )}
 
                 {Navigation[1]?.[0] ? (
-                  <Link href={`${Navigation[1][1]}`} className="col-start-2">
+                  <Link href={`${Navigation[1][1]}`} className="col-start-1 md:col-start-2">
                     <Button
                       variant="tonal"
                       shape="square"
                       size="extralarge"
-                      className="w-full flex flex-col items-end gap-0 bg-surface-container text-on-surface">
+                      className="w-full flex flex-col items-start md:items-end gap-0 bg-surface-container text-on-surface">
                       <p className="m3-font-headline-small text-base flex gap-1 items-center">
                         Next<Icon>arrow_forward</Icon>
                       </p>
-                      <p className="m3-font-headline-large">{Navigation[1][0]}</p>
+                      <p className="m3-font-headline-medium">
+                        {Navigation[1][0]}
+                      </p>
                     </Button>
                   </Link>
                 ) : (
@@ -196,9 +230,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 const Footer = () => (
   <>
     <Seperator className="z-10 relative" />
-    <div className="px-4 sm:px-8 md:px-12 lg:px-20 grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-6 lg:gap-4 sticky bottom-0 min-h-82 py-8 bg-surface">
-      <p className="m3-font-headline-small text-base text-on-surface col-span-1 sm:col-span-2 lg:col-span-2 text-center sm:text-left">
-        <Logo className="size-8 text-on-surface mb-6 mx-auto sm:mx-0" />
+    <div className="px-4 sm:px-8 md:px-12 lg:px-20 grid justify-items-center grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-6 lg:gap-4 sticky bottom-0 min-h-82 py-8 bg-surface">
+      <p className="m3-font-headline-small text-sm md:text-base text-on-surface col-span-1 sm:col-span-3 lg:col-span-2 text-center lg:text-left">
+        <Logo className="size-8 text-on-surface mb-6 mx-auto lg:mx-0" />
         React Material is unofficial and independent port of Material Design 3. As an unofficial
         project, <b>it is not affiliated with Google.</b> All copyrights, trademarks, and
         intellectual property related to Material Design are the property of Google.
@@ -210,28 +244,28 @@ const Footer = () => (
         <ul className="space-y-2">
           <li>
             <Link href="/docs/get-started/introduction">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Introduction
               </a>
             </Link>
           </li>
           <li>
             <Link href="/docs/get-started/installation">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Installation
               </a>
             </Link>
           </li>
           <li>
             <Link href="/docs/get-started/theming">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Theming
               </a>
             </Link>
           </li>
           <li>
             <Link href="/docs/components">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Components
               </a>
             </Link>
@@ -245,14 +279,14 @@ const Footer = () => (
         <ul className="space-y-2">
           <li>
             <Link href="https://github.com/miukyo/react-material">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 GitHub
               </a>
             </Link>
           </li>
           <li>
             <Link href="https://discord.gg/">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Discord
               </a>
             </Link>
@@ -266,21 +300,21 @@ const Footer = () => (
         <ul className="space-y-2">
           <li>
             <Link href="https://m3.material.io/">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Material Design 3
               </a>
             </Link>
           </li>
           <li>
             <Link href="/docs/contributing">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Contributing
               </a>
             </Link>
           </li>
           <li>
             <Link href="/docs/changelog">
-              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">
+              <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Changelog
               </a>
             </Link>
@@ -289,13 +323,19 @@ const Footer = () => (
       </div>
       <div className="grid grid-cols-3 gap-4 sm:hidden col-span-1">
         <Link href="/docs/get-started/introduction">
-          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">Docs</a>
+          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm">
+            Docs
+          </a>
         </Link>
         <Link href="https://github.com/yourusername/react-material">
-          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">GitHub</a>
+          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm">
+            GitHub
+          </a>
         </Link>
         <Link href="https://discord.gg/yourinvite">
-          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary">Discord</a>
+          <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm">
+            Discord
+          </a>
         </Link>
       </div>
     </div>

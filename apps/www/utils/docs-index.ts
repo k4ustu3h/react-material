@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-07-04T14:39:41.672Z
+// Generated on 2025-07-05T07:26:50.274Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -132,7 +132,9 @@ const docsIndex: DocIndex = {
     {
       title: "Shape",
       description: "A versatile UI component for adding premade shapes to your interface.",
-      path: "/docs/components/shape",
+      path: "/docs/components/miscellaneous/shape",
+      group: "miscellaneous",
+      groupTitle: "Miscellaneous",
     },
     {
       title: "Slider",

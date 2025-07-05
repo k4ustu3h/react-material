@@ -137,6 +137,9 @@
   .animation-fade-in {
     animation: fade-in 1s var(--m3-util-curve-decel) forwards;
   }
+  .hide-scrollbar {
+    scrollbar-width: none; /* Firefox */
+  }
   @keyframes fade-in {
     from {
       opacity: 0;
