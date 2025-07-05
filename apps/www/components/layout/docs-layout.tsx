@@ -141,7 +141,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             transform transition-transform duration-300 ease-in-out
             ${isMobileMenuOpen ? "-translate-x-2" : "translate-x-full"} lg:translate-x-0
             z-50 lg:z-auto rounded-xl overflow-hidden
-            mt-18 lg:mt-0 shadow-2xl
+            mt-18 lg:mt-0 shadow-2xl lg:shadow-none
           `}>
             <div className="bg-surface-container transition-colors px-4 pt-8 sticky top-4 overflow-y-auto h-full">
               {Object.entries(DocsList).map(([category, items]) => (
@@ -226,7 +226,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 const Footer = () => (
   <>
     <Seperator className="z-10 relative" />
-    <div className="px-4 sm:px-8 md:px-12 lg:px-20 grid justify-items-center grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-6 lg:gap-4 sticky bottom-0 min-h-82 py-8 bg-surface">
+    <div className="px-4 mt-20 sm:px-8 md:px-12 lg:px-20 grid justify-items-center grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-6 lg:gap-4 sticky bottom-0 min-h-82 py-8 bg-surface">
       <p className="m3-font-headline-small text-sm md:text-base text-on-surface col-span-1 sm:col-span-3 lg:col-span-2 text-center lg:text-left">
         <Logo className="size-8 text-on-surface mb-6 mx-auto lg:mx-0" />
         React Material is unofficial and independent port of Material Design 3. As an unofficial

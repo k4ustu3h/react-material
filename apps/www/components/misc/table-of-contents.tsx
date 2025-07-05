@@ -240,7 +240,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ className }) => {
           </Icon>
           On this page
         </div>
-        <div className="right-0 rounded-lg shadow-lg w-60 max-h-[40vh] overflow-y-auto toc-container hide-scrollbar p-4 pt-0">
+        <div className="right-0 rounded-lg w-60 max-h-[40vh] overflow-y-auto toc-container hide-scrollbar p-4 pt-0">
           <nav>
             <ul className="list-none">
               {tocItems.map((item) => (

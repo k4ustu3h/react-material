@@ -5,7 +5,7 @@ import { Button } from "./button";
 
 type CommonProps = {
   shape?: "round" | "square";
-  variant?: "elevated" | "filled" | "tonal" | "outlined";
+  variant?: "filled" | "tonal" | "outlined";
   children: React.ReactNode;
   mode: "single" | "multiple";
 };

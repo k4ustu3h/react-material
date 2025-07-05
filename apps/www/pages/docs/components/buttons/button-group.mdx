@@ -19,7 +19,6 @@ The `ButtonGroup` component supports several color variants to suit different de
 - **Default**: A standard button group.
 - **Tonal**: A softer, more subdued button group style.
 - **Outlined**: A button group with a border and no background, ideal for secondary actions.
-- **Elevated**: A button group with a shadow, giving it a raised appearance.
 
 <DocsPreview>
   <DocsComp>
@@ -38,15 +37,11 @@ The `ButtonGroup` component supports several color variants to suit different de
       <ButtonGroupItem>Outlined</ButtonGroupItem>
       <ButtonGroupItem>Outlined</ButtonGroupItem>
     </ButtonGroup>
-    <ButtonGroup variant="elevated">
-      <ButtonGroupItem>Elevated</ButtonGroupItem>
-      <ButtonGroupItem>Elevated</ButtonGroupItem>
-      <ButtonGroupItem>Elevated</ButtonGroupItem>
-    </ButtonGroup>
   </DocsComp>
 
 ```tsx
 import { ButtonGroupItem, ButtonGroup } from "react-material";
+
 <ButtonGroup variant="filled">
   <ButtonGroupItem>Default</ButtonGroupItem>
   <ButtonGroupItem>Default</ButtonGroupItem>
@@ -61,11 +56,6 @@ import { ButtonGroupItem, ButtonGroup } from "react-material";
   <ButtonGroupItem>Outlined</ButtonGroupItem>
   <ButtonGroupItem>Outlined</ButtonGroupItem>
   <ButtonGroupItem>Outlined</ButtonGroupItem>
-</ButtonGroup>
-<ButtonGroup variant="elevated">
-  <ButtonGroupItem>Elevated</ButtonGroupItem>
-  <ButtonGroupItem>Elevated</ButtonGroupItem>
-  <ButtonGroupItem>Elevated</ButtonGroupItem>
 </ButtonGroup>
 ```
 
@@ -120,7 +110,7 @@ The main container component that groups multiple buttons together.
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `"elevated"` \| `"filled"` \| `"tonal"` \| `"outlined"` | `"filled"` | The visual variant of the button group |
+| `variant` | `"filled"` \| `"tonal"` \| `"outlined"` | `"filled"` | The visual variant of the button group |
 | `shape` | `"round"` \| `"square"` | `"round"` | The shape style of the buttons |
 | `mode` | `"single"` \| `"multiple"` | Required | Selection mode - single allows only one selection, multiple allows multiple selections |
 | `children` | `React.ReactNode` | Required | The ButtonGroupItem components to render |

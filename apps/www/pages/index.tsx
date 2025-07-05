@@ -41,7 +41,9 @@ export default function Index() {
             {/* Modern Design System */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon size={30} className="text-primary">auto_awesome</Icon>
+                <Icon size={30} className="text-primary">
+                  auto_awesome
+                </Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Modern Design System</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -57,7 +59,9 @@ export default function Index() {
             {/* Responsive Components */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon size={30} className="text-primary">devices</Icon>
+                <Icon size={30} className="text-primary">
+                  devices
+                </Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Responsive</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -72,7 +76,9 @@ export default function Index() {
             {/* Performance Optimized */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon size={30} className="text-primary">speed</Icon>
+                <Icon size={30} className="text-primary">
+                  speed
+                </Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Optimized</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -87,7 +93,9 @@ export default function Index() {
             {/* Theming */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon size={30} className="text-primary">palette</Icon>
+                <Icon size={30} className="text-primary">
+                  palette
+                </Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Dynamic Theming</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -101,7 +109,9 @@ export default function Index() {
             {/* Accessibility */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon size={30} className="text-primary">accessibility</Icon>
+                <Icon size={30} className="text-primary">
+                  accessibility
+                </Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Accessibility First</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -116,7 +126,9 @@ export default function Index() {
             {/* Developer Experience */}
             <div className="bg-surface-container-high p-8 rounded-md">
               <div className="flex items-center gap-3 mb-4">
-                <Icon size={30} className="text-primary">code</Icon>
+                <Icon size={30} className="text-primary">
+                  code
+                </Icon>
                 <h3 className="m3-font-headline-medium text-on-surface">Developer Friendly</h3>
               </div>
               <p className="m3-font-body-large text-on-surface-variant mb-4">
@@ -161,8 +173,13 @@ export default function Index() {
                 Add React Material to your project
               </p>
               <div className="rounded-lg overflow-hidden">
-                <ShikiHighlighter language="bash" theme="one-dark-pro">
-{`npm install react-material # npm
+                <ShikiHighlighter
+                  theme={{
+                    light: "one-light",
+                    dark: "one-dark-pro",
+                  }}
+                  language="bash">
+                  {`npm install react-material # npm
 yarn add react-material # yarn
 pnpm add react-material # pnpm
 bun add react-material # bun`}
@@ -181,7 +198,12 @@ bun add react-material # bun`}
                 Wrap your application with ThemeProvider for proper styling
               </p>
               <div className="rounded-lg overflow-hidden">
-                <ShikiHighlighter language="tsx" theme="one-dark-pro">
+                <ShikiHighlighter
+                  theme={{
+                    light: "one-light",
+                    dark: "one-dark-pro",
+                  }}
+                  language="tsx">
                   {`import { ThemeProvider } from 'react-material'
 
 <ThemeProvider>
@@ -202,7 +224,12 @@ bun add react-material # bun`}
                 Import components and customize them to match your brand
               </p>
               <div className="rounded-lg overflow-hidden mb-4">
-                <ShikiHighlighter language="tsx" theme="one-dark-pro">
+                <ShikiHighlighter
+                  theme={{
+                    light: "one-light",
+                    dark: "one-dark-pro",
+                  }}
+                  language="tsx">
                   {`import { Button, TextField } from 'react-material'`}
                 </ShikiHighlighter>
               </div>
@@ -365,17 +392,12 @@ bun add react-material # bun`}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/docs/get-started/introduction">
-                <Button
-                  size="large"
-                  className="font-dmsans font-semibold bg-on-primary text-primary">
+                <Button size="large" variant="tonal" className="font-dmsans font-semibold">
                   Read the Docs
                 </Button>
               </Link>
               <Link href="https://github.com/yourusername/react-material">
-                <Button
-                  size="large"
-                  variant="outlined"
-                  className="font-dmsans font-semibold text-on-surface border-on-primary">
+                <Button size="large" variant="outlined" className="font-dmsans font-semibold">
                   <Icon className="mr-2">code</Icon>
                   View on GitHub
                 </Button>

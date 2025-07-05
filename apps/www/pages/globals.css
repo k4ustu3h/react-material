@@ -66,7 +66,7 @@
   --radius-lg: var(--m3-util-rounding-large);
   --radius-xl: var(--m3-util-rounding-extra-large);
   --radius-2xl: var(--m3-util-rounding-extra-extra-large)
-  --radius-full: var(--m3-util-rounding-full);
+    --radius-full: var(--m3-util-rounding-full);
 
   /* Expressive easing */
   --default-transition-timing-function: var(--ease-normal);
@@ -133,6 +133,13 @@
   }
   .shiki {
     @apply bg-transparent!;
+  }
+  @media (prefers-color-scheme: dark) {
+    .shiki,
+    .shiki span {
+      /* background-color: var(--shiki-dark-bg) !important; */
+      color: var(--shiki-dark) !important;
+    }
   }
   .animation-fade-in {
     animation: fade-in 1s var(--m3-util-curve-decel) forwards;

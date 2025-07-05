@@ -157,7 +157,10 @@ const CodeHighlight = ({
           <ShikiHighlighter
             showLanguage={false}
             language={language}
-            theme={"one-dark-pro"}
+            theme={{
+              light: "one-light",
+              dark: "one-dark-pro",
+            }}
             {...props}>
             {String(children)}
           </ShikiHighlighter>
