@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useMemo, useCallback, useEffect } from "react";
 import {
-  argbFromHex,
   DynamicScheme,
   Hct,
   sourceColorFromImage,
@@ -67,7 +66,7 @@ export const ThemeProvider: React.FC<
   maxSnackbars,
 }) => {
   const [sourceColor, setSourceColor] = useState<number>(
-    initialSourceColor || argbFromHex("#D0BCFF")
+    initialSourceColor || 0xD0BCFF
   );
   const [sourceImage, setSourceImage] = useState<string | undefined>(initialSourceImage);
   const [variant, setVariant] = useState<Variant>(initialVariant || Variant.TONAL_SPOT);

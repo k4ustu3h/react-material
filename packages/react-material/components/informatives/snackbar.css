@@ -64,4 +64,36 @@
       /* opacity: 1; */
     }
   }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .m3-snackbar-container {
+      border: 2px solid rgb(var(--m3-scheme-outline));
+    }
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .m3-snackbar-container {
+      transition: none;
+      animation: none;
+    }
+    @keyframes show {
+      from {
+        scale: 1;
+        bottom: 16px;
+      }
+      to {
+        scale: 1;
+        bottom: 16px;
+      }
+    }
+  }
+
+  /* Focus management for actions */
+  .m3-snackbar-action:focus-visible,
+  .m3-snackbar-close:focus-visible {
+    outline: 2px solid rgb(var(--m3-scheme-inverse-primary));
+    outline-offset: 2px;
+  }
 }

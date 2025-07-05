@@ -28,6 +28,14 @@ export const FAB: React.FC<Props> = (props) => {
   };
   const baseClasses = `m3-fab-container ${variant} ${shape} ${size} ${fontSizeClasses[size]}`;
 
+  // Accessibility: Warn if FAB doesn't have accessible label
+  const hasAccessibleLabel = children || props["aria-label"];
+  if (!hasAccessibleLabel) {
+    console.warn(
+      "FAB component should have either visible text (children) or aria-label for accessibility"
+    );
+  }
+
   return (
     <button {...mergeProps(extraProps, { className: baseClasses })}>
       <Ripple />

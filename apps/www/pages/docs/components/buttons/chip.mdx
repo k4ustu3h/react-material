@@ -94,3 +94,24 @@ import { Chip } from "react-material";
 <Chip variant="input" clickable={false}>Unclickable Input Chip</Chip>
 ```
 </DocsPreview>
+
+# API Reference
+
+## Chip
+
+A compact component for displaying information or actions, often used for tags, filters, or selections.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"input"` \| `"assist"` \| `"general"` | `"input"` | The visual variant of the chip |
+| `iconLeft` | `string` | `undefined` | Icon name to display on the left side of the chip |
+| `iconRight` | `string` | `undefined` | Icon name to display on the right side of the chip |
+| `elevated` | `boolean` | `false` | Whether to show the chip with an elevated appearance |
+| `clickable` | `boolean` | `true` | Whether the chip can be clicked/selected |
+| `children` | `React.ReactNode` | Required | The content to display in the chip |
+
+### Inherited Props
+
+The `Chip` component accepts all standard HTML `label` element props.

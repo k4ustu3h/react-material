@@ -68,7 +68,7 @@ const cssPlugin = {
             .replace(/\/\*[\s\S]*?\*\//g, "")
             .replace(/\s+/g, " ")
             .replace(/;\s*}/g, "}")
-            .replace(/\s*[{};:,>+~]\s*/g, (match) => match.trim())
+            // .replace(/\s*[{};:,>+~]\s*/g, (match) => match.trim())
             .trim();
 
           const cssId = fullCssPath.replace(/[^a-zA-Z0-9]/g, "_");
@@ -212,7 +212,7 @@ const copyPlugin = {
 
       try {
         // Copy CSS files from css directory using optimized glob
-        const cssFiles = glob.sync("css/**/*", { absolute: false });
+        const cssFiles = glob.sync("css/**/*", { absolute: false, posix: true });
         cssFiles.forEach((file) => {
           const src = resolve(__dirname, file);
           const dest = resolve(__dirname, "dist", file);
@@ -371,6 +371,7 @@ const createDevDtsGeneratorPlugin = () => ({
     function setupDtsWatcher() {
       try {
         const files = glob.sync(["./components/**/*.{ts,tsx}", "./index.ts"], {
+          posix: true,
           ignore: [
             "**/*.test.{ts,tsx}",
             "**/*.stories.{ts,tsx}",
@@ -394,7 +395,7 @@ const createDevDtsGeneratorPlugin = () => ({
               emitDeclarationOnly: true,
               outDir: "dist",
             },
-            include: [filePath.replace(/\\/g, "/")],
+            include: [filePath],
           };
 
           // Write temporary config file

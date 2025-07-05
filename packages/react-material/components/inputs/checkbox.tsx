@@ -14,18 +14,26 @@ export const Checkbox: React.FC<Props> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined" && inputRef.current) {
+    if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
     }
   }, [indeterminate]);
 
   const baseClasses = ``;
 
+  // Accessibility: Warn if checkbox doesn't have accessible label
+  const hasAccessibleLabel = props["aria-label"] || props["aria-labelledby"];
+  if (!hasAccessibleLabel) {
+    console.warn(
+      "Checkbox component should have either aria-label or aria-labelledby for accessibility"
+    );
+  }
+
   return (
     <label className={`m3-checkbox-container`}>
       <Ripple />
-      <span className="m3-checkbox-box"></span>
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <span className="m3-checkbox-box" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         {indeterminate ? (
           <path d="M 5 12 H 19" fill="none" stroke="currentColor" strokeWidth="3" />
         ) : (
@@ -40,7 +48,11 @@ export const Checkbox: React.FC<Props> = (props) => {
       <input
         ref={inputRef}
         type="checkbox"
-        {...mergeProps(extraProps, { className: baseClasses })}></input>
+        {...mergeProps(extraProps, {
+          className: baseClasses,
+          "aria-checked": indeterminate ? ("mixed" as const) : undefined,
+        })}
+      />
     </label>
   );
 };

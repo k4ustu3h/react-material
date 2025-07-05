@@ -468,4 +468,54 @@
   .via-surface-container {
     --tw-gradient-via: rgb(var(--m3-scheme-surface-container));
   }
+
+  /* Accessibility utilities */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  .focus-visible-ring {
+    outline: 2px solid rgb(var(--m3-scheme-primary));
+    outline-offset: 2px;
+  }
+
+  .focus-visible-ring-error {
+    outline: 2px solid rgb(var(--m3-scheme-error));
+    outline-offset: 2px;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .focus-visible-ring,
+    .focus-visible-ring-error {
+      outline-width: 3px;
+    }
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .motion-reduce {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
 }

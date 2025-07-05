@@ -70,3 +70,32 @@ import { TextField } from "react-material";
 <TextField name="Field" icon="circle" />
 ```
 </DocsPreview>
+
+# API Reference
+
+## TextField
+
+A versatile text input component that supports both single-line and multi-line text entry.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | Required | The name attribute for the input field, also used as the label text |
+| `variant` | `"filled"` \| `"outlined"` | `"filled"` | The visual variant of the text field |
+| `mode` | `"singleline"` \| `"multiline"` | `"singleline"` | The input mode - single line for regular text, multi line for textarea |
+| `icon` | `string` | `undefined` | Icon name to display as a leading icon |
+
+### Inherited Props
+
+The `TextField` component accepts different props based on its mode:
+
+- **Single Line Mode**: Accepts all standard HTML `input` element props
+- **Multi Line Mode**: Accepts all standard HTML `textarea` element props
+
+### Notes
+
+- The `name` prop is required and serves as both the input name and label text
+- Multi-line mode automatically adjusts height based on content
+- The component includes built-in focus states and Material Design animations
+- Leading icons are sized appropriately for each mode (24px for single line)

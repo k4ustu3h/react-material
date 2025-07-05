@@ -4,4 +4,19 @@
     font-size: 1em;
     line-height: 1;
   }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .m3-icon {
+      filter: contrast(1.2);
+    }
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .m3-icon {
+      animation: none;
+      transition: none;
+    }
+  }
 }

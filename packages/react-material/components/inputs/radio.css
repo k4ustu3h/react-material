@@ -12,6 +12,14 @@
     & input {
       position: absolute;
       opacity: 0;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     & .radio-circle {
@@ -44,6 +52,12 @@
       color: rgb(var(--m3-scheme-on-surface));
     }
 
+    /* Visible focus indicator */
+    &:has(input:focus-visible) .radio-circle {
+      outline: 2px solid rgb(var(--m3-scheme-primary));
+      outline-offset: 2px;
+    }
+
     /* Checked state */
     &:has(input:checked) {
       color: rgb(var(--m3-scheme-primary));
@@ -69,6 +83,24 @@
       }
       &:has(input:disabled) {
         opacity: 0.38;
+      }
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      .radio-circle {
+        border-width: 3px;
+      }
+      &:has(input:focus-visible) .radio-circle {
+        outline-width: 3px;
+      }
+    }
+
+    /* Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .radio-circle,
+      .radio-dot {
+        transition: none;
       }
     }
   }

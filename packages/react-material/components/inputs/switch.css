@@ -4,13 +4,15 @@
     position: relative;
     width: 3.25rem;
     height: 2rem;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+
     & input[type="checkbox"] {
       appearance: none;
       width: 3.25rem;
       height: 2rem;
       margin: 0;
       border-radius: var(--m3-util-rounding-full);
-
       background-color: rgb(var(--m3-scheme-surface-container-highest));
       border: solid 0.125rem rgb(var(--m3-scheme-outline));
       cursor: pointer;
@@ -18,19 +20,23 @@
       transition: var(--m3-util-easing);
     }
 
+    /* Focus-visible state */
+    & input[type="checkbox"]:focus-visible {
+      outline: 2px solid rgb(var(--m3-scheme-primary));
+      outline-offset: 2px;
+    }
+
     & .handle {
       position: absolute;
       width: 1rem;
       height: 1rem;
       border-radius: var(--m3-util-rounding-full);
-
       background-color: rgb(var(--m3-scheme-outline));
       /* Fallback for those without on on primary */
       color: rgb(var(--m3-scheme-on-on-primary, var(--m3-scheme-on-primary-container)));
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       transition: var(--m3-util-easing-fast-spatial);
-
       left: 0.5rem;
       top: 50%;
       translate: 0 -50%;
@@ -51,11 +57,9 @@
       width: 3rem;
       height: 3rem;
       border-radius: var(--m3-util-rounding-full);
-
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       transition: var(--m3-util-easing-fast);
-
       left: 1rem;
       top: 50%;
       translate: -50% -50%;
@@ -126,10 +130,6 @@
       display: none;
     }
 
-    & {
-      print-color-adjust: exact;
-      -webkit-print-color-adjust: exact;
-    }
     @media screen and (forced-colors: active) {
       & input:checked {
         background-color: canvastext !important;
@@ -143,6 +143,23 @@
       & input:disabled,
       & input:disabled + .handle {
         opacity: 0.38;
+      }
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      & input[type="checkbox"]:focus-visible {
+        outline-width: 3px;
+      }
+    }
+
+    /* Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      & input[type="checkbox"],
+      .handle,
+      .handle > svg,
+      .hover {
+        transition: none;
       }
     }
   }

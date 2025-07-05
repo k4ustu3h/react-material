@@ -27,15 +27,38 @@ export const Chip: React.FC<Props> = (props) => {
   const baseClasses = `m3-chip-container ${variant} ${elevated ? "elevated" : ""}`;
   const id = useId();
 
+  // Accessibility: Warn if chip doesn't have accessible label
+  const hasAccessibleLabel = children || props["aria-label"];
+  if (!hasAccessibleLabel) {
+    console.warn(
+      "Chip component should have either visible text (children) or aria-label for accessibility"
+    );
+  }
+
   return (
     <>
       <label htmlFor={id} {...mergeProps(extraProps, { className: baseClasses })}>
-        {clickable && <input id={id} type="checkbox" />}
+        {clickable && (
+          <input
+            id={id}
+            type="checkbox"
+            aria-pressed={props["aria-pressed"]}
+            style={{ position: "absolute", left: "-9999px" }}
+          />
+        )}
 
         <Ripple />
-        {iconLeft && <Icon className="icon-left">{iconLeft}</Icon>}
+        {iconLeft && (
+          <Icon className="icon-left" aria-hidden>
+            {iconLeft}
+          </Icon>
+        )}
         <span className="m3-font-label-large">{children}</span>
-        {iconRight && <Icon className="icon-right">{iconRight}</Icon>}
+        {iconRight && (
+          <Icon className="icon-right" aria-hidden>
+            {iconRight}
+          </Icon>
+        )}
       </label>
     </>
   );

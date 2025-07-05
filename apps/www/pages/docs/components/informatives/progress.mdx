@@ -30,3 +30,27 @@ import { Progress } from "react-material";
 <Progress percent={55} variant="wavy" />
 ```
 </DocsPreview>
+
+# API Reference
+
+## Progress
+
+A visual progress indicator component for showing the completion status of tasks.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `percent` | `number` | Required | The completion percentage (0-100) |
+| `variant` | `"linear"` \| `"wavy"` | `"linear"` | The visual style of the progress indicator |
+
+### Inherited Props
+
+The `Progress` component accepts all standard HTML `div` element props.
+
+### Notes
+
+- The `percent` prop accepts values from 0 to 100
+- The wavy variant includes smooth animation effects
+- The component automatically handles responsive sizing
+- Progress is displayed as an SVG element for crisp rendering at all sizes

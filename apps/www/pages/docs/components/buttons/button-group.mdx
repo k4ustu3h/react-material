@@ -11,43 +11,6 @@ import { ButtonGroupItem, ButtonGroup } from "react-material";
 
 The `ButtonGroup` component is designed to group multiple buttons together, allowing for better organization and user interaction. This is particularly useful when you have related actions that users can take, such as editing, deleting, or saving items.
 
-# Mode
-
-The `ButtonGroup` component supports two modes: `single` and `multiple`.
-
-- **Single Mode**: Only one button can be selected at a time. This is useful for actions where only one selection is valid, such as choosing a primary action.
-- **Multiple Mode**: Multiple buttons can be selected simultaneously. This is useful for actions where users can choose several options at once, such as selecting multiple items to perform batch actions.
-
-<DocsPreview>
-  <DocsComp>
-    <ButtonGroup mode="single">
-      <ButtonGroupItem>Single 1</ButtonGroupItem>
-      <ButtonGroupItem>Single 2</ButtonGroupItem>
-      <ButtonGroupItem>Single 3</ButtonGroupItem>
-    </ButtonGroup>
-    <ButtonGroup>
-      <ButtonGroupItem>Multiple 1</ButtonGroupItem>
-      <ButtonGroupItem>Multiple 2</ButtonGroupItem>
-      <ButtonGroupItem>Multiple 3</ButtonGroupItem>
-    </ButtonGroup>
-  </DocsComp>
-
-```tsx
-import { ButtonGroupItem, ButtonGroup } from "react-material";
-
-<ButtonGroup mode="single">
-    <ButtonGroupItem>Single 1</ButtonGroupItem>
-    <ButtonGroupItem>Single 2</ButtonGroupItem>
-    <ButtonGroupItem>Single 3</ButtonGroupItem>
-</ButtonGroup>
-<ButtonGroup mode="multiple">
-    <ButtonGroupItem>Multiple 1</ButtonGroupItem>
-    <ButtonGroupItem>Multiple 2</ButtonGroupItem>
-    <ButtonGroupItem>Multiple 3</ButtonGroupItem>
-</ButtonGroup>
-```
-
-</DocsPreview>
 
 # Variants
 
@@ -107,3 +70,76 @@ import { ButtonGroupItem, ButtonGroup } from "react-material";
 ```
 
 </DocsPreview>
+
+
+# Mode
+
+The `ButtonGroup` component supports two modes: `single` and `multiple`.
+
+- **Single Mode**: Only one button can be selected at a time. This is useful for actions where only one selection is valid, such as choosing a primary action.
+- **Multiple Mode**: Multiple buttons can be selected simultaneously. This is useful for actions where users can choose several options at once, such as selecting multiple items to perform batch actions.
+
+<DocsPreview>
+  <DocsComp>
+    <ButtonGroup mode="single">
+      <ButtonGroupItem>Single 1</ButtonGroupItem>
+      <ButtonGroupItem>Single 2</ButtonGroupItem>
+      <ButtonGroupItem>Single 3</ButtonGroupItem>
+    </ButtonGroup>
+    <ButtonGroup>
+      <ButtonGroupItem>Multiple 1</ButtonGroupItem>
+      <ButtonGroupItem>Multiple 2</ButtonGroupItem>
+      <ButtonGroupItem>Multiple 3</ButtonGroupItem>
+    </ButtonGroup>
+  </DocsComp>
+
+```tsx
+import { ButtonGroupItem, ButtonGroup } from "react-material";
+
+<ButtonGroup mode="single">
+    <ButtonGroupItem>Single 1</ButtonGroupItem>
+    <ButtonGroupItem>Single 2</ButtonGroupItem>
+    <ButtonGroupItem>Single 3</ButtonGroupItem>
+</ButtonGroup>
+<ButtonGroup mode="multiple">
+    <ButtonGroupItem>Multiple 1</ButtonGroupItem>
+    <ButtonGroupItem>Multiple 2</ButtonGroupItem>
+    <ButtonGroupItem>Multiple 3</ButtonGroupItem>
+</ButtonGroup>
+```
+
+</DocsPreview>
+
+# API Reference
+
+## ButtonGroup
+
+The main container component that groups multiple buttons together.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"elevated"` \| `"filled"` \| `"tonal"` \| `"outlined"` | `"filled"` | The visual variant of the button group |
+| `shape` | `"round"` \| `"square"` | `"round"` | The shape style of the buttons |
+| `mode` | `"single"` \| `"multiple"` | Required | Selection mode - single allows only one selection, multiple allows multiple selections |
+| `children` | `React.ReactNode` | Required | The ButtonGroupItem components to render |
+
+### Inherited Props
+
+The `ButtonGroup` component also accepts all standard HTML `div` element props.
+
+## ButtonGroupItem
+
+Individual button items within a button group.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | Required | The content to display in the button |
+| `buttonProps` | `ButtonProps` | `{}` | Additional props to pass to the underlying Button component |
+
+### Inherited Props
+
+The `ButtonGroupItem` component accepts all standard HTML `input` element props since it renders as an input element for state management.

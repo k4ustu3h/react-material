@@ -4,10 +4,12 @@
     border: none;
     position: relative;
     overflow: hidden;
-
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
 
     &.elevation-normal {
       box-shadow: var(--m3-util-elevation-3);
@@ -58,9 +60,12 @@
     }
   }
 
-  .m3-fab-container {
-    -webkit-tap-highlight-color: transparent;
+  /* Focus-visible state */
+  .m3-fab-container:focus-visible {
+    outline: 2px solid rgb(var(--m3-scheme-primary));
+    outline-offset: 2px;
   }
+
   @media (hover: hover) {
     .elevation-normal:hover {
       box-shadow: var(--m3-util-elevation-4);
@@ -70,10 +75,27 @@
     }
   }
 
-  .m3-fab-container {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .m3-fab-container:focus-visible {
+      outline-width: 3px;
+    }
   }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .elevation-normal,
+    .elevation-lowered {
+      transition: none;
+    }
+  }
+
+  /* Disabled state accessibility */
+  .m3-fab-container:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+
   @media screen and (forced-colors: active) {
     .m3-fab-container {
       outline: solid 0.25rem;

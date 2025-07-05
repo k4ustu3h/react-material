@@ -46,7 +46,7 @@ function generateIndex() {
   }
 
   // Find all MDX files
-  const mdxFiles = glob.sync("**/*.mdx", { cwd: DOCS_DIR });
+  const mdxFiles = glob.sync("**/*.mdx", { cwd: DOCS_DIR, posix: true });
 
   // Filter out files from the docs/components/soon directory
   const filteredMdxFiles = mdxFiles.filter((file) => !file.startsWith("components/soon/"));

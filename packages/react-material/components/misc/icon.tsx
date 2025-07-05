@@ -4,7 +4,7 @@ import mergeProps from "../../utils/merge-props/merge-props";
 export type IconVariant = "outlined" | "rounded" | "sharp";
 
 export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactNode;
+  children: string;
   variant?: IconVariant;
   size?: number | string;
   fill?: boolean;
@@ -32,9 +32,9 @@ export const Icon: React.FC<IconProps> = ({
       {...mergeProps(props, {
         className: `m3-icon material-symbols-${variant}`,
         style: iconStyle,
-      })}
-      role="img"
-      aria-hidden="true">
+        role: "img",
+        "aria-hidden": true,
+      })}>
       {children}
     </span>
   );

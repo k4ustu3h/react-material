@@ -7,5 +7,22 @@
       color: rgb(var(--m3-scheme-on-primary-container));
       border-radius: var(--m3-util-rounding-full);
     }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      &.contained {
+        border: 2px solid rgb(var(--m3-scheme-outline));
+      }
+    }
+
+    /* Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      & svg {
+        animation: none;
+      }
+      & circle {
+        animation: none;
+      }
+    }
   }
 }

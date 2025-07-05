@@ -39,6 +39,14 @@ export const Button: React.FC<Props> = (props) => {
   };
   const baseClasses = `m3-button-container ${variant} ${shape} ${size} ${fontSizeClasses[size]}`;
 
+  // Accessibility: Ensure button has accessible text
+  const hasAccessibleText = children || props["aria-label"];
+  if (!hasAccessibleText) {
+    console.warn(
+      "Button component should have either visible text (children) or aria-label for accessibility"
+    );
+  }
+
   if ("htmlFor" in props) {
     return (
       <label {...mergeProps(extraProps as LabelProps, { className: baseClasses })}>
@@ -47,8 +55,16 @@ export const Button: React.FC<Props> = (props) => {
       </label>
     );
   } else if ("href" in props) {
+    const linkProps = mergeProps(extraProps as AnchorProps, {
+      className: baseClasses,
+      // Accessibility: External links should indicate they open in new tab
+      ...(props.target === "_blank" &&
+        !props["aria-label"] && {
+          "aria-label": `${children} (opens in new tab)`,
+        }),
+    });
     return (
-      <a {...mergeProps(extraProps as AnchorProps, { className: baseClasses })}>
+      <a {...linkProps}>
         {ripple && <Ripple />}
         {children}
       </a>

@@ -13,6 +13,7 @@ let watcher = null;
 const getFileList = () => {
   try {
     const files = glob.sync("{components,utils}/**/*.{ts,tsx}", {
+      posix: true,
       ignore: [
         "**/*.test.{ts,tsx}",
         "**/*.stories.{ts,tsx}",

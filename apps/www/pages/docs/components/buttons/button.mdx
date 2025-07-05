@@ -135,3 +135,27 @@ import { Button } from "react-material";
 ```
 
 </DocsPreview>
+
+# API Reference
+
+## Button
+
+A versatile button component that can render as a `button`, `a` (anchor), or `label` element depending on the props provided.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"elevated"` \| `"filled"` \| `"tonal"` \| `"outlined"` \| `"text"` | `"filled"` | The visual variant of the button |
+| `shape` | `"round"` \| `"square"` | `"round"` | The shape style of the button |
+| `size` | `"extrasmall"` \| `"small"` \| `"medium"` \| `"large"` \| `"extralarge"` | `"small"` | The size of the button |
+| `ripple` | `boolean` | `true` | Whether to show ripple effect on interaction |
+| `children` | `React.ReactNode` | Required | The content to display in the button |
+
+### Conditional Props
+
+The component accepts different props based on its intended use:
+
+- **As Button**: Accepts all standard HTML `button` element props
+- **As Link**: When `href` prop is provided, accepts all standard HTML `a` element props
+- **As Label**: When `htmlFor` prop is provided, accepts all standard HTML `label` element props

@@ -134,3 +134,47 @@ function ManualSnackbar() {
   );
 }
 ```
+
+# API Reference
+
+## Snackbar
+
+A notification component that appears temporarily to provide feedback or information.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `message` | `string` | Required | The message to display in the snackbar |
+| `open` | `boolean` | `false` | Whether the snackbar is visible |
+| `autoHideDuration` | `number` | `4000` | Time in milliseconds before auto-hiding. Set to 0 to disable auto-hide |
+| `actionName` | `string` | `undefined` | Text for the action button |
+| `onActionClick` | `() => void` | `undefined` | Callback fired when the action button is clicked |
+| `onClose` | `() => void` | `undefined` | Callback fired when the snackbar is closed |
+| `closeable` | `boolean` | `false` | Whether to show a close button |
+
+### Inherited Props
+
+The `Snackbar` component accepts all standard HTML `div` element props.
+
+## useSnackbar Hook
+
+Hook for accessing the snackbar system from within components.
+
+### Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| `showSnackbar` | `(options: SnackbarOptions) => void` | Function to show a new snackbar |
+| `hideSnackbar` | `(id: string) => void` | Function to hide a specific snackbar by ID |
+| `hideAllSnackbars` | `() => void` | Function to hide all snackbars |
+
+### SnackbarOptions
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `message` | `string` | Required | The message to display |
+| `actionName` | `string` | `undefined` | Text for the action button |
+| `onActionClick` | `() => void` | `undefined` | Action button click handler |
+| `closeable` | `boolean` | `false` | Whether to show close button |
+| `autoHideDuration` | `number` | `4000` | Auto-hide duration in milliseconds |

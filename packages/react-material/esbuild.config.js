@@ -20,6 +20,7 @@ let cachedEntryPoints = null;
 const getComponentFiles = () => {
   try {
     return glob.sync("components/**/*.{ts,tsx}", {
+      posix: true,
       ignore: [
         "**/*.test.{ts,tsx}",
         "**/*.stories.{ts,tsx}",
@@ -66,6 +67,7 @@ const createEntryPoints = (useCache = true) => {
   let utilFiles = [];
   try {
     utilFiles = glob.sync("utils/**/*.{ts,tsx}", {
+      posix: true,
       ignore: [
         "**/*.test.{ts,tsx}",
         "**/*.stories.{ts,tsx}",

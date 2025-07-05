@@ -6,10 +6,6 @@
     pointer-events: none;
     overflow: hidden;
 
-    &:hover {
-      background-color: tomato;
-    }
-
     & ~ .tint {
       position: absolute;
       inset: 0;
@@ -33,10 +29,23 @@
   }
 }
 
-:is(
-  input:focus-visible + label > .tint,
-  :focus-visible > .tint,
-  .ripple-container.broken + .tint:active > .tint
-) {
+:is(input:focus-visible + label > .tint, :focus-visible > .tint) {
   opacity: 0.12;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .m3-ripple-container {
+    display: none;
+  }
+  .m3-ripple-container ~ .tint {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .m3-ripple-container ~ .tint {
+    opacity: 0.2;
+  }
 }

@@ -14,7 +14,15 @@ export const Loading: React.FC<Props> = (props) => {
   const baseClasses = `m3-loading-container ${contained ? "contained" : ""}`;
 
   return (
-    <svg width={size} height={size} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" {...mergeProps(extraProps, { className: baseClasses })}>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label={props["aria-label"] || "Loading"}
+      aria-live="polite"
+      {...mergeProps(extraProps, { className: baseClasses })}>
       <path fill="currentColor">
         <animate
           attributeName="d"

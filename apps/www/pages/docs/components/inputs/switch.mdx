@@ -28,3 +28,25 @@ The `Switch` component can be in one of the following states:
   <Switch disabled />
   ```
 </DocsPreview>
+
+# API Reference
+
+## Switch
+
+A toggle switch component for binary on/off choices.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `undefined` | Whether the switch is checked (for controlled components) |
+
+### Inherited Props
+
+The `Switch` component accepts all standard HTML `input[type="checkbox"]` element props.
+
+### Notes
+
+- The switch renders as an input with `role="switch"` for proper accessibility
+- The component includes visual checkmark indicator when enabled
+- Use the `checked` prop for controlled components or `defaultChecked` for uncontrolled components

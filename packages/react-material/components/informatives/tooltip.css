@@ -112,4 +112,31 @@
       }
     }
   }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .m3-tooltip-container.plain {
+      border: 2px solid rgb(var(--m3-scheme-outline));
+    }
+    .m3-tooltip-container.rich {
+      border: 2px solid rgb(var(--m3-scheme-outline));
+    }
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .m3-tooltip-container {
+      transition: none;
+      transform: none !important;
+    }
+    .m3-tooltip-container.tooltip-hidden {
+      transform: none !important;
+    }
+  }
+
+  /* Focus management for rich tooltips */
+  .m3-tooltip-container.rich:focus-within {
+    outline: 2px solid rgb(var(--m3-scheme-primary));
+    outline-offset: 2px;
+  }
 }

@@ -217,6 +217,9 @@ export default function DocList({
                           <Button
                             variant={groupItem.path === currentPath ? "tonal" : "text"}
                             size="medium"
+                            onClick={(e: any) => {
+                              groupItem.path === currentPath ? e.preventDefault() : null;
+                            }}
                             className="w-full justify-start">
                             {groupItem.title}
                           </Button>

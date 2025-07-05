@@ -117,7 +117,7 @@ const CodeHighlight = ({
         {/* Copy button */}
         <Button
           variant="text"
-          className="size-8 p-0"
+          className="size-8 p-0 bg-surface-container/75"
           onClick={copyToClipboard}
           title={copied ? "Copied!" : "Copy code"}
           aria-label={copied ? "Copied!" : "Copy code to clipboard"}>
@@ -128,7 +128,7 @@ const CodeHighlight = ({
         {needsCollapse && (
           <Button
             variant="text"
-            className="size-8 p-0"
+            className="size-8 p-0 bg-surface-container/75"
             onClick={toggleCollapse}
             title={isCollapsed ? "Expand code" : "Collapse code"}
             aria-label={isCollapsed ? "Expand code" : "Collapse code"}>
@@ -177,12 +177,28 @@ const CodeHighlight = ({
 };
 
 // Helper function to generate slugs from text
+const slugRegistry = new Map<string, number>();
+
 const generateSlug = (text: string): string => {
-  return text
+  const baseSlug = text
     .toLowerCase()
     .replace(/[^\w\s-]/g, "") // Remove special characters
     .replace(/[\s_-]+/g, "-") // Replace spaces and underscores with hyphens
     .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
+
+  // Check if this slug already exists
+  const existingCount = slugRegistry.get(baseSlug) || 0;
+
+  // Update the counter for this slug
+  slugRegistry.set(baseSlug, existingCount + 1);
+
+  // If it's the first occurrence, use the base slug without any number
+  if (existingCount <= 1) {
+    return baseSlug;
+  }
+
+  // If it's a duplicate, append the counter (starting from 1 for the second occurrence)
+  return `${baseSlug}-${existingCount}`;
 };
 
 // Copy to clipboard component

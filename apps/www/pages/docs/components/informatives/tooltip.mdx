@@ -21,20 +21,34 @@ import {
 
 The `Tooltip` component is designed to provide additional information or context about an element when a user hovers over it. Tooltips are commonly used to enhance user experience by offering explanations, tips, or details without cluttering the interface. They are particularly useful for icons, buttons, and other interactive elements where space is limited.
 
-# Basic Usage
 
-The most basic tooltip requires only text content and wraps around the element you want to provide information for.
+# Variants
+
+The tooltip component offers two visual variants to suit different design contexts:
+
+- **Plain**: A minimal tooltip with a dark background and small text
+- **Rich**: A more prominent tooltip with structured content with a header, body, and an optional action button
 
 <DocsPreview>
 <DocsComp>
-  <BasicTooltip />
+  <TooltipVariants />
 </DocsComp>
 
 ```tsx
 import { Tooltip, Button } from "react-material";
 
-<Tooltip text="This is a basic tooltip">
-  <Button>Hover me</Button>
+<Tooltip text="Plain tooltip" variant="plain">
+  <Button>Plain</Button>
+</Tooltip>
+<Tooltip
+  variant="rich"
+  header="Feature Update"
+  text="New features are now available. Click to learn more about the latest improvements and enhancements."
+  actions={[
+    { label: "Learn More", onClick: () => console.log("Action clicked!"), variant: "text" }
+  ]}
+  >
+  <Button>Rich with Action</Button>
 </Tooltip>
 ```
 
@@ -73,37 +87,6 @@ import { Tooltip, Button } from "react-material";
 
 </DocsPreview>
 
-# Variants
-
-The tooltip component offers two visual variants to suit different design contexts:
-
-- **Plain**: A minimal tooltip with a dark background and small text
-- **Rich**: A more prominent tooltip with structured content with a header, body, and an optional action button
-
-<DocsPreview>
-<DocsComp>
-  <TooltipVariants />
-</DocsComp>
-
-```tsx
-import { Tooltip, Button } from "react-material";
-
-<Tooltip text="Plain tooltip" variant="plain">
-  <Button>Plain</Button>
-</Tooltip>
-<Tooltip
-  variant="rich"
-  header="Feature Update"
-  text="New features are now available. Click to learn more about the latest improvements and enhancements."
-  actions={[
-    { label: "Learn More", onClick: () => console.log("Action clicked!"), variant: "text" }
-  ]}
-  >
-  <Button>Rich with Action</Button>
-</Tooltip>
-```
-
-</DocsPreview>
 
 # Delay Configuration
 
@@ -177,3 +160,41 @@ import { Tooltip, Button } from "react-material";
 ```
 
 </DocsPreview>
+
+# API Reference
+
+## Tooltip
+
+A contextual popup component that provides additional information when hovering over an element.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | Required | The main content text to display in the tooltip |
+| `position` | `"top"` \| `"bottom"` \| `"left"` \| `"right"` | `"top"` | Position of the tooltip relative to the trigger element |
+| `variant` | `"plain"` \| `"rich"` | `"plain"` | Visual style of the tooltip |
+| `delay` | `number` | `200` | Delay in milliseconds before showing the tooltip |
+| `disabled` | `boolean` | `false` | Whether to disable the tooltip functionality |
+| `children` | `React.ReactNode` | Required | The trigger element that activates the tooltip |
+
+### Rich Variant Props
+
+These props are only applicable when `variant="rich"`:
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `header` | `string` | `undefined` | Optional header text for rich tooltips |
+| `actions` | `TooltipAction[]` | `undefined` | Array of action buttons for rich tooltips |
+
+### TooltipAction
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | Required | Text to display on the action button |
+| `onClick` | `() => void` | Required | Function called when the action button is clicked |
+| `variant` | `"text"` \| `"outlined"` \| `"filled"` | `"text"` | Visual style of the action button |
+
+### Inherited Props
+
+The `Tooltip` component accepts all standard HTML `div` element props on the trigger container.

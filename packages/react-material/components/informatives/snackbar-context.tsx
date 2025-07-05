@@ -119,7 +119,7 @@ export const SnackbarProvider: React.FC<SnackbarProviderProps> = ({
             closeable={snackbar.closeable}
             onClose={() => hideSnackbar(snackbar.id)}
             style={{
-              zIndex: 100 - reversedIndex, // Higher index = newer = higher z-index
+              // zIndex: 100 - reversedIndex, // Higher index = newer = higher z-index
               bottom: `${16 + reversedIndex * 10}px`,
               scale: 1 - reversedIndex * 0.05, // Newest (reversedIndex=highest) is full size
               opacity: reversedIndex < maxSnackbars ? 1 : 0,

@@ -49,3 +49,27 @@ The `Loading` component can also be adjusted in size to fit different contexts. 
   <Loading size={72} />
   ```
 </DocsPreview>
+
+# API Reference
+
+## Loading
+
+An animated loading indicator component for showing progress during asynchronous operations.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `number` | `48` | The size of the loading indicator in pixels |
+| `contained` | `boolean` | `false` | Whether to show the loading indicator with a contained background |
+
+### Inherited Props
+
+The `Loading` component accepts all standard HTML `svg` element props.
+
+### Notes
+
+- The component renders as an SVG with animated path elements
+- The animation uses CSS transforms and keyframe animations for smooth rotation
+- The `contained` variant adds a background container for better visibility
+- Size is specified in pixels and affects both width and height equally

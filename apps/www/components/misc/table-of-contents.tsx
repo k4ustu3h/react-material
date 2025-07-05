@@ -97,7 +97,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ className }) => {
               if (entry.isIntersecting) {
                 // Add active class to current button
                 tocButton.classList.remove("text-on-surface-variant");
-                tocButton.classList.add("text-on-primary-container", "font-medium");
+                tocButton.classList.add("!text-on-primary-container", "font-medium");
 
                 // Update active IDs set
                 setActiveIds((prev) => new Set([...prev, entry.target.id]));
@@ -106,7 +106,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ className }) => {
                 setPrimaryActiveId((prev) => prev || entry.target.id);
               } else {
                 // Remove active class when no longer intersecting
-                tocButton.classList.remove("text-on-primary-container", "font-medium");
+                tocButton.classList.remove("!text-on-primary-container", "font-medium");
                 tocButton.classList.add("text-on-surface-variant");
 
                 // Remove from active IDs set and update primary if needed
@@ -155,7 +155,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ className }) => {
     return () => {
       cleanup.then((cleanupFn) => cleanupFn && cleanupFn());
     };
-  }, [tocItems, activeIds]);
+  }, [tocItems]);
 
   // Auto-scroll TOC to keep active item visible
   useEffect(() => {
@@ -253,6 +253,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ className }) => {
                     className="w-full justify-start text-wrap rounded-sm text-on-surface-variant"
                     style={{
                       paddingLeft: `${(item.level - 1) * 12 + 8}px`,
+                      color: `rgb(var(--m3-scheme-on-surface-variant)/ ${1 - (item.level - 1) * 0.15})`,
                     }}>
                     <span className="line-clamp-2 text-wrap w-full text-left">
                       {item.title.replace("link", "")}

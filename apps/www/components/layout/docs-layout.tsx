@@ -185,9 +185,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                       <p className="m3-font-headline-small text-base flex gap-1 items-center">
                         <Icon>arrow_back</Icon>Previous
                       </p>
-                      <p className="m3-font-headline-medium">
-                        {Navigation[0][0]}
-                      </p>
+                      <p className="m3-font-headline-medium">{Navigation[0][0]}</p>
                     </Button>
                   </Link>
                 ) : (
@@ -204,9 +202,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                       <p className="m3-font-headline-small text-base flex gap-1 items-center">
                         Next<Icon>arrow_forward</Icon>
                       </p>
-                      <p className="m3-font-headline-medium">
-                        {Navigation[1][0]}
-                      </p>
+                      <p className="m3-font-headline-medium">{Navigation[1][0]}</p>
                     </Button>
                   </Link>
                 ) : (

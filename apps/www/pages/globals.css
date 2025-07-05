@@ -110,7 +110,7 @@
 
 @layer utilities {
   .prose {
-    @apply prose-headings:font-dmsans prose-headings:my-4 prose-p:mb-2 prose-pre:p-0 prose-table:m-0 prose-pre:rounded-md;
+    @apply prose-headings:font-dmsans prose-headings:my-4 prose-p:mb-2 prose-pre:p-0 prose-table:m-0 prose-pre:rounded-md prose-code:before:content-none prose-code:after:content-none;
     max-width: none;
     --tw-prose-body: var(--color-on-surface);
     --tw-prose-headings: var(--color-on-surface);

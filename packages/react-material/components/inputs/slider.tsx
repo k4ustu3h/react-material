@@ -27,7 +27,7 @@ export const Slider: React.FC<Props> = (props) => {
     defaultValue,
     min = 0,
     max = 100,
-    step,
+    step = 10,
     mode = "continuous",
     disabled = false,
     showValue = true,
@@ -37,6 +37,14 @@ export const Slider: React.FC<Props> = (props) => {
   const [value, setValue] = useState<number>(Number(defaultValue) || min);
 
   const baseClasses = ``;
+
+  // Accessibility: Warn if slider doesn't have accessible label
+  const hasAccessibleLabel = props["aria-label"] || props["aria-labelledby"];
+  if (!hasAccessibleLabel) {
+    console.warn(
+      "Slider component should have either aria-label or aria-labelledby for accessibility"
+    );
+  }
 
   const updateValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.currentTarget.value);
@@ -49,7 +57,7 @@ export const Slider: React.FC<Props> = (props) => {
 
   const ticks = () => {
     const ticksList = [];
-    for (let i = 0; i <= range; i += Number(step) || 1) {
+    for (let i = 0; i <= range; i += Number(step)) {
       ticksList.push((i / range) * 100);
     }
     return ticksList;
@@ -67,9 +75,14 @@ export const Slider: React.FC<Props> = (props) => {
         max={max}
         step={step}
         disabled={disabled}
-        {...mergeProps(extraProps, { className: baseClasses })}></input>
-      <div className="track"></div>
-      <div className="thumb"></div>
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-valuenow={value}
+        aria-valuetext={props["aria-valuetext"] || `${value} out of ${max}`}
+        {...mergeProps(extraProps, { className: baseClasses })}
+      />
+      <div className="track" aria-hidden="true"></div>
+      <div className="thumb" aria-hidden="true"></div>
       {mode === "discrete" &&
         ticks().map((tick, index) => (
           <div
@@ -77,10 +90,12 @@ export const Slider: React.FC<Props> = (props) => {
             className={`tick 
               ${Math.abs(tick / 100 - value / range) < 0.01 ? "hidden" : ""} ${tick / 100 > value / range ? "inactive" : ""}
             `}
-            style={{ "--x": `${tick / 100 - 0.5}` } as React.CSSProperties}></div>
+            style={{ "--x": `${tick / 100 - 0.5}` } as React.CSSProperties}
+            aria-hidden="true"
+          />
         ))}
       {showValue && (
-        <div className="value m3-font-label-large">
+        <div className="value m3-font-label-large" aria-live="polite">
           <span>{value}</span>
         </div>
       )}

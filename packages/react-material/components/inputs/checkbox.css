@@ -9,10 +9,24 @@
     cursor: pointer;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+
     & input {
       position: absolute;
       opacity: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      cursor: pointer;
+
+      /* Accessibility: Ensure input is accessible to screen readers */
+      &:not(:focus-visible) {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        overflow: hidden;
+        white-space: nowrap;
+      }
     }
+
     & .m3-checkbox-box {
       position: absolute;
       inset: 0.6875rem;
@@ -21,6 +35,7 @@
       transition: var(--m3-util-easing-fast);
       -webkit-tap-highlight-color: transparent;
     }
+
     & svg {
       position: absolute;
       inset: 0.6875rem;
@@ -35,9 +50,32 @@
       }
     }
 
-    /* Focus-visible state */
+    /* Accessibility: Focus styles */
     &:has(input:focus-visible) {
       color: rgb(var(--m3-scheme-on-surface));
+      outline: 2px solid rgb(var(--m3-scheme-primary));
+      outline-offset: 2px;
+    }
+
+    /* Accessibility: High contrast mode support */
+    @media (prefers-contrast: high) {
+      & .m3-checkbox-box {
+        border-width: 2px;
+      }
+
+      &:has(input:checked) .m3-checkbox-box {
+        background-color: rgb(var(--m3-scheme-on-surface));
+        border-color: rgb(var(--m3-scheme-on-surface));
+      }
+    }
+
+    /* Accessibility: Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      & .m3-checkbox-box,
+      & svg,
+      & svg path {
+        transition: none;
+      }
     }
 
     /* Indeterminate state */
@@ -82,25 +120,6 @@
     }
 
     &:has(input:checked) svg path {
-      stroke-dashoffset: 0;
-      transition: stroke-dashoffset var(--m3-util-easing-slow);
-    }
-
-    /* Indeterminate state */
-    &:indeterminate {
-      color: rgb(var(--m3-scheme-primary));
-    }
-
-    &:indeterminate .m3-checkbox-box {
-      background-color: rgb(var(--m3-scheme-primary));
-    }
-
-    &:indeterminate svg {
-      opacity: 1;
-    }
-
-    &:indeterminate svg path {
-      stroke-dasharray: 14;
       stroke-dashoffset: 0;
       transition: stroke-dashoffset var(--m3-util-easing-slow);
     }

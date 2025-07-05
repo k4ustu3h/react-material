@@ -1,28 +1,44 @@
 @layer components {
   .m3-button-container {
     display: inline-flex;
-    border: none;
-    height: fit-content;
-    width: fit-content;
-    gap: 0.5rem;
-    padding: 0 1rem;
-    transition:
-      border-radius var(--m3-util-easing-fast-spatial),
-      background-color var(--m3-util-easing-fast),
-      color var(--m3-util-easing-fast);
-
     align-items: center;
     justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    gap: 0.5rem;
+    padding: 0 1rem;
     background-color: transparent;
     cursor: pointer;
     user-select: none;
     position: relative;
     overflow: hidden;
     -webkit-tap-highlight-color: transparent;
-
     font-family: var(--m3-font);
     text-wrap: nowrap;
+    transition:
+      border-radius var(--m3-util-easing-fast-spatial),
+      background-color var(--m3-util-easing-fast),
+      color var(--m3-util-easing-fast);
 
+    /* Accessibility: Focus styles */
+    &:focus-visible {
+      outline: 2px solid rgb(var(--m3-scheme-primary));
+      outline-offset: 2px;
+      z-index: 1;
+    }
+
+    /* Accessibility: High contrast mode support */
+    @media (prefers-contrast: high) {
+      &:not(:disabled) {
+        border: 1px solid;
+      }
+    }
+
+    /* Accessibility: Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
 
     &:disabled,
     &:is(input:disabled + label) {
@@ -160,14 +176,17 @@
   .m3-button-container > * {
     flex-shrink: 0;
   }
+
   .icon-left > svg {
     width: 1.125rem;
     height: 1.125rem;
   }
+
   .icon-full {
     width: 2.5rem;
     padding: 0;
   }
+
   .icon-full > svg {
     width: 1.5rem;
     height: 1.5rem;
@@ -177,6 +196,7 @@
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+
   @media screen and (forced-colors: active) {
     .m3-button-container:is(.elevated, .filled, .tonal) {
       background-color: transparent;

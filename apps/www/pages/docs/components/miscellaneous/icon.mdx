@@ -1,0 +1,171 @@
+import DocsHeader from "@/components/blocks/docs-header";
+import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
+import { Icon } from "react-material";
+
+<DocsHeader
+  title="Icon"
+  description="A versatile component for displaying Material Design icons using Google's Material Symbols."
+/>
+
+# Overview
+
+The `Icon` component provides a consistent way to display Material Design icons in your React application. It leverages Google's Material Symbols font family to render scalable, high-quality icons that adapt perfectly to your design system.
+
+## Installation Requirements
+
+Before using the Icon component, you need to install the `material-symbols` package to access the Material Symbols font:
+
+```bash
+npm install material-symbols
+```
+
+And then include the font in your root react application:
+
+```tsx
+import "material-symbols";
+```
+
+Or if you prefer using a CDN, add this to your HTML head:
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+```
+
+
+# Variants
+
+The Icon component supports three visual variants that correspond to different Material Symbols font styles:
+
+- **Outlined**: Clean, minimalist icons with outlined strokes (default)
+- **Rounded**: Softer icons with rounded corners and edges
+- **Sharp**: Bold, angular icons with sharp corners
+
+<DocsPreview>
+<DocsComp>
+<Icon variant="outlined">star</Icon>
+<Icon variant="rounded">star</Icon>
+<Icon variant="sharp">star</Icon>
+</DocsComp>
+
+```tsx
+import { Icon } from "react-material";
+
+<Icon variant="outlined">star</Icon>
+<Icon variant="rounded">star</Icon>
+<Icon variant="sharp">star</Icon>
+```
+
+</DocsPreview>
+
+# Sizes
+
+You can control the icon size using the `size` prop, which accepts either a number (pixels) or a CSS string value:
+
+<DocsPreview>
+<DocsComp>
+<Icon size={16}>home</Icon>
+<Icon size={24}>home</Icon>
+<Icon size={32}>home</Icon>
+<Icon size={48}>home</Icon>
+<Icon size="4rem">home</Icon>
+</DocsComp>
+
+```tsx
+import { Icon } from "react-material";
+
+<Icon size={16}>home</Icon>
+<Icon size={24}>home</Icon>
+<Icon size={32}>home</Icon>
+<Icon size={48}>home</Icon>
+<Icon size="4rem">home</Icon>
+```
+
+</DocsPreview>
+
+# Fill and Weight
+
+Icons can be customized with different fill states and font weights:
+
+## Fill
+
+The `fill` prop controls whether the icon is filled (solid) or outlined:
+
+<DocsPreview>
+<DocsComp>
+<Icon fill={false}>favorite</Icon>
+<Icon fill={true}>favorite</Icon>
+<Icon fill={false}>star</Icon>
+<Icon fill={true}>star</Icon>
+</DocsComp>
+
+```tsx
+import { Icon } from "react-material";
+
+<Icon fill={false}>favorite</Icon>
+<Icon fill={true}>favorite</Icon>
+<Icon fill={false}>star</Icon>
+<Icon fill={true}>star</Icon>
+```
+
+</DocsPreview>
+
+## Weight
+
+The `weight` prop controls the thickness of the icon strokes (100-700):
+
+<DocsPreview>
+<DocsComp>
+<Icon weight={100}>settings</Icon>
+<Icon weight={300}>settings</Icon>
+<Icon weight={400}>settings</Icon>
+<Icon weight={500}>settings</Icon>
+<Icon weight={700}>settings</Icon>
+</DocsComp>
+
+```tsx
+import { Icon } from "react-material";
+
+<Icon weight={100}>settings</Icon>
+<Icon weight={300}>settings</Icon>
+<Icon weight={400}>settings</Icon>
+<Icon weight={500}>settings</Icon>
+<Icon weight={700}>settings</Icon>
+```
+
+</DocsPreview>
+
+# API Reference
+
+## Icon
+
+A component for displaying Material Design icons using Google's Material Symbols.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `string` | Required | The Material Symbol icon name (e.g., "home", "star", "settings") |
+| `variant` | `"outlined"` \| `"rounded"` \| `"sharp"` | `"rounded"` | The visual style variant of the icon |
+| `size` | `number` \| `string` | `"1em"` | The size of the icon. Numbers are treated as pixels, strings as CSS values |
+| `fill` | `boolean` | `false` | Whether the icon should be filled (solid) or outlined |
+| `weight` | `number` | `400` | The font weight of the icon (100-700) |
+
+### Inherited Props
+
+The `Icon` component accepts all standard HTML `span` element props.
+
+### Available Icon Names
+
+The component supports all Material Symbols icon names. You can browse the complete collection at:
+- [Material Symbols Gallery](https://fonts.google.com/icons)
+
+### Notes
+
+- Ensure you have the Material Symbols font loaded in your project
+- Icon names should match the exact names from the Material Symbols collection
+- The component automatically handles accessibility with `role="img"` and `aria-hidden="true"`
+- Icons inherit the current text color by default
+- Size can be controlled via the `size` prop or CSS font-size
+- The component uses font variation settings for optimal rendering of fill and weight properties

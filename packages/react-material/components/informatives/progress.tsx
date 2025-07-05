@@ -14,6 +14,14 @@ export const Progress: React.FC<Props> = (props) => {
   const { variant = "linear", percent, children, ...extraProps } = props;
   const baseClasses = `m3-progress-container`;
 
+  // Accessibility: Warn if progress doesn't have accessible label
+  const hasAccessibleLabel = props["aria-label"] || props["aria-labelledby"];
+  if (!hasAccessibleLabel) {
+    console.warn(
+      "Progress component should have either aria-label or aria-labelledby for accessibility"
+    );
+  }
+
   const containerRef = useRef<SVGSVGElement>(null);
   const animateRef = useRef<SVGAnimateElement>(null);
 
@@ -58,6 +66,10 @@ export const Progress: React.FC<Props> = (props) => {
   return (
     <svg
       role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={percent}
+      aria-valuetext={props["aria-valuetext"] || `${percent}% complete`}
       ref={containerRef}
       {...mergeProps(extraProps, { className: baseClasses })}>
       {variant === "wavy" ? (

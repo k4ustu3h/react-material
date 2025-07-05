@@ -44,3 +44,30 @@ import { Slider } from "react-material";
 ```
 
 </DocsPreview>
+
+# API Reference
+
+## Slider
+
+A slider component for selecting numeric values within a specified range.
+
+### Props
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `min` | `number` | `0` | The minimum value of the slider |
+| `max` | `number` | `100` | The maximum value of the slider |
+| `step` | `number` \| `"any"` | `10` | The stepping interval for the slider. Use "any" for continuous values |
+| `mode` | `"continuous"` \| `"discrete"` | `"continuous"` | The slider mode - continuous for smooth values, discrete for stepped values |
+| `disabled` | `boolean` | `false` | Whether the slider is disabled |
+| `showValue` | `boolean` | `true` | Whether to display the current value |
+
+### Inherited Props
+
+The `Slider` component accepts all standard HTML `input[type="range"]` element props.
+
+### Notes
+
+- When using `mode="discrete"`, the `step` prop is required and must be a number
+- The slider includes visual tick marks when in discrete mode
+- The component handles both controlled and uncontrolled usage patterns

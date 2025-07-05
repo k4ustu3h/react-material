@@ -1,6 +1,6 @@
 import DocsHeader from "@/components/blocks/docs-header";
 import DocsPreview, { DocsComp } from "@/components/blocks/docs-preview";
-import { Button, ThemeProvider, argbFromHex } from "react-material";
+import { Button, ThemeProvider } from "react-material";
 
 <DocsHeader
   title="Theming"
@@ -23,27 +23,89 @@ function App() {
 }
 ```
 
-## Basic Theme Customization
+## API Reference
 
-The `ThemeProvider` accepts several props that allow you to customize the theme:
+### Props
 
-| Prop          | Type      | Description                                                                            |
-| ------------- | --------- | -------------------------------------------------------------------------------------- |
-| `sourceColor` | `number`  | The main color used to generate the theme palette                                      |
-| `sourceImage` | `string`  | URL to an image from which to extract a source color                                   |
-| `variant`     | `Variant` | The theme variant style (e.g., `TONAL_SPOT`, `VIBRANT`)                                |
-| `contrast`    | `number`  | Contrast level from -1 to 1 (-1 for minimum, 1 for maximum)                            |
-| `root`        | `boolean` | When `true`, applies theme to `:root` (required at the root level of your application) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `sourceColor` | `number` | `0xD0BCFF` | The main color used to generate the theme palette (in ARGB format) |
+| `sourceImage` | `string` | - | URL to an image from which to extract a source color |
+| `variant` | `Variant` | `Variant.TONAL_SPOT` | The theme variant style |
+| `contrast` | `number` | `0` | Contrast level from -1 to 1 (-1 for minimum, 1 for maximum) |
+| `root` | `boolean` | `false` | When `true`, applies theme to `:root` (required at the root level) |
+| `maxSnackbars` | `number` | - | Maximum number of snackbars to show simultaneously (only when `root={true}`) |
 
-## Theme Variants
+### Theme Variants
 
-React Material supports various theme variants from Material Design 3:
+| Variant | Description |
+|---------|-------------|
+| `TONAL_SPOT` | Low to medium colorfulness with tertiary colors related to the source color |
+| `VIBRANT` | High colorfulness with vivid colors |
+| `EXPRESSIVE` | High colorfulness with unexpected color combinations |
+| `CONTENT` | Places the source color in the primary container |
+| `MONOCHROME` | Grayscale theme based on the source color |
 
-- `TONAL_SPOT` (default): Low to medium colorfulness with tertiary colors related to the source color
-- `VIBRANT`: High colorfulness with vivid colors
-- `EXPRESSIVE`: High colorfulness with unexpected color combinations
-- `CONTENT`: Places the source color in the primary container
-- `MONOCHROME`: Grayscale theme based on the source color
+### Notes
+
+- Must wrap your application to provide theme context to all components
+- The `root` prop is required at the root level for proper global styling
+- When using `sourceImage`, the component automatically extracts dominant colors
+- Only the root-level `ThemeProvider` supports the `maxSnackbars` prop
+
+## useTheme Hook
+
+A React hook that provides access to the current theme state and actions.
+
+### Returns
+
+```typescript
+interface ThemeContextType {
+  // Current theme state
+  sourceColor: number;
+  variant: Variant;
+  contrast: number;
+  schemes: Record<Variant, { light: DynamicScheme; dark: DynamicScheme }>;
+  styles: string;
+  
+  // Theme actions
+  changeTheme: (options: {
+    sourceColor?: number;
+    sourceImage?: string;
+    variant?: Variant;
+    contrast?: number;
+  }) => void;
+}
+```
+
+### Usage
+
+```tsx
+import { useTheme } from "react-material";
+
+function MyComponent() {
+  const { sourceColor, variant, contrast, changeTheme } = useTheme();
+  
+  // Access current theme values
+  console.log('Current source color:', sourceColor);
+  
+  // Change theme dynamically
+  const handleThemeChange = () => {
+    changeTheme({
+      sourceColor: 0xFF5722,
+      variant: Variant.VIBRANT
+    });
+  };
+  
+  return <button onClick={handleThemeChange}>Change Theme</button>;
+}
+```
+
+### Notes
+
+- Must be used within a `ThemeProvider` component
+- Throws an error if used outside of a `ThemeProvider`
+- The `changeTheme` function allows dynamic theme updates at runtime
 
 ## Using a Source Color
 
@@ -51,7 +113,7 @@ The simplest way to customize your theme is by providing a source color. The sou
 
 <DocsPreview>
   <DocsComp>
-    <ThemeProvider sourceColor={argbFromHex("#aaffaa")}>
+    <ThemeProvider sourceColor={0xaaffaa}>
       <div className="flex gap-2">
         <Button>Default</Button>
         <Button variant="tonal">Tonal</Button>
@@ -61,10 +123,10 @@ The simplest way to customize your theme is by providing a source color. The sou
   </DocsComp>
 
 ```tsx
-import { ThemeProvider, Button, argbFromHex } from "react-material";
+import { ThemeProvider, Button } from "react-material";
 
 function Example() {
-  const greenColor = argbFromHex("#aaffaa");
+  const greenColor = 0xaaffaa;
 
   return (
     <ThemeProvider sourceColor={greenColor}>
@@ -139,7 +201,7 @@ import { ThemeProvider } from "react-material";
 
 function App() {
   return (
-    <ThemeProvider sourceColor={argbFromHex("#6750A4")} root>
+    <ThemeProvider sourceColor={0x6750A4} root>
       {/* Your application */}
     </ThemeProvider>
   );
@@ -151,10 +213,10 @@ When `root={true}`, the theme CSS variables are applied to the `:root` selector,
 For nested ThemeProviders, you should generally set `root={false}` (or omit it as it defaults to `false`) to ensure themes are scoped appropriately:
 
 ```tsx
-<ThemeProvider sourceColor={argbFromHex("#6750A4")} root>
+<ThemeProvider sourceColor={0x6750A4} root>
   {/* Global theme */}
   <div>
-    <ThemeProvider sourceColor={argbFromHex("#FF0000")}>
+    <ThemeProvider sourceColor={0xFF0000}>
       {/* Local theme only affects its children */}
       <Button>Red themed button</Button>
     </ThemeProvider>
@@ -190,13 +252,13 @@ function Example() {
 The theme can be changed at runtime using the `useTheme` hook:
 
 ```tsx
-import { useTheme, Button, argbFromHex } from "react-material";
+import { useTheme, Button } from "react-material";
 
 function ThemeSwitcher() {
   const { changeTheme } = useTheme();
 
   const setRedTheme = () => {
-    changeTheme({ sourceColor: argbFromHex("#FF0000") });
+    changeTheme({ sourceColor: 0xFF0000 });
   };
 
   const setImageTheme = () => {
@@ -434,7 +496,3 @@ export default function App({ Component, pageProps }) {
 9. **Use `font-display: swap`** in your `@font-face` declarations for better loading performance.
 
 10. **Test typography across different devices** to ensure readability on various screen sizes and pixel densities.
-
-## Conclusion
-
-The theming system in React Material provides a powerful way to create dynamic, customizable themes based on Material Design 3 principles. Combined with the comprehensive typography system using Roboto as the default font, React Material makes it easy to create cohesive and beautiful designs. Whether you're using specific brand colors, extracting colors from images, or implementing custom fonts, React Material provides the flexibility and tools needed for professional-grade applications.

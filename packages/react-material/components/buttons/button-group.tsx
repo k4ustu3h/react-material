@@ -40,7 +40,16 @@ export const ButtonGroup: React.FC<Props> = (props) => {
     return child;
   });
 
-  return <div {...mergeProps(extraProps, { className: baseClasses })}>{enhancedChildren}</div>;
+  // Accessibility: Ensure button group has accessible name
+  const accessibilityProps = {
+    role: mode === "single" ? "radiogroup" : "group",
+    "aria-label": extraProps["aria-label"] || `Button group with ${mode} selection`,
+    ...extraProps,
+  };
+
+  return (
+    <div {...mergeProps(accessibilityProps, { className: baseClasses })}>{enhancedChildren}</div>
+  );
 };
 
 export const ButtonGroupItem: React.FC<ButtonGroupItemProps> = (props) => {
@@ -50,8 +59,21 @@ export const ButtonGroupItem: React.FC<ButtonGroupItemProps> = (props) => {
 
   return (
     <React.Fragment>
-      <input id={id} type={mode === "single" ? "radio" : "checkbox"} {...extraProps} />
-      <Button {...mergeProps(buttonProps, { shape: "square" as "square", htmlFor: id })}>
+      <input
+        id={id}
+        type={mode === "single" ? "radio" : "checkbox"}
+        {...extraProps}
+        // Accessibility: Hide input visually but keep it accessible
+        style={{ position: "absolute", left: "-9999px" }}
+      />
+      <Button
+        {...mergeProps(buttonProps, {
+          shape: "square" as "square",
+          htmlFor: id,
+          // Accessibility: Indicate the button's toggle state
+          "aria-pressed": extraProps.checked || extraProps.defaultChecked,
+          role: mode === "single" ? "radio" : "checkbox",
+        })}>
         {children}
       </Button>
     </React.Fragment>

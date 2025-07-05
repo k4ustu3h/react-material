@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-07-05T07:26:50.274Z
+// Generated on 2025-07-05T17:44:27.575Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -39,13 +39,6 @@ const docsIndex: DocIndex = {
   ],
   "components": [
     {
-      title: "Accordion",
-      description: "A vertically stacked set of interactive headings that each reveal a section of content when clicked.",
-      path: "/docs/components/surfaces/accordion",
-      group: "surfaces",
-      groupTitle: "Surfaces",
-    },
-    {
       title: "Button",
       description: "A versatile component for triggering actions or navigating users.",
       path: "/docs/components/buttons/button",
@@ -58,20 +51,6 @@ const docsIndex: DocIndex = {
       path: "/docs/components/buttons/button-group",
       group: "buttons",
       groupTitle: "Buttons",
-    },
-    {
-      title: "Card",
-      description: "A flexible and extensible content container that can be used to display information in a structured format.",
-      path: "/docs/components/surfaces/card",
-      group: "surfaces",
-      groupTitle: "Surfaces",
-    },
-    {
-      title: "Carousel",
-      description: "A versatile UI element that allows users to view a series of images or content in a sliding format.",
-      path: "/docs/components/surfaces/carousel",
-      group: "surfaces",
-      groupTitle: "Surfaces",
     },
     {
       title: "Checkbox",
@@ -88,13 +67,6 @@ const docsIndex: DocIndex = {
       groupTitle: "Buttons",
     },
     {
-      title: "Dialog",
-      description: "A modal dialog component that displays content in a focused overlay, allowing users to interact with it without navigating away from the current page.",
-      path: "/docs/components/surfaces/dialog",
-      group: "surfaces",
-      groupTitle: "Surfaces",
-    },
-    {
       title: "FAB",
       description: "A Floating Action Button (FAB) is a circular button that represents the primary action on a page.",
       path: "/docs/components/buttons/fab",
@@ -102,18 +74,18 @@ const docsIndex: DocIndex = {
       groupTitle: "Buttons",
     },
     {
+      title: "Icon",
+      description: "A versatile component for displaying Material Design icons using Google",
+      path: "/docs/components/miscellaneous/icon",
+      group: "miscellaneous",
+      groupTitle: "Miscellaneous",
+    },
+    {
       title: "Loading",
       description: "A component designed to provides visual feedback to users during processes that take time.",
       path: "/docs/components/informatives/loading",
       group: "informatives",
       groupTitle: "Informatives",
-    },
-    {
-      title: "Menu",
-      description: "A versatile UI element that presents a list of options or actions for users to select from.",
-      path: "/docs/components/surfaces/menu",
-      group: "surfaces",
-      groupTitle: "Surfaces",
     },
     {
       title: "Progress",
@@ -158,25 +130,11 @@ const docsIndex: DocIndex = {
       groupTitle: "Inputs",
     },
     {
-      title: "Tabs",
-      description: "A user interface element that organizes content into separate views, allowing users to switch between them easily.",
-      path: "/docs/components/navigations/tabs",
-      group: "navigations",
-      groupTitle: "Navigations",
-    },
-    {
       title: "Text Field",
       description: "A versatile input component for capturing user text input.",
       path: "/docs/components/inputs/text-field",
       group: "inputs",
       groupTitle: "Inputs",
-    },
-    {
-      title: "Toolbar",
-      description: "A versatile UI element that provides a horizontal layout for displaying a set of actions or navigation options.",
-      path: "/docs/components/surfaces/toolbar",
-      group: "surfaces",
-      groupTitle: "Surfaces",
     },
     {
       title: "Tooltip",

@@ -88,10 +88,7 @@ export const Ripple: React.FC<RippleContainerProps> = () => {
       svg.appendChild(gradient);
       svg.appendChild(circle);
 
-      const ua = navigator.userAgent;
-      const isFirefox = ua.includes('Firefox');
-      const isTrulySafari = !ua.includes('Chrome') && ua.includes('Safari');
-      if (!isFirefox && !isTrulySafari && size > 100) {
+      if (size > 100) {
         const filterId = `noise-${Date.now()}`;
         const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
         filter.id = filterId;

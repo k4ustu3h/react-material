@@ -1,4 +1,4 @@
-import React, { useState, useRef, useId } from "react";
+import React, { useState, useRef, useId, useEffect } from "react";
 import "./tooltip.css";
 import mergeProps from "../../utils/merge-props/merge-props";
 import { Portal } from "../misc/portal";
