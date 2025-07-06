@@ -19,17 +19,12 @@ npm install react-material
 Next, you need to wrap your application with the `ThemeProvider` from the `react-material` package. This is essential for applying the default theme and styles to your components. You can do this in your main application file (e.g., `App.js` or `index.js`):
 
 ```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'react-material';
-import App from './App';
-import './index.css';
-ReactDOM.render(
-  <ThemeProvider>
-    <App />
-  </ThemeProvider>,
-  document.getElementById('root')
-);
+
+<ThemeProvider root>
+  <App />
+</ThemeProvider>,
+
 ```
 
 ## Step 3: Use Components in Your Application

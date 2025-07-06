@@ -206,7 +206,7 @@ bun add react-material # bun`}
                   language="tsx">
                   {`import { ThemeProvider } from 'react-material'
 
-<ThemeProvider>
+<ThemeProvider root>
   <App />
 </ThemeProvider>`}
                 </ShikiHighlighter>
