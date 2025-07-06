@@ -180,14 +180,23 @@ export default function DocList({
             // Render a single item
             return (
               <li key={item.item.path}>
-                <Link href={item.item.path}>
+                {item.item.path !== currentPath ? (
+                  <Link href={item.item.path}>
+                    <Button
+                      variant={item.item.path === currentPath ? "tonal" : "text"}
+                      size="medium"
+                      className="w-full justify-start">
+                      {item.item.title}
+                    </Button>
+                  </Link>
+                ) : (
                   <Button
                     variant={item.item.path === currentPath ? "tonal" : "text"}
                     size="medium"
                     className="w-full justify-start">
                     {item.item.title}
                   </Button>
-                </Link>
+                )}
               </li>
             );
           } else if (item.type === "group" && item.groupName && item.items) {
@@ -213,17 +222,23 @@ export default function DocList({
                   <ul className="list-none p-0 ml-4">
                     {item.items.map((groupItem) => (
                       <li key={groupItem.path} className="">
-                        <Link href={groupItem.path}>
+                        {groupItem.path !== currentPath ? (
+                          <Link href={groupItem.path}>
+                            <Button
+                              variant={groupItem.path === currentPath ? "tonal" : "text"}
+                              size="medium"
+                              className="w-full justify-start">
+                              {groupItem.title}
+                            </Button>
+                          </Link>
+                        ) : (
                           <Button
                             variant={groupItem.path === currentPath ? "tonal" : "text"}
                             size="medium"
-                            onClick={(e: any) => {
-                              groupItem.path === currentPath ? e.preventDefault() : null;
-                            }}
                             className="w-full justify-start">
                             {groupItem.title}
                           </Button>
-                        </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
