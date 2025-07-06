@@ -18,7 +18,6 @@
   },
   "workspaces": [
     "apps/*",
-    "packages/react-material",
-    "packages/material-color-utilities/typescript"
+    "packages/*"
   ]
 }

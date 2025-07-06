@@ -1,4 +1,4 @@
-import { MaterialDynamicColors } from "@material/material-color-utilities";
+import { MaterialDynamicColors } from "react-material-color-utils";
 
 export const materialColors = new MaterialDynamicColors();
 

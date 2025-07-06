@@ -1,10 +1,5 @@
 import React, { createContext, useContext, useState, useMemo, useCallback, useEffect } from "react";
-import {
-  DynamicScheme,
-  Hct,
-  sourceColorFromImage,
-  Variant,
-} from "@material/material-color-utilities";
+import { DynamicScheme, Hct, sourceColorFromImage, Variant } from "react-material-color-utils";
 import variants from "./variant";
 import { genCSS } from "./generator";
 import "./styles.css";

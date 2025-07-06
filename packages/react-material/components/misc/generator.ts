@@ -1,4 +1,4 @@
-import { type DynamicScheme } from "@material/material-color-utilities";
+import { type DynamicScheme } from "react-material-color-utils";
 import { colors } from "./colors";
 
 /**

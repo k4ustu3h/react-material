@@ -1,4 +1,4 @@
-import { Variant } from "@material/material-color-utilities";
+import { Variant } from "react-material-color-utils";
 
 export default [
   {
