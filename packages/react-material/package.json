@@ -1,6 +1,6 @@
 {
   "name": "react-material",
-  "version": "0.0.1-alpha2",
+  "version": "0.0.1-alpha3",
   "author": "miukyo",
   "main": "dist/index.cjs",
   "module": "dist/index.js",

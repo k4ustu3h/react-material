@@ -6,6 +6,7 @@ import Seperator from "../misc/seperator";
 import DocsIndex from "@/utils/docs-index";
 import { Button, Icon } from "react-material";
 import DocsListComp from "../blocks/docs-list";
+import packageJSON from "package.json"
 
 import metaJson from "@/utils/meta.json";
 import TableOfContents from "../misc/table-of-contents";
@@ -17,6 +18,7 @@ interface DocsMetadata {
 }
 
 const docsMetadata = metaJson as DocsMetadata;
+
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   const [DocsList, setDocsList] = useState(DocsIndex);
@@ -89,7 +91,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             <Logo className="size-8 grid place-items-center" />
           </Link>
           <div className="m3-font-body-small font-dmsans ml-2">
-            <span>v0.0.1-alpha1</span>
+            <span>v{packageJSON.version}</span>
           </div>
         </div>
 

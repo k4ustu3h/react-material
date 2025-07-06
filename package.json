@@ -1,6 +1,6 @@
 {
   "name": "react-material-monorepo",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha3",
   "devDependencies": {
     "prettier": "^3.5.3",
     "turbo": "^2.5.4",
@@ -14,7 +14,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,mdx}\"",
     "check-types": "turbo run check-types",
-    "publish": "npm run build --workspace=packages/react-material && npm publish --workspace=packages/react-material"
+    "change-version": "node scripts/changeVersion.js"
   },
   "workspaces": [
     "apps/*",
