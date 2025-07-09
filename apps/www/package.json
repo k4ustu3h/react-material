@@ -1,6 +1,6 @@
 {
   "name": "www",
-  "version": "0.0.1-alpha3",
+  "version": "0.0.1-alpha4",
   "type": "module",
   "private": true,
   "scripts": {

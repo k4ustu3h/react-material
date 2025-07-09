@@ -1,6 +1,6 @@
 {
   "name": "react-material-monorepo",
-  "version": "0.0.1-alpha3",
+  "version": "0.0.1-alpha4",
   "devDependencies": {
     "prettier": "^3.5.3",
     "turbo": "^2.5.4",
