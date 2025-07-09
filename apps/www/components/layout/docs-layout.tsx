@@ -112,14 +112,14 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
               Docs
             </Button>
           </Link>
-          <Link href="/">
+          <Link href="/docs/components/components">
             <Button variant="text" shape="square" className="shadow-none font-dmsans">
               Components
             </Button>
           </Link>
-          <Link href="/">
+          <Link href="/docs/get-started/theming">
             <Button variant="text" shape="square" className="shadow-none font-dmsans">
-              Themes
+              Theming
             </Button>
           </Link>
         </div>
@@ -262,7 +262,7 @@ const Footer = () => (
             </Link>
           </li>
           <li>
-            <Link href="/docs/components">
+            <Link href="/docs/components/components">
               <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Components
               </a>
@@ -282,13 +282,13 @@ const Footer = () => (
               </a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="https://discord.gg/">
               <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Discord
               </a>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="hidden sm:block md:block lg:block">
@@ -303,7 +303,7 @@ const Footer = () => (
               </a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/docs/contributing">
               <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm md:text-base">
                 Contributing
@@ -316,7 +316,7 @@ const Footer = () => (
                 Changelog
               </a>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="grid grid-cols-3 gap-4 sm:hidden col-span-1">

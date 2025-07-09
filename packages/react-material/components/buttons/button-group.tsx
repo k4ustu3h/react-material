@@ -21,7 +21,7 @@ type Props = CommonProps & React.HTMLAttributes<HTMLDivElement>;
 
 export const ButtonGroup: React.FC<Props> = (props) => {
   const { shape = "round", variant = "filled", mode, children, ...extraProps } = props;
-  const baseClasses = `m3-button-group-container ${shape}`;
+  const baseClasses = `m3-button-group-container ${shape} ${variant}`;
 
   const groupId = useId();
 

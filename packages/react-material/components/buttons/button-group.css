@@ -34,13 +34,13 @@
       z-index: 1;
     }
 
-    &.round label:first-of-type {
-      border-top-left-radius: var(--m3-util-rounding-extra-large) !important;
-      border-bottom-left-radius: var(--m3-util-rounding-extra-large) !important;
+    &.outlined label:first-of-type {
+      border-top-left-radius: var(--m3-util-rounding-large-increased) !important;
+      border-bottom-left-radius: var(--m3-util-rounding-large-increased) !important;
     }
-    &.round label:last-of-type {
-      border-top-right-radius: var(--m3-util-rounding-extra-large) !important;
-      border-bottom-right-radius: var(--m3-util-rounding-extra-large) !important;
+    &.outlined label:last-of-type {
+      border-top-right-radius: var(--m3-util-rounding-large-increased) !important;
+      border-bottom-right-radius: var(--m3-util-rounding-large-increased) !important;
     }
 
     /* High contrast mode support */

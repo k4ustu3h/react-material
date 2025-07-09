@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.875rem 1rem;
+    padding: 0.875rem .625rem 0.875rem 1rem;
     height: 3rem;
     bottom: 16px;
     transform-origin: left bottom;
@@ -48,6 +48,7 @@
       }
       & .m3-snackbar-close {
         padding: 0.375rem;
+        scale: 1.25;
         color: rgb(var(--m3-scheme-inverse-on-surface)) !important;
       }
     }

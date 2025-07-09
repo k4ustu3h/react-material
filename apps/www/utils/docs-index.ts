@@ -1,5 +1,5 @@
 // This file is auto-generated. Do not edit manually.
-// Generated on 2025-07-05T17:44:27.575Z
+// Generated on 2025-07-09T16:24:57.175Z
 
 /**
  * Documentation index structure with categories and their documents
@@ -39,6 +39,11 @@ const docsIndex: DocIndex = {
   ],
   "components": [
     {
+      title: "All Components",
+      description: "Explore the various components available in React Material.",
+      path: "/docs/components/components",
+    },
+    {
       title: "Button",
       description: "A versatile component for triggering actions or navigating users.",
       path: "/docs/components/buttons/button",
@@ -68,7 +73,7 @@ const docsIndex: DocIndex = {
     },
     {
       title: "FAB",
-      description: "A Floating Action Button (FAB) is a circular button that represents the primary action on a page.",
+      description: "A Floating Action Button (FAB) is a button that represents the primary action on a page.",
       path: "/docs/components/buttons/fab",
       group: "buttons",
       groupTitle: "Buttons",

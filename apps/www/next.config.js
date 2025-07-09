@@ -36,6 +36,11 @@ const nextConfig = {
         destination: "/docs/get-started/introduction",
         permanent: true,
       },
+            {
+        source: "/docs/components",
+        destination: "/docs/components/components",
+        permanent: true,
+      },
     ];
   },
 };
