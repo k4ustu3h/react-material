@@ -7,7 +7,7 @@ export default function Index() {
   return (
     <div className="w-full min-h-screen">
       <section className="p-1">
-        <div className="h-200 bg-surface-container-highest rounded-xl grid place-items-center relative overflow-hidden">
+        <div className="h-125 md:h-200 bg-surface-container-highest rounded-xl grid place-items-center relative overflow-hidden">
           <div className="absolute inset-0 blur-xl scale-120 opacity-50">
             <Iridescence mouseReact={false} speed={2} resolution={0.1} />
           </div>
