@@ -167,7 +167,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
               <div id="docs-content" className="min-h-120" />
               <article
                 key={CurrentPath}
-                className="order-2 w-full xl:w-200 mx-auto mt-20 px-2 md:px-8 prose animation-fade-in">
+                className="order-2 w-full xl:w-200 mx-auto mt-10 xl:mt-20 px-2 md:px-8 prose animation-fade-in">
                 {/* Table of Contents - hidden on mobile and tablet */}
                 <div className="absolute h-full xl:-right-35">
                   <TableOfContents />
