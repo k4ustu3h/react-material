@@ -319,7 +319,7 @@ const Footer = () => (
           </li> */}
         </ul>
       </div>
-      <div className="grid grid-cols-3 gap-4 sm:hidden col-span-1">
+      <div className="grid grid-cols-2 gap-4 sm:hidden col-span-1">
         <Link href="/docs/get-started/introduction">
           <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm">
             Docs
