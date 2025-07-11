@@ -29,70 +29,70 @@ const CodeHighlight = ({
   const match = className?.match(/language-(\w+)/);
   const language = match ? match[1] : undefined;
 
-  useEffect(() => {
-    const loadCodeHighlight = async () => {
-      if (inline) {
-        setIsVisible(true);
-        setIsLoaded(true);
-        return;
-      }
+  // useEffect(() => {
+  //   const loadCodeHighlight = async () => {
+  //     if (inline) {
+  //       setIsVisible(true);
+  //       setIsLoaded(true);
+  //       return;
+  //     }
 
-      // Wait for DOM to be ready
-      await new Promise((resolve) => {
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", resolve);
-        } else {
-          resolve(true);
-        }
-      });
+  //     // Wait for DOM to be ready
+  //     await new Promise((resolve) => {
+  //       if (document.readyState === "loading") {
+  //         document.addEventListener("DOMContentLoaded", resolve);
+  //       } else {
+  //         resolve(true);
+  //       }
+  //     });
 
-      // Set up intersection observer for lazy loading
-      const observer = new IntersectionObserver(
-        async (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting && !isVisible) {
-              setIsVisible(true);
+  //     // Set up intersection observer for lazy loading
+  //     const observer = new IntersectionObserver(
+  //       async (entries) => {
+  //         for (const entry of entries) {
+  //           if (entry.isIntersecting && !isVisible) {
+  //             setIsVisible(true);
 
-              // Add a small delay for smooth rendering
-              await new Promise((resolve) => setTimeout(resolve, 100));
-              setIsLoaded(true);
+  //             // Add a small delay for smooth rendering
+  //             await new Promise((resolve) => setTimeout(resolve, 100));
+  //             setIsLoaded(true);
 
-              // Check if content needs collapse after a small delay
-              setTimeout(() => {
-                if (contentRef.current) {
-                  const scrollHeight = contentRef.current.scrollHeight;
-                  const maxHeight = 20 * 16; // 20rem in pixels (assuming 16px base font)
-                  setContentHeight(scrollHeight);
-                  setNeedsCollapse(scrollHeight > maxHeight);
-                  if (scrollHeight <= maxHeight) {
-                    setIsCollapsed(false); // Don't collapse if content is small
-                  }
-                }
-              }, 50);
+  //             // Check if content needs collapse after a small delay
+  //             setTimeout(() => {
+  //               if (contentRef.current) {
+  //                 const scrollHeight = contentRef.current.scrollHeight;
+  //                 const maxHeight = 20 * 16; // 20rem in pixels (assuming 16px base font)
+  //                 setContentHeight(scrollHeight);
+  //                 setNeedsCollapse(scrollHeight > maxHeight);
+  //                 if (scrollHeight <= maxHeight) {
+  //                   setIsCollapsed(false); // Don't collapse if content is small
+  //                 }
+  //               }
+  //             }, 50);
 
-              observer.disconnect();
-              break;
-            }
-          }
-        },
-        {
-          rootMargin: "100px 0px",
-          threshold: 0.1,
-        }
-      );
+  //             observer.disconnect();
+  //             break;
+  //           }
+  //         }
+  //       },
+  //       {
+  //         rootMargin: "100px 0px",
+  //         threshold: 0.1,
+  //       }
+  //     );
 
-      if (containerRef.current) {
-        observer.observe(containerRef.current);
-      }
+  //     if (containerRef.current) {
+  //       observer.observe(containerRef.current);
+  //     }
 
-      return () => observer.disconnect();
-    };
+  //     return () => observer.disconnect();
+  //   };
 
-    const cleanup = loadCodeHighlight();
-    return () => {
-      cleanup.then((cleanupFn) => cleanupFn && cleanupFn());
-    };
-  }, [inline, isVisible]);
+  //   const cleanup = loadCodeHighlight();
+  //   return () => {
+  //     cleanup.then((cleanupFn) => cleanupFn && cleanupFn());
+  //   };
+  // }, [inline, isVisible]);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -153,7 +153,7 @@ const CodeHighlight = ({
               ? "linear-gradient(to bottom, black 0%, black 85%, transparent 100%)"
               : "none",
         }}>
-        {isVisible && (
+        {/* {isVisible && ( */}
           <ShikiHighlighter
             showLanguage={false}
             language={language}
@@ -164,7 +164,7 @@ const CodeHighlight = ({
             {...props}>
             {String(children)}
           </ShikiHighlighter>
-        )}
+        {/* )} */}
       </div>
 
       {/* Collapsed state overlay - only show if content needs collapse and is collapsed */}
@@ -272,7 +272,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h5: createHeading(5),
     h6: createHeading(6),
     table: (props: JSX.IntrinsicElements["table"]) => (
-      <div className="bg-surface-container p-8 rounded-md">
+      <div className="bg-surface-container p-8 rounded-md overflow-x-auto">
         <table className="w-full" {...props} />
       </div>
     ),

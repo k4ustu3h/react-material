@@ -15,12 +15,12 @@ const DocsHeader = (props: { title: string; description: string; img?: string })
     <div
       id="header"
       className="order-1 flex flex-col xl:flex-row gap-2 not-prose animation-fade-in">
-      <div className="grow h-85 xl:h-120 bg-surface-container rounded-xl overflow-hidden">
-        <div className="flex flex-col justify-center h-full px-15 lg:px-[10%] text-on-secondary-container">
-          <h1 className="m3-font-display-large font-semibold text-7xl lg:text-8xl text-wrap">
+      <div className="grow h-60 lg:h-85 xl:h-120 bg-surface-container rounded-xl overflow-hidden">
+        <div className="flex flex-col justify-center h-full px-[8%] text-on-secondary-container">
+          <h1 className="m3-font-display-large font-semibold text-5xl lg:text-8xl text-wrap w-fit">
             {props.title}
           </h1>
-          <p className="m3-font-title-large text-lg lg:text-2xl">{props.description}</p>
+          <p className="m3-font-title-large text-sm lg:text-2xl">{props.description}</p>
         </div>
       </div>
       <div className="xl:w-[40%] shrink-0 h-85 xl:h-120 bg-surface-container rounded-xl overflow-hidden relative">

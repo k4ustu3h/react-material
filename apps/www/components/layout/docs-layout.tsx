@@ -167,7 +167,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
               <div id="docs-content" className="min-h-120" />
               <article
                 key={CurrentPath}
-                className="order-2 w-full xl:w-200 mx-auto mt-20 px-4 md:px-8 prose animation-fade-in">
+                className="order-2 w-full xl:w-200 mx-auto mt-20 px-2 md:px-8 prose animation-fade-in">
                 {/* Table of Contents - hidden on mobile and tablet */}
                 <div className="absolute h-full xl:-right-35">
                   <TableOfContents />
@@ -325,16 +325,16 @@ const Footer = () => (
             Docs
           </a>
         </Link>
-        <Link href="https://github.com/yourusername/react-material">
+        <Link href="https://github.com/miukyo/react-material">
           <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm">
             GitHub
           </a>
         </Link>
-        <Link href="https://discord.gg/yourinvite">
+        {/* <Link href="https://discord.gg/yourinvite">
           <a className="m3-font-body-medium text-on-surface-variant hover:text-primary text-sm">
             Discord
           </a>
-        </Link>
+        </Link> */}
       </div>
     </div>
   </>

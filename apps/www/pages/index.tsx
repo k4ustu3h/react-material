@@ -12,11 +12,11 @@ export default function Index() {
             <Iridescence mouseReact={false} speed={2} resolution={0.1} />
           </div>
           <div className="absolute inset-0 z-10 dark:bg-[#000] w-full h-full opacity-30 backdrop-blur-xl"></div>
-          <div className="z-10 flex items-center justify-center flex-col">
-            <h1 className="m3-font-display-large md:text-8xl text-on-surface font-semibold">
+          <div className="z-10 flex items-center justify-center flex-col px-2">
+            <h1 className="m3-font-display-large text-center text-5xl  md:text-8xl text-on-surface font-semibold">
               React Material
             </h1>
-            <p className="m3-font-headline-small text-base md:text-2xl text-on-surface">
+            <p className="m3-font-headline-small text-center text-sm md:text-2xl text-on-surface">
               Material Design 3 Expressive Implementation in React
             </p>
             <Link href="/docs/get-started/introduction">
@@ -27,7 +27,7 @@ export default function Index() {
           </div>
         </div>
       </section>
-      <section className="py-20 px-8 bg-surface">
+      <section className="py-20 px-2 lg:px-8 bg-surface">
         <div className="max-w-7xl mx-auto">
           <h2 className="m3-font-display-medium text-4xl text-on-surface mb-8 text-center">
             Features
@@ -151,7 +151,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 px-8">
+      <section className="py-20 px-2 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="m3-font-display-medium text-4xl text-on-surface mb-8 text-center">
             Getting Started is Easy
@@ -253,7 +253,7 @@ bun add react-material # bun`}
       </section>
 
       {/* Comparison Section */}
-      <section className="py-20 px-8 bg-surface">
+      <section className="py-20 px-2 lg:px-8 bg-surface">
         <div className="max-w-7xl mx-auto">
           <h2 className="m3-font-display-medium text-4xl text-on-surface mb-8 text-center">
             Why Choose React Material?
@@ -324,7 +324,7 @@ bun add react-material # bun`}
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-8">
+      <section className="py-20 px-2 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="m3-font-display-medium text-4xl text-on-surface mb-8 text-center">
             Frequently Asked Questions
@@ -380,7 +380,7 @@ bun add react-material # bun`}
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-24 px-8 relative overflow-hidden">
+      <section className="py-24 px-2 lg:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
             <h2 className="m3-font-display-medium text-4xl text-on-surface mb-6">
@@ -390,7 +390,7 @@ bun add react-material # bun`}
               Join the growing community of developers creating beautiful, accessible, and
               performant React applications with Material Design 3.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/docs/get-started/introduction">
                 <Button size="large" variant="tonal" className="font-dmsans font-semibold">
                   Read the Docs
