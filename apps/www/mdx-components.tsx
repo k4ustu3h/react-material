@@ -111,7 +111,7 @@ const CodeHighlight = ({
   return !inline ? (
     <div
       ref={containerRef}
-      className={`relative transition-all duration-300 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
+      className={`relative transition-all duration-300`}>
       {/* Action buttons */}
       <div className="absolute top-2 right-2 z-10 flex gap-1">
         {/* Copy button */}
